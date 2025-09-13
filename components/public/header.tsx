@@ -5,10 +5,9 @@ import { ClaveoLogo } from "../logo";
 import { MaxWidthWrapper } from "../max-width";
 import { Button } from "../ui/button";
 
-const navLinks = [
-  { name: "Features", href: "/#features" },
-  { name: "Pricing", href: "/pricing" },
+const navLinks: { name: string; href: __next_route_internal_types__.RouteImpl<string> }[] = [
   { name: "Blogs", href: "/blogs" },
+  { name: "Pricing", href: "/pricing" },
   { name: "About", href: "/about" },
   { name: "Privacy", href: "/privacy" },
 ];
