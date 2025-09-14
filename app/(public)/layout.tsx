@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { HeaderSection } from "@/components/public/header";
+import { HeaderSection } from "./_components/header";
 
 interface PublicLayoutProps {
   children: ReactNode;
