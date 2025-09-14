@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { GithubButton } from "@/components/auth/github-button";
 import { Separator } from "@/components/auth/separator";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth/client";
 import { SignInSchema, type SignInSchemaType } from "@/lib/zod-schemas/auth";
-import { toast } from "sonner";
 
 export default function SignInPage() {
   const form = useForm<SignInSchemaType>({

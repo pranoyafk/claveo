@@ -1,17 +1,17 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { authClient } from "@/lib/auth/client";
-import { SignUpSchema, type SignUpSchemaType } from "@/lib/zod-schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader } from "@tabler/icons-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth/client";
+import { SignUpSchema, type SignUpSchemaType } from "@/lib/zod-schemas/auth";
 import { GithubButton } from "../../../components/auth/github-button";
 import { Separator } from "../../../components/auth/separator";
 

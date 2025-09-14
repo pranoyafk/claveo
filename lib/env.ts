@@ -12,7 +12,7 @@ export const env = createEnv({
     BETTER_AUTH_URL: z.url(),
     BETTER_AUTH_SECRET: z.string().min(36),
     GITHUB_CLIENT_ID: z.string(),
-    GITHUB_CLIENT_SECRET: z.string()
+    GITHUB_CLIENT_SECRET: z.string(),
   },
 
   /**
@@ -26,7 +26,7 @@ export const env = createEnv({
   /**
    * Destructure only client env.
    */
-  experimental__runtimeEnv: { },
+  experimental__runtimeEnv: {},
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
    * useful for Docker builds.

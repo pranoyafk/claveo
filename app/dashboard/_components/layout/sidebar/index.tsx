@@ -9,9 +9,9 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import type { UserType } from "@/lib/auth/client";
-import { UserMenu } from "./user-menu";
 import { PrimaryNav } from "./primary-nav";
 import { SecondaryNav } from "./secondary-nav";
+import { UserMenu } from "./user-menu";
 
 interface AppSidebarProps {
   user: UserType;

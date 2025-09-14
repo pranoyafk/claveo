@@ -1,7 +1,7 @@
-import type { UserType } from "@/lib/auth/client";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { cn } from "@/lib/utils";
 import { IconUser } from "@tabler/icons-react";
+import type { UserType } from "@/lib/auth/client";
+import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 interface UserAvatarProps {
   user: UserType;

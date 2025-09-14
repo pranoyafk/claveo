@@ -1,4 +1,4 @@
-import { IconBriefcase, IconDashboard, IconLifebuoy, IconSend, type Icon } from "@tabler/icons-react";
+import { type Icon, IconBriefcase, IconDashboard, IconLifebuoy, IconSend } from "@tabler/icons-react";
 
 export interface INavigationItem {
   title: string;
