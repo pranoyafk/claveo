@@ -1,6 +1,6 @@
 <template>
-  <div>
-    Dashboard
+  <UDashboardGroup>
+      <UDashboardSidebar />
     <slot />
-  </div>
+  </UDashboardGroup>
 </template>

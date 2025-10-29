@@ -28,7 +28,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 <template>
   <UHeader>
     <template #title>
-      <Logo show-text />
+      <SiteLogo show-text />
     </template>
 
     <UNavigationMenu :items="items" />
