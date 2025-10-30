@@ -1,16 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxt/ui", "@nuxt/eslint"],
-  css: ["~/assets/css/main.css"],
-  eslint: {
-    config: {
-      stylistic: {
-        semi: true,
-        indent: "tab",
-        quotes: "single",
-      },
-    },
-  },
-  compatibilityDate: "2025-07-15",
-  devtools: { enabled: true },
+	modules: [
+		'@nuxt/ui',
+		'@nuxt/eslint',
+		'nuxt-auth-utils',
+	],
+	devtools: { enabled: true },
+	css: ['~/assets/css/main.css'],
+	compatibilityDate: '2025-07-15',
+	eslint: {
+		config: {
+			stylistic: {
+				semi: true,
+				indent: 'tab',
+				quotes: 'single',
+			},
+		},
+	},
 });
