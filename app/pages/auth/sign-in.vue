@@ -49,7 +49,9 @@ function onSubmit(payload: FormSubmitEvent<Schema>) {
 					<NuxtLink
 						href="/auth/sign-up"
 						class="text-default"
-					>Sign Up</NuxtLink>
+					>
+						Sign Up
+					</NuxtLink>
 				</div>
 			</template>
 		</UAuthForm>
