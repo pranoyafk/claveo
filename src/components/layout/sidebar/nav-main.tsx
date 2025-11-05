@@ -7,7 +7,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { type Icon, IconDashboard, IconPackage } from "@tabler/icons-react";
+import { type Icon, IconPackage } from "@tabler/icons-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,11 +19,10 @@ type NavMainItem = {
 };
 
 const items: NavMainItem[] = [
-  { label: "Dashboard", icon: IconDashboard, href: "/dashboard" },
   {
     label: "Projects",
     icon: IconPackage,
-    href: "/projects",
+    href: "/dashboard/projects",
   },
 ];
 

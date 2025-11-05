@@ -1,0 +1,2 @@
+export const MAX_LENGTH_PROJECT_NAME = 255;
+export const MIN_LENGTH_PROJECT_NAME = 3;
