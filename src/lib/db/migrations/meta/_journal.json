@@ -8,6 +8,13 @@
       "when": 1762274935811,
       "tag": "0000_motionless_nehzno",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1762352362380,
+      "tag": "0001_chunky_rage",
+      "breakpoints": true
     }
   ]
 }
