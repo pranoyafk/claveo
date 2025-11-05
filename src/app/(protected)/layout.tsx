@@ -1,5 +1,5 @@
 import { AppSidebar } from "@/components/layout/sidebar";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { Header } from "./_components/header";
 
 type ProtectedProps = {
@@ -10,10 +10,10 @@ export default async function ProtectedLayout({ children }: ProtectedProps) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset>
+      <main>
         <Header />
         {children}
-      </SidebarInset>
+      </main>
     </SidebarProvider>
   );
 }

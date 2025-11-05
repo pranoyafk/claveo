@@ -1,9 +1,5 @@
 "use client";
 
-import { type Icon, IconDashboard } from "@tabler/icons-react";
-import type { Route } from "next";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -11,6 +7,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { type Icon, IconDashboard, IconPackage } from "@tabler/icons-react";
+import type { Route } from "next";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type NavMainItem = {
   label: string;
@@ -18,7 +18,9 @@ type NavMainItem = {
   href: Route;
 };
 
-const items: NavMainItem[] = [{ label: "Dashboard", icon: IconDashboard, href: "/dashboard" }];
+const items: NavMainItem[] = [{ label: "Dashboard", icon: IconDashboard, href: "/dashboard" }, {
+  label: "Projects",icon: IconPackage, href: '/projects'
+}];
 
 export function SidebarMainNav() {
   const pathName = usePathname();
@@ -27,7 +29,7 @@ export function SidebarMainNav() {
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
-          const isActive = pathName === "/dashboard" || pathName.startsWith(item.href);
+          const isActive =  pathName.startsWith(item.href);
           return (
             <SidebarMenuItem key={item.href}>
               <SidebarMenuButton isActive={isActive} asChild tooltip={item.label}>
