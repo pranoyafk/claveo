@@ -1,4 +1,4 @@
-import { AuthUser } from "@/lib/auth/server";
+import type { AuthUser } from "@/lib/auth/server";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 type UserAvatarProps = {

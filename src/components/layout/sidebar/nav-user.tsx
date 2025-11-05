@@ -1,8 +1,5 @@
 "use client";
 
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useTransition } from "react";
 import { UserAvatar } from "@/components/avatar";
 import {
   DropdownMenu,
@@ -15,8 +12,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
 import { Spinner } from "@/components/ui/spinner";
-import { AuthUser } from "@/lib/auth/server";
 import { authClient } from "@/lib/auth/client";
+import type { AuthUser } from "@/lib/auth/server";
+import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 export function NavUser({ user }: { user: AuthUser }) {
   const [isLogOutPending, startLogOutTransition] = useTransition();

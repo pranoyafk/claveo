@@ -7,7 +7,7 @@ import { NavUser } from "./nav-user";
 export async function AppSidebar() {
   const { user } = await verifySession();
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader>
         <Header />
       </SidebarHeader>

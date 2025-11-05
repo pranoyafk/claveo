@@ -18,9 +18,14 @@ type NavMainItem = {
   href: Route;
 };
 
-const items: NavMainItem[] = [{ label: "Dashboard", icon: IconDashboard, href: "/dashboard" }, {
-  label: "Projects",icon: IconPackage, href: '/projects'
-}];
+const items: NavMainItem[] = [
+  { label: "Dashboard", icon: IconDashboard, href: "/dashboard" },
+  {
+    label: "Projects",
+    icon: IconPackage,
+    href: "/projects",
+  },
+];
 
 export function SidebarMainNav() {
   const pathName = usePathname();
@@ -29,7 +34,7 @@ export function SidebarMainNav() {
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
-          const isActive =  pathName.startsWith(item.href);
+          const isActive = pathName.startsWith(item.href);
           return (
             <SidebarMenuItem key={item.href}>
               <SidebarMenuButton isActive={isActive} asChild tooltip={item.label}>
