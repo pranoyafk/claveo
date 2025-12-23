@@ -1,4 +1,11 @@
-import { pgTable, text, timestamp, boolean, index, uniqueIndex } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  text,
+  timestamp,
+  boolean,
+  index,
+  uniqueIndex,
+} from 'drizzle-orm/pg-core'
 
 export const users = pgTable('users', {
   id: text('id').primaryKey(),
@@ -13,8 +20,8 @@ export const users = pgTable('users', {
   role: text('role'),
   banned: boolean('banned').default(false),
   banReason: text('ban_reason'),
-  banExpires: timestamp('ban_expires')
-});
+  banExpires: timestamp('ban_expires'),
+})
 
 export const sessions = pgTable(
   'sessions',
@@ -32,10 +39,10 @@ export const sessions = pgTable(
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),
     impersonatedBy: text('impersonated_by'),
-    activeOrganizationId: text('active_organization_id')
+    activeOrganizationId: text('active_organization_id'),
   },
-  table => [index('sessions_userId_idx').on(table.userId)]
-);
+  (table) => [index('sessions_userId_idx').on(table.userId)],
+)
 
 export const accounts = pgTable(
   'accounts',
@@ -56,10 +63,10 @@ export const accounts = pgTable(
     createdAt: timestamp('created_at').notNull(),
     updatedAt: timestamp('updated_at')
       .$onUpdate(() => new Date())
-      .notNull()
+      .notNull(),
   },
-  table => [index('accounts_userId_idx').on(table.userId)]
-);
+  (table) => [index('accounts_userId_idx').on(table.userId)],
+)
 
 export const verifications = pgTable(
   'verifications',
@@ -71,10 +78,10 @@ export const verifications = pgTable(
     createdAt: timestamp('created_at').notNull(),
     updatedAt: timestamp('updated_at')
       .$onUpdate(() => new Date())
-      .notNull()
+      .notNull(),
   },
-  table => [index('verifications_identifier_idx').on(table.identifier)]
-);
+  (table) => [index('verifications_identifier_idx').on(table.identifier)],
+)
 
 export const organizations = pgTable(
   'organizations',
@@ -84,10 +91,10 @@ export const organizations = pgTable(
     slug: text('slug').notNull().unique(),
     logo: text('logo'),
     createdAt: timestamp('created_at').notNull(),
-    metadata: text('metadata')
+    metadata: text('metadata'),
   },
-  table => [uniqueIndex('organizations_slug_uidx').on(table.slug)]
-);
+  (table) => [uniqueIndex('organizations_slug_uidx').on(table.slug)],
+)
 
 export const organizationRoles = pgTable(
   'organization_roles',
@@ -99,13 +106,13 @@ export const organizationRoles = pgTable(
     role: text('role').notNull(),
     permission: text('permission').notNull(),
     createdAt: timestamp('created_at').notNull(),
-    updatedAt: timestamp('updated_at').$onUpdate(() => new Date())
+    updatedAt: timestamp('updated_at').$onUpdate(() => new Date()),
   },
-  table => [
+  (table) => [
     index('organizationRoles_organizationId_idx').on(table.organizationId),
-    index('organizationRoles_role_idx').on(table.role)
-  ]
-);
+    index('organizationRoles_role_idx').on(table.role),
+  ],
+)
 
 export const members = pgTable(
   'members',
@@ -118,10 +125,13 @@ export const members = pgTable(
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),
     role: text('role').default('member').notNull(),
-    createdAt: timestamp('created_at').notNull()
+    createdAt: timestamp('created_at').notNull(),
   },
-  table => [index('members_organizationId_idx').on(table.organizationId), index('members_userId_idx').on(table.userId)]
-);
+  (table) => [
+    index('members_organizationId_idx').on(table.organizationId),
+    index('members_userId_idx').on(table.userId),
+  ],
+)
 
 export const invitations = pgTable(
   'invitations',
@@ -137,10 +147,10 @@ export const invitations = pgTable(
     createdAt: timestamp('created_at').notNull(),
     inviterId: text('inviter_id')
       .notNull()
-      .references(() => users.id, { onDelete: 'cascade' })
+      .references(() => users.id, { onDelete: 'cascade' }),
   },
-  table => [
+  (table) => [
     index('invitations_organizationId_idx').on(table.organizationId),
-    index('invitations_email_idx').on(table.email)
-  ]
-);
+    index('invitations_email_idx').on(table.email),
+  ],
+)

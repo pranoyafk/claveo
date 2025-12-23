@@ -165,7 +165,5 @@
     "builtin": true
   },
   "globals": {},
-  "ignorePatterns": [
-    "src/components/ui/**"
-  ]
+  "ignorePatterns": ["src/components/ui/**"]
 }
