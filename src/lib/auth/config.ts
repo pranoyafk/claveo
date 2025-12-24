@@ -5,6 +5,7 @@ import { db } from '@/lib/db'
 import * as authSchema from '@/lib/db/schema/auth'
 import { adminAccessControl, organizationAccessControl } from './permissions'
 import { admin, organization } from 'better-auth/plugins'
+import { tanstackStartCookies } from 'better-auth/tanstack-start'
 
 export const auth = betterAuth({
   secret: env.BETTER_AUTH_SECRET,
@@ -23,8 +24,8 @@ export const auth = betterAuth({
       clientSecret: '',
     },
     github: {
-      clientId: '',
-      clientSecret: '',
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
     },
   },
   advanced: {
@@ -46,5 +47,6 @@ export const auth = betterAuth({
         maximumRolesPerOrganization: 10,
       },
     }),
+    tanstackStartCookies(),
   ],
 })

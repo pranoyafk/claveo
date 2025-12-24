@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
-import { IconBrand4chan, IconLockPassword, IconMail } from '@tabler/icons-react'
+import { IconLockPassword, IconMail } from '@tabler/icons-react'
 import {
   Field,
   FieldDescription,
@@ -14,6 +14,7 @@ import {
   InputGroupAddon,
 } from '@/components/ui/input-group'
 import { OauthButtons } from './-components/oauth-buttons'
+import { Logo } from '@/components/logo'
 
 export const Route = createFileRoute('/auth/sign-in')({
   component: RouteComponent,
@@ -25,10 +26,7 @@ function RouteComponent() {
       <FieldGroup>
         <div className="flex flex-col items-center gap-2 text-center">
           <Link to="/" className="flex flex-col items-center gap-2 font-medium">
-            <div className="flex size-8 items-center justify-center rounded-md">
-              <IconBrand4chan className="size-6" />
-            </div>
-            <span className="sr-only">Claveo</span>
+            <Logo showBg={false} showText={false} size={35} />
           </Link>
           <h1 className="text-xl font-bold">Welcome back to Claveo.</h1>
           <FieldDescription>

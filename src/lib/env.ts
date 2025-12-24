@@ -7,6 +7,8 @@ export const envSchema = z.object({
   POSTGRES_PASSWORD: z.string(),
   BETTER_AUTH_URL: z.url(),
   BETTER_AUTH_SECRET: z.string(),
+  GITHUB_CLIENT_ID: z.string(),
+  GITHUB_CLIENT_SECRET: z.string(),
 })
 
 export const env = envSchema.parse(Bun.env)
