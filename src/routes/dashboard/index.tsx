@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button'
+import { authClient } from '@/lib/auth/client'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard/')({
@@ -5,5 +7,9 @@ export const Route = createFileRoute('/dashboard/')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/dashboard/"!</div>
+  return (
+    <div>
+      <Button onClick={() => authClient.signOut()}>Sign Out</Button>
+    </div>
+  )
 }

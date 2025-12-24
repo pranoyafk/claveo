@@ -1,4 +1,4 @@
-import { betterAuth } from 'better-auth'
+import { betterAuth } from 'better-auth/minimal'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { env } from '@/lib/env'
 import { db } from '@/lib/db'
@@ -28,13 +28,6 @@ export const auth = betterAuth({
       clientSecret: env.GITHUB_CLIENT_SECRET,
     },
   },
-  advanced: {
-    defaultCookieAttributes: {
-      sameSite: 'none',
-      secure: true,
-      httpOnly: true,
-    },
-  },
   plugins: [
     admin({
       ac: adminAccessControl,
@@ -50,3 +43,5 @@ export const auth = betterAuth({
     tanstackStartCookies(),
   ],
 })
+
+export type User = (typeof auth.$Infer)['Session']['user']

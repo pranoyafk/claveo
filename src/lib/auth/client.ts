@@ -1,4 +1,4 @@
-import { createAuthClient } from 'better-auth/client'
+import { createAuthClient } from 'better-auth/react'
 import { organizationClient, adminClient } from 'better-auth/client/plugins'
 import { adminAccessControl, organizationAccessControl } from './permissions'
 

@@ -4,10 +4,14 @@ import { Button } from '@/components/ui/button'
 import { IconMenu, IconX } from '@tabler/icons-react'
 import { Link } from '@tanstack/react-router'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { authClient } from '@/lib/auth/client'
+import { Skeleton } from '@/components/ui/skeleton'
+import { useMounted } from '@/hooks/use-is-mounted'
 
 export function HeaderSection() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-
+  const { data, isPending } = authClient.useSession()
+  const isMounted = useMounted()
   const links = [
     { name: 'Home', href: '/' },
     { name: 'Blogs', href: '/blogs' },
@@ -39,12 +43,27 @@ export function HeaderSection() {
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center gap-2">
             <ThemeToggle />
-            <Button variant="ghost">
-              <Link to="/auth/sign-in">Sign in</Link>
-            </Button>
-            <Button>
-              <Link to="/auth/sign-up">Get Started</Link>
-            </Button>
+            {isMounted && isPending && (
+              <>
+                <Skeleton className="w-15 h-7 rounded-md" />
+                <Skeleton className="w-20 h-7 rounded-md" />
+              </>
+            )}
+            {isMounted && !isPending && !data && (
+              <>
+                <Button variant="ghost">
+                  <Link to="/auth/sign-in">Sign in</Link>
+                </Button>
+                <Button>
+                  <Link to="/auth/sign-up">Get Started</Link>
+                </Button>
+              </>
+            )}
+            {isMounted && !isPending && data && (
+              <Button size="lg">
+                <Link to="/dashboard">Dashboard</Link>
+              </Button>
+            )}
           </div>
 
           <ThemeToggle className="md:hidden" />
@@ -78,12 +97,27 @@ export function HeaderSection() {
               </Link>
             ))}
             <div className="flex flex-col gap-2 mt-4 pt-4 border-t">
-              <Button variant="outline" className="w-full">
-                <Link to="/auth/sign-in">Sign in</Link>
-              </Button>
-              <Button className="w-full">
-                <Link to="/auth/sign-up">Get Started</Link>
-              </Button>
+              {isMounted && isPending && (
+                <>
+                  <Skeleton className="w-full h-7 rounded-md" />
+                  <Skeleton className="w-full h-7 rounded-md" />
+                </>
+              )}
+              {isMounted && !isPending && !data && (
+                <>
+                  <Button className="w-full" variant="outline">
+                    <Link to="/auth/sign-in">Sign in</Link>
+                  </Button>
+                  <Button className="w-full">
+                    <Link to="/auth/sign-up">Get Started</Link>
+                  </Button>
+                </>
+              )}
+              {isMounted && !isPending && data && (
+                <Button className="w-full" size="lg">
+                  <Link to="/dashboard">Dashboard</Link>
+                </Button>
+              )}
             </div>
           </nav>
         </div>

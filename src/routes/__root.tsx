@@ -5,6 +5,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import appCss from '@/styles.css?url'
 import { getThemeServerFn } from '@/lib/theme'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/sonner'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -29,6 +30,7 @@ export const Route = createRootRoute({
   }),
   loader: () => getThemeServerFn(),
   shellComponent: RootDocument,
+  notFoundComponent: () => <h1>Not Found</h1>,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -39,7 +41,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <ThemeProvider theme={theme}>
+          {children}
+          <Toaster />
+        </ThemeProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
