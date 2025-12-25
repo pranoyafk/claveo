@@ -11,13 +11,14 @@ import { authClient } from '@/lib/auth/client'
 import type { User } from '@/lib/auth/config'
 import { authQueries } from '@/lib/queries/auth'
 import { IconLogout, IconUserCircle } from '@tabler/icons-react'
-import { useQueryClient } from '@tanstack/react-query'
-import { useRouter } from '@tanstack/react-router'
+import { useRouteContext, useRouter } from '@tanstack/react-router'
 import { useTransition } from 'react'
 import { toast } from 'sonner'
 
 export function UserMenu({ user }: { user: User }) {
-  const queryClient = useQueryClient()
+  const context = useRouteContext({
+    from: '__root__',
+  })
   const [isSigningOutPending, startSigningOut] = useTransition()
   const router = useRouter()
   const handleSignOut = async () => {
@@ -26,7 +27,7 @@ export function UserMenu({ user }: { user: User }) {
       toast.error(error.message || 'Internal Server Error')
       return
     }
-    queryClient.invalidateQueries({
+    context.queryClient.invalidateQueries({
       queryKey: authQueries.all,
     })
     router.invalidate()
