@@ -1,23 +1,23 @@
-import * as React from 'react'
-import { Logo } from '@/components/logo'
-import { Button } from '@/components/ui/button'
-import { IconMenu, IconX } from '@tabler/icons-react'
-import { Link } from '@tanstack/react-router'
-import { ThemeToggle } from '@/components/theme-toggle'
-import { authClient } from '@/lib/auth/client'
-import { Skeleton } from '@/components/ui/skeleton'
-import { useMounted } from '@/hooks/use-is-mounted'
+import * as React from "react";
+import { Logo } from "@/components/logo";
+import { Button } from "@/components/ui/button";
+import { IconMenu, IconX } from "@tabler/icons-react";
+import { Link } from "@tanstack/react-router";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { authClient } from "@/lib/auth/client";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useMounted } from "@/hooks/use-is-mounted";
 
 export function HeaderSection() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-  const { data, isPending } = authClient.useSession()
-  const isMounted = useMounted()
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { data, isPending } = authClient.useSession();
+  const isMounted = useMounted();
   const links = [
-    { name: 'Home', href: '/' },
-    { name: 'Blogs', href: '/blogs' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'Changelog', href: '/changelog' },
-  ]
+    { name: "Home", href: "/" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "Pricing", href: "/pricing" },
+    { name: "Changelog", href: "/changelog" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
@@ -123,5 +123,5 @@ export function HeaderSection() {
         </div>
       )}
     </header>
-  )
+  );
 }

@@ -8,327 +8,327 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as R404RouteImport } from './routes/404'
-import { Route as AuthLayoutRouteImport } from './routes/auth/layout'
-import { Route as PublicLayoutRouteImport } from './routes/_public/layout'
-import { Route as AuthedLayoutRouteImport } from './routes/_authed/layout'
-import { Route as PublicIndexRouteImport } from './routes/_public/index'
-import { Route as AuthSignUpRouteImport } from './routes/auth/sign-up'
-import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
-import { Route as AuthResetPasswordRouteImport } from './routes/auth/reset-password'
-import { Route as PublicChangelogRouteImport } from './routes/_public/changelog'
-import { Route as AuthedProjectsLayoutRouteImport } from './routes/_authed/projects/layout'
-import { Route as AuthedProjectsIndexRouteImport } from './routes/_authed/projects/index'
-import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
-import { Route as AuthedProjectsProjectIdRouteImport } from './routes/_authed/projects/$projectId'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as R404RouteImport } from "./routes/404";
+import { Route as AuthLayoutRouteImport } from "./routes/auth/layout";
+import { Route as PublicLayoutRouteImport } from "./routes/_public/layout";
+import { Route as AuthedLayoutRouteImport } from "./routes/_authed/layout";
+import { Route as PublicIndexRouteImport } from "./routes/_public/index";
+import { Route as AuthSignUpRouteImport } from "./routes/auth/sign-up";
+import { Route as AuthSignInRouteImport } from "./routes/auth/sign-in";
+import { Route as AuthResetPasswordRouteImport } from "./routes/auth/reset-password";
+import { Route as PublicChangelogRouteImport } from "./routes/_public/changelog";
+import { Route as AuthedProjectsLayoutRouteImport } from "./routes/_authed/projects/layout";
+import { Route as AuthedProjectsIndexRouteImport } from "./routes/_authed/projects/index";
+import { Route as ApiAuthSplatRouteImport } from "./routes/api/auth/$";
+import { Route as AuthedProjectsProjectIdRouteImport } from "./routes/_authed/projects/$projectId";
 
 const R404Route = R404RouteImport.update({
-  id: '/404',
-  path: '/404',
+  id: "/404",
+  path: "/404",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthLayoutRoute = AuthLayoutRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+  id: "/auth",
+  path: "/auth",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const PublicLayoutRoute = PublicLayoutRouteImport.update({
-  id: '/_public',
+  id: "/_public",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthedLayoutRoute = AuthedLayoutRouteImport.update({
-  id: '/_authed',
+  id: "/_authed",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const PublicIndexRoute = PublicIndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => PublicLayoutRoute,
-} as any)
+} as any);
 const AuthSignUpRoute = AuthSignUpRouteImport.update({
-  id: '/sign-up',
-  path: '/sign-up',
+  id: "/sign-up",
+  path: "/sign-up",
   getParentRoute: () => AuthLayoutRoute,
-} as any)
+} as any);
 const AuthSignInRoute = AuthSignInRouteImport.update({
-  id: '/sign-in',
-  path: '/sign-in',
+  id: "/sign-in",
+  path: "/sign-in",
   getParentRoute: () => AuthLayoutRoute,
-} as any)
+} as any);
 const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
+  id: "/reset-password",
+  path: "/reset-password",
   getParentRoute: () => AuthLayoutRoute,
-} as any)
+} as any);
 const PublicChangelogRoute = PublicChangelogRouteImport.update({
-  id: '/changelog',
-  path: '/changelog',
+  id: "/changelog",
+  path: "/changelog",
   getParentRoute: () => PublicLayoutRoute,
-} as any)
+} as any);
 const AuthedProjectsLayoutRoute = AuthedProjectsLayoutRouteImport.update({
-  id: '/projects',
-  path: '/projects',
+  id: "/projects",
+  path: "/projects",
   getParentRoute: () => AuthedLayoutRoute,
-} as any)
+} as any);
 const AuthedProjectsIndexRoute = AuthedProjectsIndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => AuthedProjectsLayoutRoute,
-} as any)
+} as any);
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
-  id: '/api/auth/$',
-  path: '/api/auth/$',
+  id: "/api/auth/$",
+  path: "/api/auth/$",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthedProjectsProjectIdRoute = AuthedProjectsProjectIdRouteImport.update({
-  id: '/$projectId',
-  path: '/$projectId',
+  id: "/$projectId",
+  path: "/$projectId",
   getParentRoute: () => AuthedProjectsLayoutRoute,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/auth': typeof AuthLayoutRouteWithChildren
-  '/404': typeof R404Route
-  '/projects': typeof AuthedProjectsLayoutRouteWithChildren
-  '/changelog': typeof PublicChangelogRoute
-  '/auth/reset-password': typeof AuthResetPasswordRoute
-  '/auth/sign-in': typeof AuthSignInRoute
-  '/auth/sign-up': typeof AuthSignUpRoute
-  '/': typeof PublicIndexRoute
-  '/projects/$projectId': typeof AuthedProjectsProjectIdRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/projects/': typeof AuthedProjectsIndexRoute
+  "/auth": typeof AuthLayoutRouteWithChildren;
+  "/404": typeof R404Route;
+  "/projects": typeof AuthedProjectsLayoutRouteWithChildren;
+  "/changelog": typeof PublicChangelogRoute;
+  "/auth/reset-password": typeof AuthResetPasswordRoute;
+  "/auth/sign-in": typeof AuthSignInRoute;
+  "/auth/sign-up": typeof AuthSignUpRoute;
+  "/": typeof PublicIndexRoute;
+  "/projects/$projectId": typeof AuthedProjectsProjectIdRoute;
+  "/api/auth/$": typeof ApiAuthSplatRoute;
+  "/projects/": typeof AuthedProjectsIndexRoute;
 }
 export interface FileRoutesByTo {
-  '/auth': typeof AuthLayoutRouteWithChildren
-  '/404': typeof R404Route
-  '/changelog': typeof PublicChangelogRoute
-  '/auth/reset-password': typeof AuthResetPasswordRoute
-  '/auth/sign-in': typeof AuthSignInRoute
-  '/auth/sign-up': typeof AuthSignUpRoute
-  '/': typeof PublicIndexRoute
-  '/projects/$projectId': typeof AuthedProjectsProjectIdRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/projects': typeof AuthedProjectsIndexRoute
+  "/auth": typeof AuthLayoutRouteWithChildren;
+  "/404": typeof R404Route;
+  "/changelog": typeof PublicChangelogRoute;
+  "/auth/reset-password": typeof AuthResetPasswordRoute;
+  "/auth/sign-in": typeof AuthSignInRoute;
+  "/auth/sign-up": typeof AuthSignUpRoute;
+  "/": typeof PublicIndexRoute;
+  "/projects/$projectId": typeof AuthedProjectsProjectIdRoute;
+  "/api/auth/$": typeof ApiAuthSplatRoute;
+  "/projects": typeof AuthedProjectsIndexRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/_authed': typeof AuthedLayoutRouteWithChildren
-  '/_public': typeof PublicLayoutRouteWithChildren
-  '/auth': typeof AuthLayoutRouteWithChildren
-  '/404': typeof R404Route
-  '/_authed/projects': typeof AuthedProjectsLayoutRouteWithChildren
-  '/_public/changelog': typeof PublicChangelogRoute
-  '/auth/reset-password': typeof AuthResetPasswordRoute
-  '/auth/sign-in': typeof AuthSignInRoute
-  '/auth/sign-up': typeof AuthSignUpRoute
-  '/_public/': typeof PublicIndexRoute
-  '/_authed/projects/$projectId': typeof AuthedProjectsProjectIdRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/_authed/projects/': typeof AuthedProjectsIndexRoute
+  __root__: typeof rootRouteImport;
+  "/_authed": typeof AuthedLayoutRouteWithChildren;
+  "/_public": typeof PublicLayoutRouteWithChildren;
+  "/auth": typeof AuthLayoutRouteWithChildren;
+  "/404": typeof R404Route;
+  "/_authed/projects": typeof AuthedProjectsLayoutRouteWithChildren;
+  "/_public/changelog": typeof PublicChangelogRoute;
+  "/auth/reset-password": typeof AuthResetPasswordRoute;
+  "/auth/sign-in": typeof AuthSignInRoute;
+  "/auth/sign-up": typeof AuthSignUpRoute;
+  "/_public/": typeof PublicIndexRoute;
+  "/_authed/projects/$projectId": typeof AuthedProjectsProjectIdRoute;
+  "/api/auth/$": typeof ApiAuthSplatRoute;
+  "/_authed/projects/": typeof AuthedProjectsIndexRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/auth'
-    | '/404'
-    | '/projects'
-    | '/changelog'
-    | '/auth/reset-password'
-    | '/auth/sign-in'
-    | '/auth/sign-up'
-    | '/'
-    | '/projects/$projectId'
-    | '/api/auth/$'
-    | '/projects/'
-  fileRoutesByTo: FileRoutesByTo
+    | "/auth"
+    | "/404"
+    | "/projects"
+    | "/changelog"
+    | "/auth/reset-password"
+    | "/auth/sign-in"
+    | "/auth/sign-up"
+    | "/"
+    | "/projects/$projectId"
+    | "/api/auth/$"
+    | "/projects/";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/auth'
-    | '/404'
-    | '/changelog'
-    | '/auth/reset-password'
-    | '/auth/sign-in'
-    | '/auth/sign-up'
-    | '/'
-    | '/projects/$projectId'
-    | '/api/auth/$'
-    | '/projects'
+    | "/auth"
+    | "/404"
+    | "/changelog"
+    | "/auth/reset-password"
+    | "/auth/sign-in"
+    | "/auth/sign-up"
+    | "/"
+    | "/projects/$projectId"
+    | "/api/auth/$"
+    | "/projects";
   id:
-    | '__root__'
-    | '/_authed'
-    | '/_public'
-    | '/auth'
-    | '/404'
-    | '/_authed/projects'
-    | '/_public/changelog'
-    | '/auth/reset-password'
-    | '/auth/sign-in'
-    | '/auth/sign-up'
-    | '/_public/'
-    | '/_authed/projects/$projectId'
-    | '/api/auth/$'
-    | '/_authed/projects/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/_authed"
+    | "/_public"
+    | "/auth"
+    | "/404"
+    | "/_authed/projects"
+    | "/_public/changelog"
+    | "/auth/reset-password"
+    | "/auth/sign-in"
+    | "/auth/sign-up"
+    | "/_public/"
+    | "/_authed/projects/$projectId"
+    | "/api/auth/$"
+    | "/_authed/projects/";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  AuthedLayoutRoute: typeof AuthedLayoutRouteWithChildren
-  PublicLayoutRoute: typeof PublicLayoutRouteWithChildren
-  AuthLayoutRoute: typeof AuthLayoutRouteWithChildren
-  R404Route: typeof R404Route
-  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  AuthedLayoutRoute: typeof AuthedLayoutRouteWithChildren;
+  PublicLayoutRoute: typeof PublicLayoutRouteWithChildren;
+  AuthLayoutRoute: typeof AuthLayoutRouteWithChildren;
+  R404Route: typeof R404Route;
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/404': {
-      id: '/404'
-      path: '/404'
-      fullPath: '/404'
-      preLoaderRoute: typeof R404RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthLayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_public': {
-      id: '/_public'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof PublicLayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authed': {
-      id: '/_authed'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthedLayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_public/': {
-      id: '/_public/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof PublicIndexRouteImport
-      parentRoute: typeof PublicLayoutRoute
-    }
-    '/auth/sign-up': {
-      id: '/auth/sign-up'
-      path: '/sign-up'
-      fullPath: '/auth/sign-up'
-      preLoaderRoute: typeof AuthSignUpRouteImport
-      parentRoute: typeof AuthLayoutRoute
-    }
-    '/auth/sign-in': {
-      id: '/auth/sign-in'
-      path: '/sign-in'
-      fullPath: '/auth/sign-in'
-      preLoaderRoute: typeof AuthSignInRouteImport
-      parentRoute: typeof AuthLayoutRoute
-    }
-    '/auth/reset-password': {
-      id: '/auth/reset-password'
-      path: '/reset-password'
-      fullPath: '/auth/reset-password'
-      preLoaderRoute: typeof AuthResetPasswordRouteImport
-      parentRoute: typeof AuthLayoutRoute
-    }
-    '/_public/changelog': {
-      id: '/_public/changelog'
-      path: '/changelog'
-      fullPath: '/changelog'
-      preLoaderRoute: typeof PublicChangelogRouteImport
-      parentRoute: typeof PublicLayoutRoute
-    }
-    '/_authed/projects': {
-      id: '/_authed/projects'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof AuthedProjectsLayoutRouteImport
-      parentRoute: typeof AuthedLayoutRoute
-    }
-    '/_authed/projects/': {
-      id: '/_authed/projects/'
-      path: '/'
-      fullPath: '/projects/'
-      preLoaderRoute: typeof AuthedProjectsIndexRouteImport
-      parentRoute: typeof AuthedProjectsLayoutRoute
-    }
-    '/api/auth/$': {
-      id: '/api/auth/$'
-      path: '/api/auth/$'
-      fullPath: '/api/auth/$'
-      preLoaderRoute: typeof ApiAuthSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authed/projects/$projectId': {
-      id: '/_authed/projects/$projectId'
-      path: '/$projectId'
-      fullPath: '/projects/$projectId'
-      preLoaderRoute: typeof AuthedProjectsProjectIdRouteImport
-      parentRoute: typeof AuthedProjectsLayoutRoute
-    }
+    "/404": {
+      id: "/404";
+      path: "/404";
+      fullPath: "/404";
+      preLoaderRoute: typeof R404RouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/auth": {
+      id: "/auth";
+      path: "/auth";
+      fullPath: "/auth";
+      preLoaderRoute: typeof AuthLayoutRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_public": {
+      id: "/_public";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof PublicLayoutRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_authed": {
+      id: "/_authed";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof AuthedLayoutRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_public/": {
+      id: "/_public/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof PublicIndexRouteImport;
+      parentRoute: typeof PublicLayoutRoute;
+    };
+    "/auth/sign-up": {
+      id: "/auth/sign-up";
+      path: "/sign-up";
+      fullPath: "/auth/sign-up";
+      preLoaderRoute: typeof AuthSignUpRouteImport;
+      parentRoute: typeof AuthLayoutRoute;
+    };
+    "/auth/sign-in": {
+      id: "/auth/sign-in";
+      path: "/sign-in";
+      fullPath: "/auth/sign-in";
+      preLoaderRoute: typeof AuthSignInRouteImport;
+      parentRoute: typeof AuthLayoutRoute;
+    };
+    "/auth/reset-password": {
+      id: "/auth/reset-password";
+      path: "/reset-password";
+      fullPath: "/auth/reset-password";
+      preLoaderRoute: typeof AuthResetPasswordRouteImport;
+      parentRoute: typeof AuthLayoutRoute;
+    };
+    "/_public/changelog": {
+      id: "/_public/changelog";
+      path: "/changelog";
+      fullPath: "/changelog";
+      preLoaderRoute: typeof PublicChangelogRouteImport;
+      parentRoute: typeof PublicLayoutRoute;
+    };
+    "/_authed/projects": {
+      id: "/_authed/projects";
+      path: "/projects";
+      fullPath: "/projects";
+      preLoaderRoute: typeof AuthedProjectsLayoutRouteImport;
+      parentRoute: typeof AuthedLayoutRoute;
+    };
+    "/_authed/projects/": {
+      id: "/_authed/projects/";
+      path: "/";
+      fullPath: "/projects/";
+      preLoaderRoute: typeof AuthedProjectsIndexRouteImport;
+      parentRoute: typeof AuthedProjectsLayoutRoute;
+    };
+    "/api/auth/$": {
+      id: "/api/auth/$";
+      path: "/api/auth/$";
+      fullPath: "/api/auth/$";
+      preLoaderRoute: typeof ApiAuthSplatRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_authed/projects/$projectId": {
+      id: "/_authed/projects/$projectId";
+      path: "/$projectId";
+      fullPath: "/projects/$projectId";
+      preLoaderRoute: typeof AuthedProjectsProjectIdRouteImport;
+      parentRoute: typeof AuthedProjectsLayoutRoute;
+    };
   }
 }
 
 interface AuthedProjectsLayoutRouteChildren {
-  AuthedProjectsProjectIdRoute: typeof AuthedProjectsProjectIdRoute
-  AuthedProjectsIndexRoute: typeof AuthedProjectsIndexRoute
+  AuthedProjectsProjectIdRoute: typeof AuthedProjectsProjectIdRoute;
+  AuthedProjectsIndexRoute: typeof AuthedProjectsIndexRoute;
 }
 
 const AuthedProjectsLayoutRouteChildren: AuthedProjectsLayoutRouteChildren = {
   AuthedProjectsProjectIdRoute: AuthedProjectsProjectIdRoute,
   AuthedProjectsIndexRoute: AuthedProjectsIndexRoute,
-}
+};
 
 const AuthedProjectsLayoutRouteWithChildren =
-  AuthedProjectsLayoutRoute._addFileChildren(AuthedProjectsLayoutRouteChildren)
+  AuthedProjectsLayoutRoute._addFileChildren(AuthedProjectsLayoutRouteChildren);
 
 interface AuthedLayoutRouteChildren {
-  AuthedProjectsLayoutRoute: typeof AuthedProjectsLayoutRouteWithChildren
+  AuthedProjectsLayoutRoute: typeof AuthedProjectsLayoutRouteWithChildren;
 }
 
 const AuthedLayoutRouteChildren: AuthedLayoutRouteChildren = {
   AuthedProjectsLayoutRoute: AuthedProjectsLayoutRouteWithChildren,
-}
+};
 
 const AuthedLayoutRouteWithChildren = AuthedLayoutRoute._addFileChildren(
   AuthedLayoutRouteChildren,
-)
+);
 
 interface PublicLayoutRouteChildren {
-  PublicChangelogRoute: typeof PublicChangelogRoute
-  PublicIndexRoute: typeof PublicIndexRoute
+  PublicChangelogRoute: typeof PublicChangelogRoute;
+  PublicIndexRoute: typeof PublicIndexRoute;
 }
 
 const PublicLayoutRouteChildren: PublicLayoutRouteChildren = {
   PublicChangelogRoute: PublicChangelogRoute,
   PublicIndexRoute: PublicIndexRoute,
-}
+};
 
 const PublicLayoutRouteWithChildren = PublicLayoutRoute._addFileChildren(
   PublicLayoutRouteChildren,
-)
+);
 
 interface AuthLayoutRouteChildren {
-  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
-  AuthSignInRoute: typeof AuthSignInRoute
-  AuthSignUpRoute: typeof AuthSignUpRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute;
+  AuthSignInRoute: typeof AuthSignInRoute;
+  AuthSignUpRoute: typeof AuthSignUpRoute;
 }
 
 const AuthLayoutRouteChildren: AuthLayoutRouteChildren = {
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSignInRoute: AuthSignInRoute,
   AuthSignUpRoute: AuthSignUpRoute,
-}
+};
 
 const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
   AuthLayoutRouteChildren,
-)
+);
 
 const rootRouteChildren: RootRouteChildren = {
   AuthedLayoutRoute: AuthedLayoutRouteWithChildren,
@@ -336,16 +336,16 @@ const rootRouteChildren: RootRouteChildren = {
   AuthLayoutRoute: AuthLayoutRouteWithChildren,
   R404Route: R404Route,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
+import type { getRouter } from "./router.tsx";
+import type { createStart } from "@tanstack/react-start";
+declare module "@tanstack/react-start" {
   interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
+    ssr: true;
+    router: Awaited<ReturnType<typeof getRouter>>;
   }
 }

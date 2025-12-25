@@ -1,23 +1,24 @@
-import { Button } from '@/components/ui/button'
-import { Field } from '@/components/ui/field'
-import { Spinner } from '@/components/ui/spinner'
-import { authClient } from '@/lib/auth/client'
-import { IconBrandGithub, IconBrandGoogle } from '@tabler/icons-react'
-import { useTransition } from 'react'
-import { toast } from 'sonner'
-export function OauthButtons() {
-  const [isGithubSignInPending, startGithubSignIn] = useTransition()
+import { Button } from "@/components/ui/button";
+import { Field } from "@/components/ui/field";
+import { Spinner } from "@/components/ui/spinner";
+import { authClient } from "@/lib/auth/client";
+import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
+import { useTransition } from "react";
+import { toast } from "sonner";
 
-  const disabled = isGithubSignInPending
+export function OauthButtons() {
+  const [isGithubSignInPending, startGithubSignIn] = useTransition();
+
+  const disabled = isGithubSignInPending;
 
   async function handleGithubSignIn() {
     const { error } = await authClient.signIn.social({
-      provider: 'github',
-      callbackURL: '/projects',
-    })
+      provider: "github",
+      callbackURL: "/projects",
+    });
     if (error) {
-      toast.error(error.message || 'Internal Server Error')
-      return
+      toast.error(error.message || "Internal Server Error");
+      return;
     }
   }
   return (
@@ -36,5 +37,5 @@ export function OauthButtons() {
         Continue with Google
       </Button>
     </Field>
-  )
+  );
 }

@@ -1,24 +1,24 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { Button } from '@/components/ui/button'
-import { IconLockPassword, IconMail } from '@tabler/icons-react'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { IconLockPassword, IconMail } from "@tabler/icons-react";
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
   FieldSeparator,
-} from '@/components/ui/field'
+} from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupInput,
   InputGroupAddon,
-} from '@/components/ui/input-group'
-import { OauthButtons } from './-components/oauth-buttons'
-import { Logo } from '@/components/logo'
+} from "@/components/ui/input-group";
+import { OauthButtons } from "./-components/oauth-buttons";
+import { Logo } from "@/components/logo";
 
-export const Route = createFileRoute('/auth/sign-in')({
+export const Route = createFileRoute("/auth/sign-in")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
   return (
@@ -69,5 +69,5 @@ function RouteComponent() {
         <OauthButtons />
       </FieldGroup>
     </form>
-  )
+  );
 }

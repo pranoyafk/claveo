@@ -1,14 +1,14 @@
-import { Logo } from '@/components/logo'
-import { createFileRoute, Outlet } from '@tanstack/react-router'
-import { UserMenu } from './-components/user-menu'
-import { Link } from '@tanstack/react-router'
+import { Logo } from "@/components/logo";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { UserMenu } from "./-components/user-menu";
+import { Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/_authed/projects')({
+export const Route = createFileRoute("/_authed/projects")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  const { user } = Route.useRouteContext()
+  const { user } = Route.useRouteContext();
 
   return (
     <main>
@@ -22,5 +22,5 @@ function RouteComponent() {
       </header>
       <Outlet />
     </main>
-  )
+  );
 }

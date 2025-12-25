@@ -1,24 +1,24 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { Button } from '@/components/ui/button'
-import { IconLockPassword, IconMail, IconUser } from '@tabler/icons-react'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { IconLockPassword, IconMail, IconUser } from "@tabler/icons-react";
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
   FieldSeparator,
-} from '@/components/ui/field'
+} from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '@/components/ui/input-group'
-import { OauthButtons } from './-components/oauth-buttons'
-import { Logo } from '@/components/logo'
+} from "@/components/ui/input-group";
+import { OauthButtons } from "./-components/oauth-buttons";
+import { Logo } from "@/components/logo";
 
-export const Route = createFileRoute('/auth/sign-up')({
+export const Route = createFileRoute("/auth/sign-up")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
   return (
@@ -85,10 +85,10 @@ function RouteComponent() {
         </FieldGroup>
       </form>
       <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our{' '}
-        <Link to="/404">Terms of Service</Link> and{' '}
+        By clicking continue, you agree to our{" "}
+        <Link to="/404">Terms of Service</Link> and{" "}
         <Link to="/404">Privacy Policy</Link>.
       </FieldDescription>
     </div>
-  )
+  );
 }

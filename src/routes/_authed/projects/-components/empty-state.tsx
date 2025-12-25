@@ -1,6 +1,6 @@
-import { IconArrowUp, IconFolderCode } from '@tabler/icons-react'
+import { IconArrowUp, IconFolderCode } from "@tabler/icons-react";
 
-import { Button } from '@/components/ui/button'
+import { Button } from "@/components/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -8,8 +8,8 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@/components/ui/empty'
-import { Link } from '@tanstack/react-router'
+} from "@/components/ui/empty";
+import { Link } from "@tanstack/react-router";
 
 export function ProjectsEmptyState() {
   return (
@@ -36,5 +36,5 @@ export function ProjectsEmptyState() {
         </Button>
       </Link>
     </Empty>
-  )
+  );
 }

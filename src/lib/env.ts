@@ -1,4 +1,4 @@
-import z from 'zod'
+import z from "zod";
 
 export const envSchema = z.object({
   DATABASE_URL: z.url(),
@@ -9,6 +9,6 @@ export const envSchema = z.object({
   BETTER_AUTH_SECRET: z.string(),
   GITHUB_CLIENT_ID: z.string(),
   GITHUB_CLIENT_SECRET: z.string(),
-})
+});
 
-export const env = envSchema.parse(Bun.env)
+export const env = envSchema.parse(Bun.env);
