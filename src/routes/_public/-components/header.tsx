@@ -61,7 +61,7 @@ export function HeaderSection() {
             )}
             {isMounted && !isPending && data && (
               <Button size="lg">
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/projects">Projects</Link>
               </Button>
             )}
           </div>
@@ -115,7 +115,7 @@ export function HeaderSection() {
               )}
               {isMounted && !isPending && data && (
                 <Button className="w-full" size="lg">
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link to="/projects">Projects</Link>
                 </Button>
               )}
             </div>

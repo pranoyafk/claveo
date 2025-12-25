@@ -10,25 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as R404RouteImport } from './routes/404'
-import { Route as DashboardLayoutRouteImport } from './routes/dashboard/layout'
 import { Route as AuthLayoutRouteImport } from './routes/auth/layout'
 import { Route as PublicLayoutRouteImport } from './routes/_public/layout'
-import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as AuthedLayoutRouteImport } from './routes/_authed/layout'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
 import { Route as AuthSignUpRouteImport } from './routes/auth/sign-up'
 import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth/reset-password'
 import { Route as PublicChangelogRouteImport } from './routes/_public/changelog'
+import { Route as AuthedProjectsLayoutRouteImport } from './routes/_authed/projects/layout'
+import { Route as AuthedProjectsIndexRouteImport } from './routes/_authed/projects/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as AuthedProjectsProjectIdRouteImport } from './routes/_authed/projects/$projectId'
 
 const R404Route = R404RouteImport.update({
   id: '/404',
   path: '/404',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardLayoutRoute = DashboardLayoutRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthLayoutRoute = AuthLayoutRouteImport.update({
@@ -40,10 +37,9 @@ const PublicLayoutRoute = PublicLayoutRouteImport.update({
   id: '/_public',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardIndexRoute = DashboardIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardLayoutRoute,
+const AuthedLayoutRoute = AuthedLayoutRouteImport.update({
+  id: '/_authed',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/',
@@ -70,23 +66,39 @@ const PublicChangelogRoute = PublicChangelogRouteImport.update({
   path: '/changelog',
   getParentRoute: () => PublicLayoutRoute,
 } as any)
+const AuthedProjectsLayoutRoute = AuthedProjectsLayoutRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => AuthedLayoutRoute,
+} as any)
+const AuthedProjectsIndexRoute = AuthedProjectsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthedProjectsLayoutRoute,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthedProjectsProjectIdRoute = AuthedProjectsProjectIdRouteImport.update({
+  id: '/$projectId',
+  path: '/$projectId',
+  getParentRoute: () => AuthedProjectsLayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/auth': typeof AuthLayoutRouteWithChildren
-  '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/404': typeof R404Route
+  '/projects': typeof AuthedProjectsLayoutRouteWithChildren
   '/changelog': typeof PublicChangelogRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-up': typeof AuthSignUpRoute
   '/': typeof PublicIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/projects/$projectId': typeof AuthedProjectsProjectIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/projects/': typeof AuthedProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthLayoutRouteWithChildren
@@ -96,36 +108,40 @@ export interface FileRoutesByTo {
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-up': typeof AuthSignUpRoute
   '/': typeof PublicIndexRoute
-  '/dashboard': typeof DashboardIndexRoute
+  '/projects/$projectId': typeof AuthedProjectsProjectIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/projects': typeof AuthedProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_authed': typeof AuthedLayoutRouteWithChildren
   '/_public': typeof PublicLayoutRouteWithChildren
   '/auth': typeof AuthLayoutRouteWithChildren
-  '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/404': typeof R404Route
+  '/_authed/projects': typeof AuthedProjectsLayoutRouteWithChildren
   '/_public/changelog': typeof PublicChangelogRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-up': typeof AuthSignUpRoute
   '/_public/': typeof PublicIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/_authed/projects/$projectId': typeof AuthedProjectsProjectIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/_authed/projects/': typeof AuthedProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/auth'
-    | '/dashboard'
     | '/404'
+    | '/projects'
     | '/changelog'
     | '/auth/reset-password'
     | '/auth/sign-in'
     | '/auth/sign-up'
     | '/'
-    | '/dashboard/'
+    | '/projects/$projectId'
     | '/api/auth/$'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
@@ -135,27 +151,30 @@ export interface FileRouteTypes {
     | '/auth/sign-in'
     | '/auth/sign-up'
     | '/'
-    | '/dashboard'
+    | '/projects/$projectId'
     | '/api/auth/$'
+    | '/projects'
   id:
     | '__root__'
+    | '/_authed'
     | '/_public'
     | '/auth'
-    | '/dashboard'
     | '/404'
+    | '/_authed/projects'
     | '/_public/changelog'
     | '/auth/reset-password'
     | '/auth/sign-in'
     | '/auth/sign-up'
     | '/_public/'
-    | '/dashboard/'
+    | '/_authed/projects/$projectId'
     | '/api/auth/$'
+    | '/_authed/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  AuthedLayoutRoute: typeof AuthedLayoutRouteWithChildren
   PublicLayoutRoute: typeof PublicLayoutRouteWithChildren
   AuthLayoutRoute: typeof AuthLayoutRouteWithChildren
-  DashboardLayoutRoute: typeof DashboardLayoutRouteWithChildren
   R404Route: typeof R404Route
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
@@ -167,13 +186,6 @@ declare module '@tanstack/react-router' {
       path: '/404'
       fullPath: '/404'
       preLoaderRoute: typeof R404RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -190,12 +202,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof DashboardLayoutRoute
+    '/_authed': {
+      id: '/_authed'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthedLayoutRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_public/': {
       id: '/_public/'
@@ -232,6 +244,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicChangelogRouteImport
       parentRoute: typeof PublicLayoutRoute
     }
+    '/_authed/projects': {
+      id: '/_authed/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof AuthedProjectsLayoutRouteImport
+      parentRoute: typeof AuthedLayoutRoute
+    }
+    '/_authed/projects/': {
+      id: '/_authed/projects/'
+      path: '/'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof AuthedProjectsIndexRouteImport
+      parentRoute: typeof AuthedProjectsLayoutRoute
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -239,8 +265,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authed/projects/$projectId': {
+      id: '/_authed/projects/$projectId'
+      path: '/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof AuthedProjectsProjectIdRouteImport
+      parentRoute: typeof AuthedProjectsLayoutRoute
+    }
   }
 }
+
+interface AuthedProjectsLayoutRouteChildren {
+  AuthedProjectsProjectIdRoute: typeof AuthedProjectsProjectIdRoute
+  AuthedProjectsIndexRoute: typeof AuthedProjectsIndexRoute
+}
+
+const AuthedProjectsLayoutRouteChildren: AuthedProjectsLayoutRouteChildren = {
+  AuthedProjectsProjectIdRoute: AuthedProjectsProjectIdRoute,
+  AuthedProjectsIndexRoute: AuthedProjectsIndexRoute,
+}
+
+const AuthedProjectsLayoutRouteWithChildren =
+  AuthedProjectsLayoutRoute._addFileChildren(AuthedProjectsLayoutRouteChildren)
+
+interface AuthedLayoutRouteChildren {
+  AuthedProjectsLayoutRoute: typeof AuthedProjectsLayoutRouteWithChildren
+}
+
+const AuthedLayoutRouteChildren: AuthedLayoutRouteChildren = {
+  AuthedProjectsLayoutRoute: AuthedProjectsLayoutRouteWithChildren,
+}
+
+const AuthedLayoutRouteWithChildren = AuthedLayoutRoute._addFileChildren(
+  AuthedLayoutRouteChildren,
+)
 
 interface PublicLayoutRouteChildren {
   PublicChangelogRoute: typeof PublicChangelogRoute
@@ -272,22 +330,10 @@ const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
   AuthLayoutRouteChildren,
 )
 
-interface DashboardLayoutRouteChildren {
-  DashboardIndexRoute: typeof DashboardIndexRoute
-}
-
-const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
-  DashboardIndexRoute: DashboardIndexRoute,
-}
-
-const DashboardLayoutRouteWithChildren = DashboardLayoutRoute._addFileChildren(
-  DashboardLayoutRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
+  AuthedLayoutRoute: AuthedLayoutRouteWithChildren,
   PublicLayoutRoute: PublicLayoutRouteWithChildren,
   AuthLayoutRoute: AuthLayoutRouteWithChildren,
-  DashboardLayoutRoute: DashboardLayoutRouteWithChildren,
   R404Route: R404Route,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
