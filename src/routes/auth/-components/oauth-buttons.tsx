@@ -14,7 +14,7 @@ export function OauthButtons() {
   async function handleGithubSignIn() {
     const { error } = await authClient.signIn.social({
       provider: "github",
-      callbackURL: "/projects",
+      callbackURL: "/app",
     });
     if (error) {
       toast.error(error.message || "Internal Server Error");

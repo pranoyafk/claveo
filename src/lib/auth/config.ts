@@ -1,17 +1,17 @@
-import { betterAuth } from 'better-auth/minimal'
-import { drizzleAdapter } from 'better-auth/adapters/drizzle'
-import { env } from '@/lib/env'
-import { db } from '@/lib/db'
-import * as authSchema from '@/lib/db/schema/auth'
-import { adminAccessControl, organizationAccessControl } from './permissions'
-import { admin, organization } from 'better-auth/plugins'
-import { tanstackStartCookies } from 'better-auth/tanstack-start'
+import { betterAuth } from "better-auth/minimal";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { env } from "@/lib/env";
+import { db } from "@/lib/db";
+import * as authSchema from "@/lib/db/schema/auth";
+import { adminAccessControl, organizationAccessControl } from "./permissions";
+import { admin, organization } from "better-auth/plugins";
+import { tanstackStartCookies } from "better-auth/tanstack-start";
 
 export const auth = betterAuth({
   secret: env.BETTER_AUTH_SECRET,
   baseURL: env.BETTER_AUTH_URL,
   database: drizzleAdapter(db, {
-    provider: 'pg',
+    provider: "pg",
     usePlural: true,
     schema: authSchema,
   }),
@@ -20,8 +20,8 @@ export const auth = betterAuth({
   },
   socialProviders: {
     google: {
-      clientId: '',
-      clientSecret: '',
+      clientId: "",
+      clientSecret: "",
     },
     github: {
       clientId: env.GITHUB_CLIENT_ID,
@@ -31,10 +31,11 @@ export const auth = betterAuth({
   plugins: [
     admin({
       ac: adminAccessControl,
-      defaultRole: 'user',
+      defaultRole: "user",
     }),
     organization({
       ac: organizationAccessControl,
+
       dynamicAccessControl: {
         enabled: true,
         maximumRolesPerOrganization: 10,
@@ -42,11 +43,11 @@ export const auth = betterAuth({
     }),
     tanstackStartCookies(),
   ],
-})
+});
 
-export type User = (typeof auth.$Infer)['Session']['user']
-export type Organisation = (typeof auth.$Infer)['Organization']
-export type Member = (typeof auth.$Infer)['Member']
-export type Invitation = (typeof auth.$Infer)['Invitation']
-export type Team = (typeof auth.$Infer)['Team']
-export type TeamMember = (typeof auth.$Infer)['TeamMember']
+export type User = (typeof auth.$Infer)["Session"]["user"];
+export type Organisation = (typeof auth.$Infer)["Organization"];
+export type Member = (typeof auth.$Infer)["Member"];
+export type Invitation = (typeof auth.$Infer)["Invitation"];
+export type Team = (typeof auth.$Infer)["Team"];
+export type TeamMember = (typeof auth.$Infer)["TeamMember"];

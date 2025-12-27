@@ -4,12 +4,12 @@ import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 export const Route = createFileRoute("/auth")({
   component: RouteComponent,
   beforeLoad: async ({ context }) => {
-    const userSession = await context.queryClient.fetchQuery(
+    const userSession = await context.queryClient.ensureQueryData(
       authQueries.user(),
     );
     if (userSession?.user) {
       throw redirect({
-        to: "/projects",
+        to: "/app",
       });
     }
   },
