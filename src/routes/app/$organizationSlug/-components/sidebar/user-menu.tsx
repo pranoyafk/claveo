@@ -28,9 +28,9 @@ export function UserMenu() {
   const context = useRouteContext({
     from: "/app",
   });
+  const router = useRouter();
 
   const [isSigningOutPending, startSigningOut] = useTransition();
-  const router = useRouter();
   const { isMobile } = useSidebar();
 
   const handleSignOut = async () => {
@@ -39,7 +39,7 @@ export function UserMenu() {
       toast.error(error.message || "Internal Server Error");
       return;
     }
-    context.queryClient.invalidateQueries({
+    await context.queryClient.removeQueries({
       queryKey: authQueries.all,
     });
     router.invalidate();
