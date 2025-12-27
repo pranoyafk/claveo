@@ -10,14 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as R404RouteImport } from './routes/404'
-import { Route as AppLayoutRouteImport } from '../routes/_auth/layout.tsx
+import { Route as AppLayoutRouteImport } from './routes/app/layout'
 import { Route as PublicLayoutRouteImport } from './routes/_public/layout'
 import { Route as AuthLayoutRouteImport } from './routes/_auth/layout'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
-import { Route as PublicChangelogRouteImport } f./routes/_auth/sign-up.tsx/changelog'
-import { Route as AuthSignUpRouteImport } from './routes/_auth/sign-in.tsxp'
-import { Route as AuthSignInRouteImport } from './route./routes/_auth/reset-password.tsx
+import { Route as PublicChangelogRouteImport } from './routes/_public/changelog'
+import { Route as AuthSignUpRouteImport } from './routes/_auth/sign-up'
+import { Route as AuthSignInRouteImport } from './routes/_auth/sign-in'
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AppOrganizationSlugLayoutRouteImport } from './routes/app/$organizationSlug/layout'
 import { Route as AppOrganizationSlugIndexRouteImport } from './routes/app/$organizationSlug/index'
