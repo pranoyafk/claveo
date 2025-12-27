@@ -16,7 +16,7 @@ import {
 import { OauthButtons } from "./-components/oauth-buttons";
 import { Logo } from "@/components/logo";
 
-export const Route = createFileRoute("/auth/sign-in")({
+export const Route = createFileRoute("/_auth/sign-in")({
   component: RouteComponent,
 });
 
@@ -30,7 +30,7 @@ function RouteComponent() {
           </Link>
           <h1 className="text-xl font-bold">Welcome back to Claveo.</h1>
           <FieldDescription>
-            Don&apos;t have an account? <Link to="/auth/sign-up">Sign up</Link>
+            Don&apos;t have an account? <Link to="/sign-up">Sign up</Link>
           </FieldDescription>
         </div>
         <Field>

@@ -1,7 +1,7 @@
 import { authQueries } from "@/lib/queries/auth";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/auth")({
+export const Route = createFileRoute("/_auth")({
   component: RouteComponent,
   beforeLoad: async ({ context }) => {
     const userSession = await context.queryClient.ensureQueryData(

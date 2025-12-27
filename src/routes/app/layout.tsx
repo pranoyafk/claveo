@@ -9,7 +9,7 @@ export const Route = createFileRoute("/app")({
     );
     if (!sessionData?.session) {
       throw redirect({
-        to: "/auth/sign-in",
+        to: "/sign-in",
       });
     }
 
