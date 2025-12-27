@@ -15,6 +15,21 @@ export const Route = createFileRoute("/app")({
 
     return sessionData;
   },
+  loader: async ({ context }) => {
+    let orgs = await context.queryClient.ensureQueryData(
+      authQueries.organizations(),
+    );
+
+    const activeOrgId = context.session.activeOrganizationId;
+    const targetOrg = orgs.find((org) => org.id === activeOrgId) || orgs[0];
+
+    throw redirect({
+      to: "/app/$organizationSlug",
+      params: {
+        organizationSlug: targetOrg.slug,
+      },
+    });
+  },
 });
 
 function RouteComponent() {
