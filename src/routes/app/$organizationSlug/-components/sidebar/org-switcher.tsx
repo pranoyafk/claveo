@@ -76,7 +76,7 @@ export function OrgSwitcher() {
           >
             <DropdownMenuGroup>
               <DropdownMenuLabel className="text-muted-foreground text-xs">
-                Teams
+                Organizations
               </DropdownMenuLabel>
               {teams.map((team, index) => (
                 <DropdownMenuItem
@@ -96,9 +96,7 @@ export function OrgSwitcher() {
                 <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                   <IconPlus className="size-4" />
                 </div>
-                <div className="text-muted-foreground font-medium">
-                  Add team
-                </div>
+                <div className="text-muted-foreground font-medium">Create</div>
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
