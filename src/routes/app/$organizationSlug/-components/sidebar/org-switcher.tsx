@@ -14,39 +14,50 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { Skeleton } from "@/components/ui/skeleton";
+import { authClient } from "@/lib/auth/client";
 import {
   IconChevronDown,
-  IconCommand,
-  IconDeviceAudioTape,
-  IconGaugeFilled,
+  IconPackageExport,
   IconPlus,
 } from "@tabler/icons-react";
+import { useNavigate, useRouteContext } from "@tanstack/react-router";
 import { useState } from "react";
-const teams = [
-  {
-    name: "Acme Inc",
-    logo: IconGaugeFilled,
-    plan: "Enterprise",
-  },
-  {
-    name: "Acme Corp.",
-    logo: IconDeviceAudioTape,
-    plan: "Startup",
-  },
-  {
-    name: "Evil Corp.",
-    logo: IconCommand,
-    plan: "Free",
-  },
-];
+import { CreateOrganizationDialog } from "../create-org-dialog";
+
+function OrgSwitcherSkeleton() {
+  return (
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <SidebarMenuButton size="lg" className="pointer-events-none">
+          <Skeleton className="aspect-square size-8 rounded-lg" />
+          <div className="grid flex-1 gap-1 text-left text-sm leading-tight">
+            <Skeleton className="h-3.5 w-20" />
+            <Skeleton className="h-3 w-12" />
+          </div>
+          <Skeleton className="ml-auto size-4" />
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    </SidebarMenu>
+  );
+}
 export function OrgSwitcher() {
   const { isMobile } = useSidebar();
-  const [activeTeam, setActiveTeam] = useState(teams[0]);
+  const navigate = useNavigate();
+  const [openOrganizationCreateDialog, setOrganizationCreateDialog] =
+    useState<boolean>(false);
+  const {
+    data: activeOrg,
 
-  if (!activeTeam) {
-    return null;
-  }
+    isPending,
+  } = authClient.useActiveOrganization();
+  const { organizations } = useRouteContext({
+    from: "/app",
+  });
 
+  if (isPending) return <OrgSwitcherSkeleton />;
+
+  if (!activeOrg) return null;
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -60,11 +71,11 @@ export function OrgSwitcher() {
             }
           >
             <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-              <activeTeam.logo className="size-4" />
+              <IconPackageExport className="size-4" />
             </div>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-medium">{activeTeam.name}</span>
-              <span className="truncate text-xs">{activeTeam.plan}</span>
+              <span className="truncate font-medium">{activeOrg.name}</span>
+              <span className="truncate text-xs">Free</span>
             </div>
             <IconChevronDown className="ml-auto" />
           </DropdownMenuTrigger>
@@ -78,21 +89,33 @@ export function OrgSwitcher() {
               <DropdownMenuLabel className="text-muted-foreground text-xs">
                 Organizations
               </DropdownMenuLabel>
-              {teams.map((team, index) => (
+              {organizations.map((org, index) => (
                 <DropdownMenuItem
-                  key={team.name}
-                  onClick={() => setActiveTeam(team)}
+                  key={org.slug}
                   className="gap-2 p-2"
+                  onClick={() =>
+                    navigate({
+                      to: "/app/$organizationSlug",
+                      params: {
+                        organizationSlug: org.slug,
+                      },
+                    })
+                  }
                 >
                   <div className="flex size-6 items-center justify-center rounded-md border">
-                    <team.logo className="size-3.5 shrink-0" />
+                    <IconPackageExport className="size-3.5 shrink-0" />
                   </div>
-                  {team.name}
+                  {org.name}
                   <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
                 </DropdownMenuItem>
               ))}
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="gap-2 p-2">
+
+              <DropdownMenuItem
+                closeOnClick={false}
+                className="gap-2 p-2"
+                onClick={() => setOrganizationCreateDialog(true)}
+              >
                 <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                   <IconPlus className="size-4" />
                 </div>
@@ -101,6 +124,10 @@ export function OrgSwitcher() {
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
+        <CreateOrganizationDialog
+          open={openOrganizationCreateDialog}
+          onOpenChange={setOrganizationCreateDialog}
+        />
       </SidebarMenuItem>
     </SidebarMenu>
   );

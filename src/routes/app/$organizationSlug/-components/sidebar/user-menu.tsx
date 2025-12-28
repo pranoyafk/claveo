@@ -39,7 +39,7 @@ export function UserMenu() {
       toast.error(error.message || "Internal Server Error");
       return;
     }
-    await context.queryClient.removeQueries({
+    context.queryClient.removeQueries({
       queryKey: authQueries.all,
     });
     router.invalidate();
