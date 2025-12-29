@@ -1,4 +1,3 @@
-import { authClient } from "@/lib/auth/client";
 import { authQueries } from "@/lib/queries/auth";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
