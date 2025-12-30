@@ -20,11 +20,11 @@ export const Route = createFileRoute("/app/$organizationSlug")({
 
 function RouteComponent() {
   return (
-    <SidebarProvider>
+    <SidebarProvider className="h-svh overflow-hidden">
       <OrgSidebar />
-      <SidebarInset>
+      <SidebarInset className="max-h-svh overflow-hidden">
         <OrgHeader />
-        <div className="flex-1">
+        <div className="flex-1 overflow-y-auto p-4 md:p-6">
           <Outlet />
         </div>
       </SidebarInset>
