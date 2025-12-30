@@ -25,6 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth/client";
 import { authQueries } from "@/lib/queries/auth";
+import { slugify } from "@/utils/slugify";
 
 export function CreateOrganizationDialog({
   open,
@@ -92,7 +93,14 @@ export function CreateOrganizationDialog({
             </DialogDescription>
           </DialogHeader>
           <FieldGroup>
-            <form.Field name="organizationName">
+            <form.Field
+              name="organizationName"
+              listeners={{
+                onChange: ({ value }) => {
+                  form.setFieldValue("organizationSlug", slugify(value));
+                },
+              }}
+            >
               {(field) => {
                 const isInvalid =
                   field.state.meta.isTouched && !field.state.meta.isValid;
