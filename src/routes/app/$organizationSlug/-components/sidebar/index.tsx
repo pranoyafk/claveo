@@ -62,7 +62,7 @@ export function OrgSidebar() {
             <SidebarMenu>
               {navLinks.map((link) => (
                 <SidebarMenuItem key={link.label}>
-                  <SidebarMenuButton>
+                  <SidebarMenuButton tooltip={link.label}>
                     <link.icon />
                     {link.label}
                   </SidebarMenuButton>
