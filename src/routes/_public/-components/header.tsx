@@ -52,10 +52,10 @@ export function HeaderSection() {
             {isMounted && !isPending && !data && (
               <>
                 <Button variant="ghost">
-                  <Link to="/auth/sign-in">Sign in</Link>
+                  <Link to="/sign-in">Sign in</Link>
                 </Button>
                 <Button>
-                  <Link to="/auth/sign-up">Get Started</Link>
+                  <Link to="/sign-up">Get Started</Link>
                 </Button>
               </>
             )}
@@ -106,10 +106,10 @@ export function HeaderSection() {
               {isMounted && !isPending && !data && (
                 <>
                   <Button className="w-full" variant="outline">
-                    <Link to="/auth/sign-in">Sign in</Link>
+                    <Link to="/sign-in">Sign in</Link>
                   </Button>
                   <Button className="w-full">
-                    <Link to="/auth/sign-up">Get Started</Link>
+                    <Link to="/sign-up">Get Started</Link>
                   </Button>
                 </>
               )}

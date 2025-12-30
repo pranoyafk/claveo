@@ -1,3 +1,11 @@
+import { useForm } from "@tanstack/react-form";
+import {
+  useNavigate,
+  useRouteContext,
+  useRouter,
+} from "@tanstack/react-router";
+import { toast } from "sonner";
+import { createOrganizationSchema } from "@/lib/validation/organization/create";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -17,10 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth/client";
 import { authQueries } from "@/lib/queries/auth";
-import { createOrganizationSchema } from "@/lib/validation/organization/create";
-import { useForm } from "@tanstack/react-form";
-import { useRouteContext } from "@tanstack/react-router";
-import { toast } from "sonner";
+
 export function CreateOrganizationDialog({
   open,
   onOpenChange,
@@ -28,7 +33,12 @@ export function CreateOrganizationDialog({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  const context = useRouteContext({ from: "/app" });
+  const navigate = useNavigate();
+  const router = useRouter();
+  const { queryClient } = useRouteContext({
+    from: "/app",
+  });
+
   const form = useForm({
     defaultValues: {
       organizationName: "",
@@ -46,21 +56,22 @@ export function CreateOrganizationDialog({
         toast.error(error.message || "Internal Server Error");
         return;
       }
-      context.queryClient.invalidateQueries(authQueries.organizations());
-      toast("Org Created:", {
-        description: (
-          <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-            <code>{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
-        position: "bottom-right",
-        classNames: {
-          content: "flex flex-col gap-2",
+      queryClient.setQueryData(
+        authQueries.organizations().queryKey,
+        (oldOrganizations) =>
+          oldOrganizations ? [...oldOrganizations, data] : [data],
+      );
+      await router.invalidate();
+
+      await navigate({
+        to: "/app/$organizationSlug",
+        params: {
+          organizationSlug: data.slug,
         },
-        style: {
-          "--border-radius": "calc(var(--radius)  + 4px)",
-        } as React.CSSProperties,
       });
+      toast.success("Organization created successfully.");
+      form.reset();
+      onOpenChange(false);
     },
   });
   return (

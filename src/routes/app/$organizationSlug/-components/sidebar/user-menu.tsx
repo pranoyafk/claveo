@@ -1,3 +1,11 @@
+import {
+  IconChevronDown,
+  IconLogout,
+  IconUserCircle,
+} from "@tabler/icons-react";
+import { useRouteContext, useRouter } from "@tanstack/react-router";
+import { useTransition } from "react";
+import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -15,14 +23,6 @@ import {
 import { Spinner } from "@/components/ui/spinner";
 import { authClient } from "@/lib/auth/client";
 import { authQueries } from "@/lib/queries/auth";
-import {
-  IconChevronDown,
-  IconLogout,
-  IconUserCircle,
-} from "@tabler/icons-react";
-import { useRouteContext, useRouter } from "@tanstack/react-router";
-import { useTransition } from "react";
-import { toast } from "sonner";
 
 export function UserMenu() {
   const context = useRouteContext({

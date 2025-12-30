@@ -1,19 +1,17 @@
-import { createFileRoute, notFound, Outlet } from "@tanstack/react-router";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { OrgHeader } from "./-components/header";
 import { OrgSidebar } from "./-components/sidebar";
-import { useEffect } from "react";
-import { authClient } from "@/lib/auth/client";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export const Route = createFileRoute("/app/$organizationSlug")({
   component: RouteComponent,
-  loader: async ({ context, params }) => {
-    const { organizations } = context;
-    const activeOrg = organizations.find(
-      (organization) => organization.slug === params.organizationSlug,
+  beforeLoad: ({ context, params }) => {
+    const activeOrg = context.organizations.find(
+      (o) => o.slug === params.organizationSlug,
     );
+
     if (!activeOrg) {
-      throw notFound();
+      throw redirect({ to: "/app" });
     }
 
     return { activeOrg };
@@ -21,13 +19,6 @@ export const Route = createFileRoute("/app/$organizationSlug")({
 });
 
 function RouteComponent() {
-  const { activeOrg } = Route.useLoaderData();
-  useEffect(() => {
-    authClient.organization.setActive({
-      organizationId: activeOrg.id,
-      organizationSlug: activeOrg.slug,
-    });
-  }, [activeOrg]);
   return (
     <SidebarProvider>
       <OrgSidebar />

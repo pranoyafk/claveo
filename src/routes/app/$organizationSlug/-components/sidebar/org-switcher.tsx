@@ -1,4 +1,12 @@
 import {
+  IconChevronDown,
+  IconPackageExport,
+  IconPlus,
+} from "@tabler/icons-react";
+import { useNavigate, useRouteContext } from "@tanstack/react-router";
+import { useState } from "react";
+import { CreateOrganizationDialog } from "../create-org-dialog";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
@@ -14,50 +22,36 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Skeleton } from "@/components/ui/skeleton";
-import { authClient } from "@/lib/auth/client";
-import {
-  IconChevronDown,
-  IconPackageExport,
-  IconPlus,
-} from "@tabler/icons-react";
-import { useNavigate, useRouteContext } from "@tanstack/react-router";
-import { useState } from "react";
-import { CreateOrganizationDialog } from "../create-org-dialog";
 
-function OrgSwitcherSkeleton() {
-  return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <SidebarMenuButton size="lg" className="pointer-events-none">
-          <Skeleton className="aspect-square size-8 rounded-lg" />
-          <div className="grid flex-1 gap-1 text-left text-sm leading-tight">
-            <Skeleton className="h-3.5 w-20" />
-            <Skeleton className="h-3 w-12" />
-          </div>
-          <Skeleton className="ml-auto size-4" />
-        </SidebarMenuButton>
-      </SidebarMenuItem>
-    </SidebarMenu>
-  );
-}
+// function OrgSwitcherSkeleton() {
+//   return (
+//     <SidebarMenu>
+//       <SidebarMenuItem>
+//         <SidebarMenuButton size="lg" className="pointer-events-none">
+//           <Skeleton className="aspect-square size-8 rounded-lg" />
+//           <div className="grid flex-1 gap-1 text-left text-sm leading-tight">
+//             <Skeleton className="h-3.5 w-20" />
+//             <Skeleton className="h-3 w-12" />
+//           </div>
+//           <Skeleton className="ml-auto size-4" />
+//         </SidebarMenuButton>
+//       </SidebarMenuItem>
+//     </SidebarMenu>
+//   );
+// }
+
 export function OrgSwitcher() {
-  const { isMobile } = useSidebar();
   const navigate = useNavigate();
+  const { isMobile } = useSidebar();
   const [openOrganizationCreateDialog, setOrganizationCreateDialog] =
     useState<boolean>(false);
-  const {
-    data: activeOrg,
-
-    isPending,
-  } = authClient.useActiveOrganization();
   const { organizations } = useRouteContext({
     from: "/app",
   });
+  const { activeOrg } = useRouteContext({
+    from: "/app/$organizationSlug/",
+  });
 
-  if (isPending) return <OrgSwitcherSkeleton />;
-
-  if (!activeOrg) return null;
   return (
     <SidebarMenu>
       <SidebarMenuItem>
