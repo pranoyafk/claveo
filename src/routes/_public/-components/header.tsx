@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Logo } from "@/components/logo";
-import { Button } from "@/components/ui/button";
 import { IconMenu, IconX } from "@tabler/icons-react";
 import { Link } from "@tanstack/react-router";
+import { Logo } from "@/components/logo";
+import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { authClient } from "@/lib/auth/client";
 import { Skeleton } from "@/components/ui/skeleton";

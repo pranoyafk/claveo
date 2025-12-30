@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import { useTheme } from "./theme-provider";
+import { cn } from "@/lib/utils";
 
 export function Logo({
   size,

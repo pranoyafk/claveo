@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { IconLockPassword, IconMail, IconUser } from "@tabler/icons-react";
+import { OauthButtons } from "./-components/oauth-buttons";
+import { Button } from "@/components/ui/button";
 import {
   Field,
   FieldDescription,
@@ -13,7 +14,6 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { OauthButtons } from "./-components/oauth-buttons";
 import { Logo } from "@/components/logo";
 
 export const Route = createFileRoute("/_auth/sign-up")({

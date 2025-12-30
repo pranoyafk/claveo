@@ -1,13 +1,14 @@
 import { createServerFn } from "@tanstack/react-start";
-import { auth, User } from "../auth/config";
 import { getRequestHeaders } from "@tanstack/react-start/server";
+import { auth } from "../auth/config";
+import type { User } from "../auth/config";
 import { generateRandomSuffix, slugify } from "@/utils/slugify";
 
 async function createUniqueSlug(
   name: string,
   headers: Headers,
 ): Promise<string> {
-  let candidateSlug = slugify(name);
+  const candidateSlug = slugify(name);
 
   try {
     await auth.api.checkOrganizationSlug({

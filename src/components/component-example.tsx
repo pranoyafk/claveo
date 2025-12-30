@@ -1,5 +1,35 @@
 import * as React from "react";
 
+import {
+  IconBell,
+  IconBluetooth,
+  IconCreditCard,
+  IconDeviceDesktop,
+  IconDeviceFloppy,
+  IconDots,
+  IconDotsVertical,
+  IconDownload,
+  IconEye,
+  IconFile,
+  IconFileCode,
+  IconFileText,
+  IconFolder,
+  IconFolderOpen,
+  IconFolderSearch,
+  IconHelpCircle,
+  IconKeyboard,
+  IconLanguage,
+  IconLayout,
+  IconLogout,
+  IconMail,
+  IconMoon,
+  IconPalette,
+  IconPlus,
+  IconSettings,
+  IconShield,
+  IconSun,
+  IconUser,
+} from "@tabler/icons-react";
 import { Example, ExampleWrapper } from "@/components/example";
 import {
   AlertDialog,
@@ -60,36 +90,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  IconPlus,
-  IconBluetooth,
-  IconDotsVertical,
-  IconFile,
-  IconFolder,
-  IconFolderOpen,
-  IconFileCode,
-  IconDots,
-  IconFolderSearch,
-  IconDeviceFloppy,
-  IconDownload,
-  IconEye,
-  IconLayout,
-  IconPalette,
-  IconSun,
-  IconMoon,
-  IconDeviceDesktop,
-  IconUser,
-  IconCreditCard,
-  IconSettings,
-  IconKeyboard,
-  IconLanguage,
-  IconBell,
-  IconMail,
-  IconShield,
-  IconHelpCircle,
-  IconFileText,
-  IconLogout,
-} from "@tabler/icons-react";
 
 export function ComponentExample() {
   return (

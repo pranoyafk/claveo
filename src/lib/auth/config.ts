@@ -1,11 +1,11 @@
 import { betterAuth } from "better-auth/minimal";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { admin, organization } from "better-auth/plugins";
+import { tanstackStartCookies } from "better-auth/tanstack-start";
+import { adminAccessControl, organizationAccessControl } from "./permissions";
 import { env } from "@/lib/env";
 import { db } from "@/lib/db";
 import * as authSchema from "@/lib/db/schema/auth";
-import { adminAccessControl, organizationAccessControl } from "./permissions";
-import { admin, organization } from "better-auth/plugins";
-import { tanstackStartCookies } from "better-auth/tanstack-start";
 
 export const auth = betterAuth({
   secret: env.BETTER_AUTH_SECRET,

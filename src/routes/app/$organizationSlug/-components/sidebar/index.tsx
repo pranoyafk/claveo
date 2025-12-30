@@ -1,4 +1,13 @@
 import {
+  IconMoneybag,
+  IconPackage,
+  IconSearch,
+  IconSettings,
+  IconUsers,
+} from "@tabler/icons-react";
+import { OrgSwitcher } from "./org-switcher";
+import { UserMenu } from "./user-menu";
+import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
@@ -11,15 +20,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { OrgSwitcher } from "./org-switcher";
-import { UserMenu } from "./user-menu";
-import {
-  IconMoneybag,
-  IconPackage,
-  IconSearch,
-  IconSettings,
-  IconUsers,
-} from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 

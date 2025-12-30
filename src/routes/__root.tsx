@@ -6,11 +6,12 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 
+import type { QueryClient } from "@tanstack/react-query";
 import appCss from "@/styles.css?url";
 import { getThemeServerFn } from "@/lib/theme";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import type { QueryClient } from "@tanstack/react-query";
+
 interface Context {
   queryClient: QueryClient;
 }

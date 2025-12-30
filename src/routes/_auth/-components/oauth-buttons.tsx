@@ -1,10 +1,10 @@
+import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
+import { useTransition } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Spinner } from "@/components/ui/spinner";
 import { authClient } from "@/lib/auth/client";
-import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
-import { useTransition } from "react";
-import { toast } from "sonner";
 
 export function OauthButtons() {
   const [isGithubSignInPending, startGithubSignIn] = useTransition();
