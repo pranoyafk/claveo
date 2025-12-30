@@ -49,7 +49,7 @@ export function OrgSwitcher() {
     from: "/app",
   });
   const { activeOrg } = useRouteContext({
-    from: "/app/$organizationSlug/",
+    from: "/app/$organizationSlug",
   });
 
   return (
