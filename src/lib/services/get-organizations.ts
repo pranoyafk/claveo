@@ -47,7 +47,7 @@ export const getOrganizationsFn = createServerFn().handler(async () => {
     headers,
   });
 
-  if (existingOrgs && existingOrgs.length > 0) {
+  if (existingOrgs.length > 0) {
     return existingOrgs;
   }
 
