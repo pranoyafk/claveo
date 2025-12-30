@@ -2,6 +2,7 @@ import { IconBell, IconHelp } from "@tabler/icons-react";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function OrgHeader() {
   return (
@@ -13,6 +14,7 @@ export function OrgHeader() {
       </div>
 
       <div className="flex items-center gap-2">
+        <ThemeToggle />
         <Button
           variant="ghost"
           size="icon"
