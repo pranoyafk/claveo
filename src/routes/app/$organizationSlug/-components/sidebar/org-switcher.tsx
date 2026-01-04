@@ -23,23 +23,6 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-// function OrgSwitcherSkeleton() {
-//   return (
-//     <SidebarMenu>
-//       <SidebarMenuItem>
-//         <SidebarMenuButton size="lg" className="pointer-events-none">
-//           <Skeleton className="aspect-square size-8 rounded-lg" />
-//           <div className="grid flex-1 gap-1 text-left text-sm leading-tight">
-//             <Skeleton className="h-3.5 w-20" />
-//             <Skeleton className="h-3 w-12" />
-//           </div>
-//           <Skeleton className="ml-auto size-4" />
-//         </SidebarMenuButton>
-//       </SidebarMenuItem>
-//     </SidebarMenu>
-//   );
-// }
-
 export function OrgSwitcher() {
   const navigate = useNavigate();
   const { isMobile } = useSidebar();
@@ -85,6 +68,7 @@ export function OrgSwitcher() {
               </DropdownMenuLabel>
               {organizations.map((org, index) => (
                 <DropdownMenuItem
+                disabled={activeOrg.slug === org.slug}
                   key={org.slug}
                   className="gap-2 p-2"
                   onClick={() =>
