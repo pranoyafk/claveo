@@ -11,4 +11,4 @@ export const envSchema = z.object({
   GITHUB_CLIENT_SECRET: z.string(),
 });
 
-export const env = envSchema.parse(Bun.env);
+export const env = envSchema.parse(process.env);

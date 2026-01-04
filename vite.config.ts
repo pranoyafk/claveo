@@ -10,7 +10,7 @@ const config = defineConfig({
   plugins: [
     devtools(),
     nitro({
-      preset: "bun",
+      preset: "node",
     }),
     // this is the plugin that enables path aliases
     viteTsConfigPaths({
