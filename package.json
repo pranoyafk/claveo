@@ -16,8 +16,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:push": "drizzle-kit push",
-    "db:up": "podman compose up -d",
-    "db:down": "podman compose down"
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
