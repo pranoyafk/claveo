@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ProjectCard } from "./-components/project-card";
 import type { Project } from "./-components/project-card";
+import { ProjectsEmptyState } from "./-components/empty-state";
 
 export const Route = createFileRoute("/app/$organizationSlug/")({
   component: RouteComponent,
@@ -192,11 +192,12 @@ const projects: Array<Project> = [
 function RouteComponent() {
   return (
     <div className="flex flex-col items-center min-h-[90dvh] w-full">
-      <div className="grid container mx-auto px-4 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+      {/* <div className="grid container mx-auto px-4 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} />
         ))}
-      </div>
+      </div> */}
+      <ProjectsEmptyState />
     </div>
   );
 }

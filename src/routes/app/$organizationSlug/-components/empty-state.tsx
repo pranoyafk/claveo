@@ -3,6 +3,7 @@ import { IconArrowUp, IconFolderCode } from "@tabler/icons-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
+import { CreateProjectDialog } from "./create-project-dialog";
 
 export function ProjectsEmptyState() {
   return (
@@ -18,7 +19,9 @@ export function ProjectsEmptyState() {
       </EmptyHeader>
       <EmptyContent>
         <div className="flex gap-2">
-          <Button>Create Project</Button>
+          <CreateProjectDialog>
+            <Button>Create Project</Button>
+          </CreateProjectDialog>
           <Button variant="outline">Import Project</Button>
         </div>
       </EmptyContent>
