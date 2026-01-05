@@ -1,13 +1,10 @@
+import { generateRandomSuffix, slugify } from "@/utils/slugify";
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeaders } from "@tanstack/react-start/server";
 import { auth } from "../auth/config";
-import type { User } from "../auth/config";
-import { generateRandomSuffix, slugify } from "@/utils/slugify";
+import { authMiddleware } from "../middleware/auth.middleware";
 
-async function createUniqueSlug(
-  name: string,
-  headers: Headers,
-): Promise<string> {
+async function createUniqueSlug(name: string, headers: Headers): Promise<string> {
   const candidateSlug = slugify(name);
 
   try {
@@ -23,35 +20,27 @@ async function createUniqueSlug(
   }
 }
 
-async function createDefaultOrganization(headers: Headers, user: User) {
-  const slug = await createUniqueSlug(user.name, headers);
+export const getOrganizationsFn = createServerFn()
+  .middleware([authMiddleware])
+  .handler(async ({ context }) => {
+    const headers = getRequestHeaders();
+    const existingOrgs = await auth.api.listOrganizations({
+      headers,
+    });
 
-  const newOrg = await auth.api.createOrganization({
-    headers,
-    body: {
-      name: `Personal`,
-      slug,
-      userId: user.id,
-    },
+    if (existingOrgs.length > 0) {
+      return existingOrgs;
+    }
+    const slug = await createUniqueSlug(context.session.user.name, headers);
+    const newOrg = await auth.api.createOrganization({
+      headers,
+      body: {
+        name: `Personal`,
+        slug,
+        userId: context.session.user.id,
+      },
+    });
+
+    if (!newOrg) throw new Error("Failed to create an org.");
+    return [newOrg];
   });
-
-  if (!newOrg) throw new Error("Failed to create an org.");
-  return newOrg;
-}
-
-export const getOrganizationsFn = createServerFn().handler(async () => {
-  const headers = getRequestHeaders();
-  const session = await auth.api.getSession({ headers });
-  if (!session?.user) throw new Error("Unauthorized");
-  const existingOrgs = await auth.api.listOrganizations({
-    headers,
-  });
-
-  if (existingOrgs.length > 0) {
-    return existingOrgs;
-  }
-
-  const newOrg = await createDefaultOrganization(headers, session.user);
-
-  return [newOrg];
-});
