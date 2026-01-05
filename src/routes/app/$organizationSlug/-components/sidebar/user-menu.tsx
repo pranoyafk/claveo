@@ -1,8 +1,4 @@
-import {
-  IconChevronDown,
-  IconLogout,
-  IconUserCircle,
-} from "@tabler/icons-react";
+import { IconChevronDown, IconLogout, IconUserCircle } from "@tabler/icons-react";
 import { useRouteContext, useRouter } from "@tanstack/react-router";
 import { useTransition } from "react";
 import { toast } from "sonner";
@@ -14,12 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from "@/components/ui/sidebar";
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
 import { Spinner } from "@/components/ui/spinner";
 import { authClient } from "@/lib/auth/client";
 import { authQueries } from "@/lib/queries/auth";
@@ -61,9 +52,7 @@ export function UserMenu() {
               {context.user.image ? (
                 <AvatarImage src={context.user.image} alt={context.user.name} />
               ) : (
-                <AvatarFallback className="rounded-lg">
-                  {context.user.name.slice(0, 1)}
-                </AvatarFallback>
+                <AvatarFallback className="rounded-lg">{context.user.name.slice(0, 1)}</AvatarFallback>
               )}
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
@@ -72,21 +61,13 @@ export function UserMenu() {
             </div>
             <IconChevronDown className="ml-auto size-4" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent
-            side={isMobile ? "bottom" : "right"}
-            align="end"
-            sideOffset={4}
-          >
+          <DropdownMenuContent side={isMobile ? "bottom" : "right"} align="end" sideOffset={4}>
             <DropdownMenuItem>
               <IconUserCircle />
               Profile
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              variant="destructive"
-              closeOnClick={false}
-              onClick={() => startSigningOut(handleSignOut)}
-            >
+            <DropdownMenuItem variant="destructive" closeOnClick={false} onClick={() => startSigningOut(handleSignOut)}>
               {isSigningOutPending ? <Spinner /> : <IconLogout />}
               Logout
             </DropdownMenuItem>

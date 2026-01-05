@@ -81,14 +81,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
 export function ComponentExample() {
@@ -114,9 +107,8 @@ function CardExample() {
         <CardHeader>
           <CardTitle>Observability Plus is replacing Monitoring</CardTitle>
           <CardDescription>
-            Switch to the improved way to explore your data, with natural
-            language. Monitoring will no longer be available on the Pro plan in
-            November, 2025
+            Switch to the improved way to explore your data, with natural language. Monitoring will no longer be
+            available on the Pro plan in November, 2025
           </CardDescription>
         </CardHeader>
         <CardFooter>
@@ -132,8 +124,7 @@ function CardExample() {
                 </AlertDialogMedia>
                 <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  Do you want to allow the USB accessory to connect to this
-                  device?
+                  Do you want to allow the USB accessory to connect to this device?
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
@@ -151,13 +142,7 @@ function CardExample() {
   );
 }
 
-const frameworks = [
-  "Next.js",
-  "SvelteKit",
-  "Nuxt.js",
-  "Remix",
-  "Astro",
-] as const;
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
 const roleItems = [
   { label: "Developer", value: "developer" },
@@ -182,9 +167,7 @@ function FormExample() {
           <CardDescription>Please fill in your details below</CardDescription>
           <CardAction>
             <DropdownMenu>
-              <DropdownMenuTrigger
-                render={<Button variant="ghost" size="icon" />}
-              >
+              <DropdownMenuTrigger render={<Button variant="ghost" size="icon" />}>
                 <IconDotsVertical />
                 <span className="sr-only">More options</span>
               </DropdownMenuTrigger>
@@ -295,10 +278,7 @@ function FormExample() {
                       <DropdownMenuSubContent>
                         <DropdownMenuGroup>
                           <DropdownMenuLabel>Appearance</DropdownMenuLabel>
-                          <DropdownMenuRadioGroup
-                            value={theme}
-                            onValueChange={setTheme}
-                          >
+                          <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
                             <DropdownMenuRadioItem value="light">
                               <IconSun />
                               Light
@@ -354,9 +334,7 @@ function FormExample() {
                             <DropdownMenuPortal>
                               <DropdownMenuSubContent>
                                 <DropdownMenuGroup>
-                                  <DropdownMenuLabel>
-                                    Notification Types
-                                  </DropdownMenuLabel>
+                                  <DropdownMenuLabel>Notification Types</DropdownMenuLabel>
                                   <DropdownMenuCheckboxItem
                                     checked={notifications.push}
                                     onCheckedChange={(checked) =>
@@ -426,11 +404,7 @@ function FormExample() {
               <div className="grid grid-cols-2 gap-4">
                 <Field>
                   <FieldLabel htmlFor="small-form-name">Name</FieldLabel>
-                  <Input
-                    id="small-form-name"
-                    placeholder="Enter your name"
-                    required
-                  />
+                  <Input id="small-form-name" placeholder="Enter your name" required />
                 </Field>
                 <Field>
                   <FieldLabel htmlFor="small-form-role">Role</FieldLabel>
@@ -451,15 +425,9 @@ function FormExample() {
                 </Field>
               </div>
               <Field>
-                <FieldLabel htmlFor="small-form-framework">
-                  Framework
-                </FieldLabel>
+                <FieldLabel htmlFor="small-form-framework">Framework</FieldLabel>
                 <Combobox items={frameworks}>
-                  <ComboboxInput
-                    id="small-form-framework"
-                    placeholder="Select a framework"
-                    required
-                  />
+                  <ComboboxInput id="small-form-framework" placeholder="Select a framework" required />
                   <ComboboxContent>
                     <ComboboxEmpty>No frameworks found.</ComboboxEmpty>
                     <ComboboxList>
@@ -474,10 +442,7 @@ function FormExample() {
               </Field>
               <Field>
                 <FieldLabel htmlFor="small-form-comments">Comments</FieldLabel>
-                <Textarea
-                  id="small-form-comments"
-                  placeholder="Add any additional comments"
-                />
+                <Textarea id="small-form-comments" placeholder="Add any additional comments" />
               </Field>
               <Field orientation="horizontal">
                 <Button type="submit">Submit</Button>

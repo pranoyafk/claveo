@@ -12,9 +12,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       className={className}
     >
       {theme === "dark" && <IconSun className="size-4" />}
-      {theme === "light" && (
-        <IconMoon className="size-4 text-muted-foreground" />
-      )}
+      {theme === "light" && <IconMoon className="size-4 text-muted-foreground" />}
     </Button>
   );
 }

@@ -1,8 +1,4 @@
-import {
-  IconChevronDown,
-  IconPackageExport,
-  IconPlus,
-} from "@tabler/icons-react";
+import { IconChevronDown, IconPackageExport, IconPlus } from "@tabler/icons-react";
 import { useNavigate, useRouteContext } from "@tanstack/react-router";
 import { useState } from "react";
 import { CreateOrganizationDialog } from "../create-org-dialog";
@@ -16,18 +12,12 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from "@/components/ui/sidebar";
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
 
 export function OrgSwitcher() {
   const navigate = useNavigate();
   const { isMobile } = useSidebar();
-  const [openOrganizationCreateDialog, setOrganizationCreateDialog] =
-    useState<boolean>(false);
+  const [openOrganizationCreateDialog, setOrganizationCreateDialog] = useState<boolean>(false);
   const { organizations } = useRouteContext({
     from: "/app",
   });
@@ -63,12 +53,10 @@ export function OrgSwitcher() {
             sideOffset={4}
           >
             <DropdownMenuGroup>
-              <DropdownMenuLabel className="text-muted-foreground text-xs">
-                Organizations
-              </DropdownMenuLabel>
+              <DropdownMenuLabel className="text-muted-foreground text-xs">Organizations</DropdownMenuLabel>
               {organizations.map((org, index) => (
                 <DropdownMenuItem
-                disabled={activeOrg.slug === org.slug}
+                  disabled={activeOrg.slug === org.slug}
                   key={org.slug}
                   className="gap-2 p-2"
                   onClick={() =>
@@ -102,10 +90,7 @@ export function OrgSwitcher() {
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
-        <CreateOrganizationDialog
-          open={openOrganizationCreateDialog}
-          onOpenChange={setOrganizationCreateDialog}
-        />
+        <CreateOrganizationDialog open={openOrganizationCreateDialog} onOpenChange={setOrganizationCreateDialog} />
       </SidebarMenuItem>
     </SidebarMenu>
   );

@@ -8,330 +8,320 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as R404RouteImport } from './routes/404'
-import { Route as AppLayoutRouteImport } from './routes/app/layout'
-import { Route as PublicLayoutRouteImport } from './routes/_public/layout'
-import { Route as AuthLayoutRouteImport } from './routes/_auth/layout'
-import { Route as AppIndexRouteImport } from './routes/app/index'
-import { Route as PublicIndexRouteImport } from './routes/_public/index'
-import { Route as PublicChangelogRouteImport } from './routes/_public/changelog'
-import { Route as AuthSignUpRouteImport } from './routes/_auth/sign-up'
-import { Route as AuthSignInRouteImport } from './routes/_auth/sign-in'
-import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
-import { Route as AppOrganizationSlugLayoutRouteImport } from './routes/app/$organizationSlug/layout'
-import { Route as AppOrganizationSlugIndexRouteImport } from './routes/app/$organizationSlug/index'
-import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as R404RouteImport } from "./routes/404";
+import { Route as AppLayoutRouteImport } from "./routes/app/layout";
+import { Route as PublicLayoutRouteImport } from "./routes/_public/layout";
+import { Route as AuthLayoutRouteImport } from "./routes/_auth/layout";
+import { Route as AppIndexRouteImport } from "./routes/app/index";
+import { Route as PublicIndexRouteImport } from "./routes/_public/index";
+import { Route as PublicChangelogRouteImport } from "./routes/_public/changelog";
+import { Route as AuthSignUpRouteImport } from "./routes/_auth/sign-up";
+import { Route as AuthSignInRouteImport } from "./routes/_auth/sign-in";
+import { Route as AuthResetPasswordRouteImport } from "./routes/_auth/reset-password";
+import { Route as AppOrganizationSlugLayoutRouteImport } from "./routes/app/$organizationSlug/layout";
+import { Route as AppOrganizationSlugIndexRouteImport } from "./routes/app/$organizationSlug/index";
+import { Route as ApiAuthSplatRouteImport } from "./routes/api/auth/$";
 
 const R404Route = R404RouteImport.update({
-  id: '/404',
-  path: '/404',
+  id: "/404",
+  path: "/404",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AppLayoutRoute = AppLayoutRouteImport.update({
-  id: '/app',
-  path: '/app',
+  id: "/app",
+  path: "/app",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const PublicLayoutRoute = PublicLayoutRouteImport.update({
-  id: '/_public',
+  id: "/_public",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AuthLayoutRoute = AuthLayoutRouteImport.update({
-  id: '/_auth',
+  id: "/_auth",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AppIndexRoute = AppIndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => AppLayoutRoute,
-} as any)
+} as any);
 const PublicIndexRoute = PublicIndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => PublicLayoutRoute,
-} as any)
+} as any);
 const PublicChangelogRoute = PublicChangelogRouteImport.update({
-  id: '/changelog',
-  path: '/changelog',
+  id: "/changelog",
+  path: "/changelog",
   getParentRoute: () => PublicLayoutRoute,
-} as any)
+} as any);
 const AuthSignUpRoute = AuthSignUpRouteImport.update({
-  id: '/sign-up',
-  path: '/sign-up',
+  id: "/sign-up",
+  path: "/sign-up",
   getParentRoute: () => AuthLayoutRoute,
-} as any)
+} as any);
 const AuthSignInRoute = AuthSignInRouteImport.update({
-  id: '/sign-in',
-  path: '/sign-in',
+  id: "/sign-in",
+  path: "/sign-in",
   getParentRoute: () => AuthLayoutRoute,
-} as any)
+} as any);
 const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
+  id: "/reset-password",
+  path: "/reset-password",
   getParentRoute: () => AuthLayoutRoute,
-} as any)
-const AppOrganizationSlugLayoutRoute =
-  AppOrganizationSlugLayoutRouteImport.update({
-    id: '/$organizationSlug',
-    path: '/$organizationSlug',
-    getParentRoute: () => AppLayoutRoute,
-  } as any)
-const AppOrganizationSlugIndexRoute =
-  AppOrganizationSlugIndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => AppOrganizationSlugLayoutRoute,
-  } as any)
+} as any);
+const AppOrganizationSlugLayoutRoute = AppOrganizationSlugLayoutRouteImport.update({
+  id: "/$organizationSlug",
+  path: "/$organizationSlug",
+  getParentRoute: () => AppLayoutRoute,
+} as any);
+const AppOrganizationSlugIndexRoute = AppOrganizationSlugIndexRouteImport.update({
+  id: "/",
+  path: "/",
+  getParentRoute: () => AppOrganizationSlugLayoutRoute,
+} as any);
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
-  id: '/api/auth/$',
-  path: '/api/auth/$',
+  id: "/api/auth/$",
+  path: "/api/auth/$",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/app': typeof AppLayoutRouteWithChildren
-  '/404': typeof R404Route
-  '/app/$organizationSlug': typeof AppOrganizationSlugLayoutRouteWithChildren
-  '/reset-password': typeof AuthResetPasswordRoute
-  '/sign-in': typeof AuthSignInRoute
-  '/sign-up': typeof AuthSignUpRoute
-  '/changelog': typeof PublicChangelogRoute
-  '/': typeof PublicIndexRoute
-  '/app/': typeof AppIndexRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/app/$organizationSlug/': typeof AppOrganizationSlugIndexRoute
+  "/app": typeof AppLayoutRouteWithChildren;
+  "/404": typeof R404Route;
+  "/app/$organizationSlug": typeof AppOrganizationSlugLayoutRouteWithChildren;
+  "/reset-password": typeof AuthResetPasswordRoute;
+  "/sign-in": typeof AuthSignInRoute;
+  "/sign-up": typeof AuthSignUpRoute;
+  "/changelog": typeof PublicChangelogRoute;
+  "/": typeof PublicIndexRoute;
+  "/app/": typeof AppIndexRoute;
+  "/api/auth/$": typeof ApiAuthSplatRoute;
+  "/app/$organizationSlug/": typeof AppOrganizationSlugIndexRoute;
 }
 export interface FileRoutesByTo {
-  '/404': typeof R404Route
-  '/reset-password': typeof AuthResetPasswordRoute
-  '/sign-in': typeof AuthSignInRoute
-  '/sign-up': typeof AuthSignUpRoute
-  '/changelog': typeof PublicChangelogRoute
-  '/': typeof PublicIndexRoute
-  '/app': typeof AppIndexRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/app/$organizationSlug': typeof AppOrganizationSlugIndexRoute
+  "/404": typeof R404Route;
+  "/reset-password": typeof AuthResetPasswordRoute;
+  "/sign-in": typeof AuthSignInRoute;
+  "/sign-up": typeof AuthSignUpRoute;
+  "/changelog": typeof PublicChangelogRoute;
+  "/": typeof PublicIndexRoute;
+  "/app": typeof AppIndexRoute;
+  "/api/auth/$": typeof ApiAuthSplatRoute;
+  "/app/$organizationSlug": typeof AppOrganizationSlugIndexRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/_auth': typeof AuthLayoutRouteWithChildren
-  '/_public': typeof PublicLayoutRouteWithChildren
-  '/app': typeof AppLayoutRouteWithChildren
-  '/404': typeof R404Route
-  '/app/$organizationSlug': typeof AppOrganizationSlugLayoutRouteWithChildren
-  '/_auth/reset-password': typeof AuthResetPasswordRoute
-  '/_auth/sign-in': typeof AuthSignInRoute
-  '/_auth/sign-up': typeof AuthSignUpRoute
-  '/_public/changelog': typeof PublicChangelogRoute
-  '/_public/': typeof PublicIndexRoute
-  '/app/': typeof AppIndexRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/app/$organizationSlug/': typeof AppOrganizationSlugIndexRoute
+  __root__: typeof rootRouteImport;
+  "/_auth": typeof AuthLayoutRouteWithChildren;
+  "/_public": typeof PublicLayoutRouteWithChildren;
+  "/app": typeof AppLayoutRouteWithChildren;
+  "/404": typeof R404Route;
+  "/app/$organizationSlug": typeof AppOrganizationSlugLayoutRouteWithChildren;
+  "/_auth/reset-password": typeof AuthResetPasswordRoute;
+  "/_auth/sign-in": typeof AuthSignInRoute;
+  "/_auth/sign-up": typeof AuthSignUpRoute;
+  "/_public/changelog": typeof PublicChangelogRoute;
+  "/_public/": typeof PublicIndexRoute;
+  "/app/": typeof AppIndexRoute;
+  "/api/auth/$": typeof ApiAuthSplatRoute;
+  "/app/$organizationSlug/": typeof AppOrganizationSlugIndexRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/app'
-    | '/404'
-    | '/app/$organizationSlug'
-    | '/reset-password'
-    | '/sign-in'
-    | '/sign-up'
-    | '/changelog'
-    | '/'
-    | '/app/'
-    | '/api/auth/$'
-    | '/app/$organizationSlug/'
-  fileRoutesByTo: FileRoutesByTo
+    | "/app"
+    | "/404"
+    | "/app/$organizationSlug"
+    | "/reset-password"
+    | "/sign-in"
+    | "/sign-up"
+    | "/changelog"
+    | "/"
+    | "/app/"
+    | "/api/auth/$"
+    | "/app/$organizationSlug/";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/404'
-    | '/reset-password'
-    | '/sign-in'
-    | '/sign-up'
-    | '/changelog'
-    | '/'
-    | '/app'
-    | '/api/auth/$'
-    | '/app/$organizationSlug'
+    | "/404"
+    | "/reset-password"
+    | "/sign-in"
+    | "/sign-up"
+    | "/changelog"
+    | "/"
+    | "/app"
+    | "/api/auth/$"
+    | "/app/$organizationSlug";
   id:
-    | '__root__'
-    | '/_auth'
-    | '/_public'
-    | '/app'
-    | '/404'
-    | '/app/$organizationSlug'
-    | '/_auth/reset-password'
-    | '/_auth/sign-in'
-    | '/_auth/sign-up'
-    | '/_public/changelog'
-    | '/_public/'
-    | '/app/'
-    | '/api/auth/$'
-    | '/app/$organizationSlug/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/_auth"
+    | "/_public"
+    | "/app"
+    | "/404"
+    | "/app/$organizationSlug"
+    | "/_auth/reset-password"
+    | "/_auth/sign-in"
+    | "/_auth/sign-up"
+    | "/_public/changelog"
+    | "/_public/"
+    | "/app/"
+    | "/api/auth/$"
+    | "/app/$organizationSlug/";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  AuthLayoutRoute: typeof AuthLayoutRouteWithChildren
-  PublicLayoutRoute: typeof PublicLayoutRouteWithChildren
-  AppLayoutRoute: typeof AppLayoutRouteWithChildren
-  R404Route: typeof R404Route
-  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  AuthLayoutRoute: typeof AuthLayoutRouteWithChildren;
+  PublicLayoutRoute: typeof PublicLayoutRouteWithChildren;
+  AppLayoutRoute: typeof AppLayoutRouteWithChildren;
+  R404Route: typeof R404Route;
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/404': {
-      id: '/404'
-      path: '/404'
-      fullPath: '/404'
-      preLoaderRoute: typeof R404RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppLayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_public': {
-      id: '/_public'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof PublicLayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth': {
-      id: '/_auth'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthLayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/': {
-      id: '/app/'
-      path: '/'
-      fullPath: '/app/'
-      preLoaderRoute: typeof AppIndexRouteImport
-      parentRoute: typeof AppLayoutRoute
-    }
-    '/_public/': {
-      id: '/_public/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof PublicIndexRouteImport
-      parentRoute: typeof PublicLayoutRoute
-    }
-    '/_public/changelog': {
-      id: '/_public/changelog'
-      path: '/changelog'
-      fullPath: '/changelog'
-      preLoaderRoute: typeof PublicChangelogRouteImport
-      parentRoute: typeof PublicLayoutRoute
-    }
-    '/_auth/sign-up': {
-      id: '/_auth/sign-up'
-      path: '/sign-up'
-      fullPath: '/sign-up'
-      preLoaderRoute: typeof AuthSignUpRouteImport
-      parentRoute: typeof AuthLayoutRoute
-    }
-    '/_auth/sign-in': {
-      id: '/_auth/sign-in'
-      path: '/sign-in'
-      fullPath: '/sign-in'
-      preLoaderRoute: typeof AuthSignInRouteImport
-      parentRoute: typeof AuthLayoutRoute
-    }
-    '/_auth/reset-password': {
-      id: '/_auth/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof AuthResetPasswordRouteImport
-      parentRoute: typeof AuthLayoutRoute
-    }
-    '/app/$organizationSlug': {
-      id: '/app/$organizationSlug'
-      path: '/$organizationSlug'
-      fullPath: '/app/$organizationSlug'
-      preLoaderRoute: typeof AppOrganizationSlugLayoutRouteImport
-      parentRoute: typeof AppLayoutRoute
-    }
-    '/app/$organizationSlug/': {
-      id: '/app/$organizationSlug/'
-      path: '/'
-      fullPath: '/app/$organizationSlug/'
-      preLoaderRoute: typeof AppOrganizationSlugIndexRouteImport
-      parentRoute: typeof AppOrganizationSlugLayoutRoute
-    }
-    '/api/auth/$': {
-      id: '/api/auth/$'
-      path: '/api/auth/$'
-      fullPath: '/api/auth/$'
-      preLoaderRoute: typeof ApiAuthSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+    "/404": {
+      id: "/404";
+      path: "/404";
+      fullPath: "/404";
+      preLoaderRoute: typeof R404RouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/app": {
+      id: "/app";
+      path: "/app";
+      fullPath: "/app";
+      preLoaderRoute: typeof AppLayoutRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_public": {
+      id: "/_public";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof PublicLayoutRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_auth": {
+      id: "/_auth";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof AuthLayoutRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/app/": {
+      id: "/app/";
+      path: "/";
+      fullPath: "/app/";
+      preLoaderRoute: typeof AppIndexRouteImport;
+      parentRoute: typeof AppLayoutRoute;
+    };
+    "/_public/": {
+      id: "/_public/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof PublicIndexRouteImport;
+      parentRoute: typeof PublicLayoutRoute;
+    };
+    "/_public/changelog": {
+      id: "/_public/changelog";
+      path: "/changelog";
+      fullPath: "/changelog";
+      preLoaderRoute: typeof PublicChangelogRouteImport;
+      parentRoute: typeof PublicLayoutRoute;
+    };
+    "/_auth/sign-up": {
+      id: "/_auth/sign-up";
+      path: "/sign-up";
+      fullPath: "/sign-up";
+      preLoaderRoute: typeof AuthSignUpRouteImport;
+      parentRoute: typeof AuthLayoutRoute;
+    };
+    "/_auth/sign-in": {
+      id: "/_auth/sign-in";
+      path: "/sign-in";
+      fullPath: "/sign-in";
+      preLoaderRoute: typeof AuthSignInRouteImport;
+      parentRoute: typeof AuthLayoutRoute;
+    };
+    "/_auth/reset-password": {
+      id: "/_auth/reset-password";
+      path: "/reset-password";
+      fullPath: "/reset-password";
+      preLoaderRoute: typeof AuthResetPasswordRouteImport;
+      parentRoute: typeof AuthLayoutRoute;
+    };
+    "/app/$organizationSlug": {
+      id: "/app/$organizationSlug";
+      path: "/$organizationSlug";
+      fullPath: "/app/$organizationSlug";
+      preLoaderRoute: typeof AppOrganizationSlugLayoutRouteImport;
+      parentRoute: typeof AppLayoutRoute;
+    };
+    "/app/$organizationSlug/": {
+      id: "/app/$organizationSlug/";
+      path: "/";
+      fullPath: "/app/$organizationSlug/";
+      preLoaderRoute: typeof AppOrganizationSlugIndexRouteImport;
+      parentRoute: typeof AppOrganizationSlugLayoutRoute;
+    };
+    "/api/auth/$": {
+      id: "/api/auth/$";
+      path: "/api/auth/$";
+      fullPath: "/api/auth/$";
+      preLoaderRoute: typeof ApiAuthSplatRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
   }
 }
 
 interface AuthLayoutRouteChildren {
-  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
-  AuthSignInRoute: typeof AuthSignInRoute
-  AuthSignUpRoute: typeof AuthSignUpRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute;
+  AuthSignInRoute: typeof AuthSignInRoute;
+  AuthSignUpRoute: typeof AuthSignUpRoute;
 }
 
 const AuthLayoutRouteChildren: AuthLayoutRouteChildren = {
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSignInRoute: AuthSignInRoute,
   AuthSignUpRoute: AuthSignUpRoute,
-}
+};
 
-const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
-  AuthLayoutRouteChildren,
-)
+const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(AuthLayoutRouteChildren);
 
 interface PublicLayoutRouteChildren {
-  PublicChangelogRoute: typeof PublicChangelogRoute
-  PublicIndexRoute: typeof PublicIndexRoute
+  PublicChangelogRoute: typeof PublicChangelogRoute;
+  PublicIndexRoute: typeof PublicIndexRoute;
 }
 
 const PublicLayoutRouteChildren: PublicLayoutRouteChildren = {
   PublicChangelogRoute: PublicChangelogRoute,
   PublicIndexRoute: PublicIndexRoute,
-}
+};
 
-const PublicLayoutRouteWithChildren = PublicLayoutRoute._addFileChildren(
-  PublicLayoutRouteChildren,
-)
+const PublicLayoutRouteWithChildren = PublicLayoutRoute._addFileChildren(PublicLayoutRouteChildren);
 
 interface AppOrganizationSlugLayoutRouteChildren {
-  AppOrganizationSlugIndexRoute: typeof AppOrganizationSlugIndexRoute
+  AppOrganizationSlugIndexRoute: typeof AppOrganizationSlugIndexRoute;
 }
 
-const AppOrganizationSlugLayoutRouteChildren: AppOrganizationSlugLayoutRouteChildren =
-  {
-    AppOrganizationSlugIndexRoute: AppOrganizationSlugIndexRoute,
-  }
+const AppOrganizationSlugLayoutRouteChildren: AppOrganizationSlugLayoutRouteChildren = {
+  AppOrganizationSlugIndexRoute: AppOrganizationSlugIndexRoute,
+};
 
-const AppOrganizationSlugLayoutRouteWithChildren =
-  AppOrganizationSlugLayoutRoute._addFileChildren(
-    AppOrganizationSlugLayoutRouteChildren,
-  )
+const AppOrganizationSlugLayoutRouteWithChildren = AppOrganizationSlugLayoutRoute._addFileChildren(
+  AppOrganizationSlugLayoutRouteChildren,
+);
 
 interface AppLayoutRouteChildren {
-  AppOrganizationSlugLayoutRoute: typeof AppOrganizationSlugLayoutRouteWithChildren
-  AppIndexRoute: typeof AppIndexRoute
+  AppOrganizationSlugLayoutRoute: typeof AppOrganizationSlugLayoutRouteWithChildren;
+  AppIndexRoute: typeof AppIndexRoute;
 }
 
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
   AppOrganizationSlugLayoutRoute: AppOrganizationSlugLayoutRouteWithChildren,
   AppIndexRoute: AppIndexRoute,
-}
+};
 
-const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
-  AppLayoutRouteChildren,
-)
+const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(AppLayoutRouteChildren);
 
 const rootRouteChildren: RootRouteChildren = {
   AuthLayoutRoute: AuthLayoutRouteWithChildren,
@@ -339,16 +329,14 @@ const rootRouteChildren: RootRouteChildren = {
   AppLayoutRoute: AppLayoutRouteWithChildren,
   R404Route: R404Route,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
-}
-export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+};
+export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
 
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
+import type { getRouter } from "./router.tsx";
+import type { createStart } from "@tanstack/react-start";
+declare module "@tanstack/react-start" {
   interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
+    ssr: true;
+    router: Awaited<ReturnType<typeof getRouter>>;
   }
 }

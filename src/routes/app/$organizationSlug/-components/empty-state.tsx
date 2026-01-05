@@ -2,14 +2,7 @@ import { IconArrowUp, IconFolderCode } from "@tabler/icons-react";
 
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
 
 export function ProjectsEmptyState() {
   return (
@@ -20,8 +13,7 @@ export function ProjectsEmptyState() {
         </EmptyMedia>
         <EmptyTitle>No Projects Yet</EmptyTitle>
         <EmptyDescription>
-          You haven&apos;t created any projects yet. Get started by creating
-          your first project.
+          You haven&apos;t created any projects yet. Get started by creating your first project.
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>

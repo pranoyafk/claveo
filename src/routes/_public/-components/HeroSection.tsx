@@ -23,15 +23,11 @@ export function HeroSection() {
         {/* Main Heading */}
         <div className="relative z-10 max-w-4xl text-center">
           <h1 className="text-balance text-3xl font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl lg:leading-[1.1]">
-            <span className="text-muted-foreground/60 font-light tracking-tight">
-              Show your{" "}
-            </span>
+            <span className="text-muted-foreground/60 font-light tracking-tight">Show your </span>
             <span className="bg-linear-to-b from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent font-bold">
               Clients{" "}
             </span>
-            <span className="text-muted-foreground/60 font-light tracking-tight">
-              exactly{" "}
-            </span>
+            <span className="text-muted-foreground/60 font-light tracking-tight">exactly </span>
             <br className="hidden md:block" />
             <span className="bg-linear-to-b from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent font-bold">
               what's happening.
@@ -39,8 +35,8 @@ export function HeroSection() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-lg text-balance text-base text-muted-foreground md:text-lg font-normal leading-relaxed tracking-wide">
-            Stop writing long update emails. Create a timeline, share the secure
-            link, and give your clients instant clarity.
+            Stop writing long update emails. Create a timeline, share the secure link, and give your clients instant
+            clarity.
           </p>
 
           {/* Buttons */}

@@ -1,6 +1,6 @@
+import { queryOptions } from "@tanstack/react-query";
 import { getSessionFn } from "@/lib/services/auth/get-session";
 import { ensureUserOrganizationsFn } from "@/lib/services/organizations/ensure-user-organizations";
-import { queryOptions } from "@tanstack/react-query";
 
 export const authQueries = {
   all: ["auth"],

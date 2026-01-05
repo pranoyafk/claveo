@@ -4,9 +4,7 @@ import { authQueries } from "@/lib/queries/auth";
 export const Route = createFileRoute("/_auth")({
   component: RouteComponent,
   beforeLoad: async ({ context }) => {
-    const userSession = await context.queryClient.ensureQueryData(
-      authQueries.user(),
-    );
+    const userSession = await context.queryClient.ensureQueryData(authQueries.user());
     if (userSession?.user) {
       throw redirect({
         to: "/app",

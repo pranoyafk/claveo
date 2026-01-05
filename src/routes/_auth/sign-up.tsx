@@ -2,18 +2,8 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { IconLockPassword, IconMail, IconUser } from "@tabler/icons-react";
 import { OauthButtons } from "./-components/oauth-buttons";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldSeparator,
-} from "@/components/ui/field";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Logo } from "@/components/logo";
 
 export const Route = createFileRoute("/_auth/sign-up")({
@@ -37,12 +27,7 @@ function RouteComponent() {
           <Field>
             <FieldLabel htmlFor="name">Full name</FieldLabel>
             <InputGroup>
-              <InputGroupInput
-                id="name"
-                type="text"
-                placeholder="John Doe"
-                required
-              />
+              <InputGroupInput id="name" type="text" placeholder="John Doe" required />
               <InputGroupAddon>
                 <IconUser />
               </InputGroupAddon>
@@ -51,12 +36,7 @@ function RouteComponent() {
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
             <InputGroup>
-              <InputGroupInput
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
+              <InputGroupInput id="email" type="email" placeholder="m@example.com" required />
               <InputGroupAddon>
                 <IconMail />
               </InputGroupAddon>
@@ -66,12 +46,7 @@ function RouteComponent() {
           <Field>
             <FieldLabel htmlFor="password">Password</FieldLabel>
             <InputGroup>
-              <InputGroupInput
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                required
-              />
+              <InputGroupInput id="password" type="password" placeholder="••••••••" required />
               <InputGroupAddon align="inline-end">
                 <IconLockPassword />
               </InputGroupAddon>
@@ -85,8 +60,7 @@ function RouteComponent() {
         </FieldGroup>
       </form>
       <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our{" "}
-        <Link to="/404">Terms of Service</Link> and{" "}
+        By clicking continue, you agree to our <Link to="/404">Terms of Service</Link> and{" "}
         <Link to="/404">Privacy Policy</Link>.
       </FieldDescription>
     </div>

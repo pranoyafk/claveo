@@ -10,8 +10,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Fintech Mobile App Redesign",
-    description:
-      "Complete overhaul of the user interface to improve accessibility and transaction speed.",
+    description: "Complete overhaul of the user interface to improve accessibility and transaction speed.",
     progress: 20,
     deadline: "2025-03-15",
     priority: "high",
@@ -20,8 +19,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "E-commerce AI Integration",
-    description:
-      "Implementing a recommendation engine powered by machine learning to increase average order value.",
+    description: "Implementing a recommendation engine powered by machine learning to increase average order value.",
     progress: 45,
     deadline: "2025-04-10",
     priority: "high",
@@ -30,8 +28,7 @@ const projects: Array<Project> = [
   {
     status: "on-hold",
     name: "Legacy System Migration",
-    description:
-      "Transitioning monolithic on-premise servers to a microservices architecture on AWS.",
+    description: "Transitioning monolithic on-premise servers to a microservices architecture on AWS.",
     progress: 10,
     deadline: "2025-06-30",
     priority: "medium",
@@ -40,8 +37,7 @@ const projects: Array<Project> = [
   {
     status: "completed",
     name: "Q1 Security Audit",
-    description:
-      "Comprehensive penetration testing and vulnerability assessment across all cloud infrastructure.",
+    description: "Comprehensive penetration testing and vulnerability assessment across all cloud infrastructure.",
     progress: 100,
     deadline: "2025-01-20",
     priority: "high",
@@ -50,8 +46,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "HR Employee Portal",
-    description:
-      "Developing a self-service portal for payroll, benefits enrollment, and time-off requests.",
+    description: "Developing a self-service portal for payroll, benefits enrollment, and time-off requests.",
     progress: 65,
     deadline: "2025-05-12",
     priority: "low",
@@ -60,8 +55,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Supply Chain Dashboard",
-    description:
-      "Real-time logistics tracking and inventory management visualization for global warehouses.",
+    description: "Real-time logistics tracking and inventory management visualization for global warehouses.",
     progress: 30,
     deadline: "2025-07-05",
     priority: "medium",
@@ -70,8 +64,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Customer Loyalty Program",
-    description:
-      "Building a points-based reward system with integrated mobile notifications.",
+    description: "Building a points-based reward system with integrated mobile notifications.",
     progress: 80,
     deadline: "2025-02-28",
     priority: "high",
@@ -80,8 +73,7 @@ const projects: Array<Project> = [
   {
     status: "planning",
     name: "Brand Refresh 2025",
-    description:
-      "Redefining visual guidelines, including new logos, typography, and marketing assets.",
+    description: "Redefining visual guidelines, including new logos, typography, and marketing assets.",
     progress: 5,
     deadline: "2025-09-15",
     priority: "medium",
@@ -90,8 +82,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Internal Knowledge Base",
-    description:
-      "Migrating company documentation to a searchable, centralized Wiki platform.",
+    description: "Migrating company documentation to a searchable, centralized Wiki platform.",
     progress: 50,
     deadline: "2025-03-20",
     priority: "low",
@@ -100,8 +91,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Automated Billing System",
-    description:
-      "Standardizing invoicing processes for subscription-based corporate clients.",
+    description: "Standardizing invoicing processes for subscription-based corporate clients.",
     progress: 40,
     deadline: "2025-04-22",
     priority: "high",
@@ -110,8 +100,7 @@ const projects: Array<Project> = [
   {
     status: "on-hold",
     name: "VR Training Module",
-    description:
-      "Creating virtual reality simulations for hazardous material handling protocols.",
+    description: "Creating virtual reality simulations for hazardous material handling protocols.",
     progress: 15,
     deadline: "2025-11-01",
     priority: "low",
@@ -120,8 +109,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Data Privacy Compliance",
-    description:
-      "Updating data handling protocols to ensure full compliance with GDPR and CCPA updates.",
+    description: "Updating data handling protocols to ensure full compliance with GDPR and CCPA updates.",
     progress: 90,
     deadline: "2025-02-15",
     priority: "high",
@@ -130,8 +118,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Social Media API Bot",
-    description:
-      "Automated content distribution tool for scheduling posts across multiple social platforms.",
+    description: "Automated content distribution tool for scheduling posts across multiple social platforms.",
     progress: 75,
     deadline: "2025-03-05",
     priority: "medium",
@@ -140,8 +127,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Salesforce CRM Sync",
-    description:
-      "Integrating lead generation forms with internal CRM to automate sales funnels.",
+    description: "Integrating lead generation forms with internal CRM to automate sales funnels.",
     progress: 55,
     deadline: "2025-05-30",
     priority: "medium",
@@ -150,8 +136,7 @@ const projects: Array<Project> = [
   {
     status: "completed",
     name: "Mobile App Dark Mode",
-    description:
-      "Implementing system-wide dark theme support for iOS and Android applications.",
+    description: "Implementing system-wide dark theme support for iOS and Android applications.",
     progress: 100,
     deadline: "2025-01-10",
     priority: "low",
@@ -160,8 +145,7 @@ const projects: Array<Project> = [
   {
     status: "planning",
     name: "Smart Warehouse IoT",
-    description:
-      "Deploying sensor networks to track environmental conditions in temperature-sensitive zones.",
+    description: "Deploying sensor networks to track environmental conditions in temperature-sensitive zones.",
     progress: 0,
     deadline: "2025-10-10",
     priority: "high",
@@ -170,8 +154,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Video Streaming Optimization",
-    description:
-      "Reducing latency for live-stream events through edge computing solutions.",
+    description: "Reducing latency for live-stream events through edge computing solutions.",
     progress: 35,
     deadline: "2025-08-15",
     priority: "high",
@@ -180,8 +163,7 @@ const projects: Array<Project> = [
   {
     status: "on-hold",
     name: "Chatbot NLP Upgrade",
-    description:
-      "Improving natural language processing capabilities for the customer support bot.",
+    description: "Improving natural language processing capabilities for the customer support bot.",
     progress: 60,
     deadline: "2025-04-01",
     priority: "medium",
@@ -190,8 +172,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "SEO Content Engine",
-    description:
-      "Developing an automated pipeline for generating and updating SEO-optimized blog posts.",
+    description: "Developing an automated pipeline for generating and updating SEO-optimized blog posts.",
     progress: 25,
     deadline: "2025-06-15",
     priority: "low",
@@ -200,8 +181,7 @@ const projects: Array<Project> = [
   {
     status: "active",
     name: "Cybersecurity Training",
-    description:
-      "Rolling out mandatory phishing awareness and security hygiene training for all staff.",
+    description: "Rolling out mandatory phishing awareness and security hygiene training for all staff.",
     progress: 95,
     deadline: "2025-02-01",
     priority: "high",

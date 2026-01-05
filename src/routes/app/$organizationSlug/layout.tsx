@@ -6,9 +6,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 export const Route = createFileRoute("/app/$organizationSlug")({
   component: RouteComponent,
   beforeLoad: ({ context, params }) => {
-    const activeOrg = context.organizations.find(
-      (o) => o.slug === params.organizationSlug,
-    );
+    const activeOrg = context.organizations.find((o) => o.slug === params.organizationSlug);
 
     if (!activeOrg) {
       throw redirect({ to: "/app" });

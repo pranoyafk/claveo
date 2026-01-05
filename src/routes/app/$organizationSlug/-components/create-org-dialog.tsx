@@ -1,9 +1,5 @@
 import { useForm } from "@tanstack/react-form";
-import {
-  useNavigate,
-  useRouteContext,
-  useRouter,
-} from "@tanstack/react-router";
+import { useNavigate, useRouteContext, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { createOrganizationSchema } from "@/lib/validation/organization/create";
 import { Button } from "@/components/ui/button";
@@ -16,12 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth/client";
 import { authQueries } from "@/lib/queries/auth";
@@ -57,10 +48,8 @@ export function CreateOrganizationDialog({
         toast.error(error.message || "Internal Server Error");
         return;
       }
-      queryClient.setQueryData(
-        authQueries.organizations().queryKey,
-        (oldOrganizations) =>
-          oldOrganizations ? [...oldOrganizations, data] : [data],
+      queryClient.setQueryData(authQueries.organizations().queryKey, (oldOrganizations) =>
+        oldOrganizations ? [...oldOrganizations, data] : [data],
       );
       await router.invalidate();
 
@@ -87,10 +76,7 @@ export function CreateOrganizationDialog({
         <DialogContent className="sm:max-w-106.25">
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re
-              done.
-            </DialogDescription>
+            <DialogDescription>Make changes to your profile here. Click save when you&apos;re done.</DialogDescription>
           </DialogHeader>
           <FieldGroup>
             <form.Field
@@ -102,13 +88,10 @@ export function CreateOrganizationDialog({
               }}
             >
               {(field) => {
-                const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;
                 return (
                   <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>
-                      Organization Name
-                    </FieldLabel>
+                    <FieldLabel htmlFor={field.name}>Organization Name</FieldLabel>
                     <Input
                       id={field.name}
                       name={field.name}
@@ -119,9 +102,7 @@ export function CreateOrganizationDialog({
                       placeholder="Acme Inc"
                       autoComplete="off"
                     />
-                    {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
-                    )}
+                    {isInvalid && <FieldError errors={field.state.meta.errors} />}
                   </Field>
                 );
               }}
@@ -129,13 +110,10 @@ export function CreateOrganizationDialog({
 
             <form.Field name="organizationSlug">
               {(field) => {
-                const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
+                const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;
                 return (
                   <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>
-                      Organization Slug
-                    </FieldLabel>
+                    <FieldLabel htmlFor={field.name}>Organization Slug</FieldLabel>
                     <Input
                       id={field.name}
                       name={field.name}
@@ -146,9 +124,7 @@ export function CreateOrganizationDialog({
                       placeholder="acme-inc"
                       autoComplete="off"
                     />
-                    {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
-                    )}
+                    {isInvalid && <FieldError errors={field.state.meta.errors} />}
                   </Field>
                 );
               }}

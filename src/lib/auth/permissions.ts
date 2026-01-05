@@ -4,9 +4,7 @@ const organizationStatement = {
   project: ["create", "share", "update", "delete"],
 } as const;
 
-export const organizationAccessControl = createAccessControl(
-  organizationStatement,
-);
+export const organizationAccessControl = createAccessControl(organizationStatement);
 
 const adminStatement = {} as const;
 

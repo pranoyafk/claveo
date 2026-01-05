@@ -74,11 +74,7 @@ export function HeaderSection() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? (
-              <IconX className="h-5 w-5" />
-            ) : (
-              <IconMenu className="h-5 w-5" />
-            )}
+            {isMenuOpen ? <IconX className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
           </Button>
         </div>
       </div>

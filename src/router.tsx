@@ -15,9 +15,7 @@ export const getRouter = () => {
     context: {
       queryClient,
     },
-    Wrap: ({ children }) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    ),
+    Wrap: ({ children }) => <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>,
   });
 
   setupRouterSsrQueryIntegration({

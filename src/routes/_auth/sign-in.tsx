@@ -2,18 +2,8 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { IconLockPassword, IconMail } from "@tabler/icons-react";
 import { OauthButtons } from "./-components/oauth-buttons";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldSeparator,
-} from "@/components/ui/field";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Logo } from "@/components/logo";
 
 export const Route = createFileRoute("/_auth/sign-in")({
@@ -36,12 +26,7 @@ function RouteComponent() {
         <Field>
           <FieldLabel htmlFor="email">Email</FieldLabel>
           <InputGroup>
-            <InputGroupInput
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              required
-            />
+            <InputGroupInput id="email" type="email" placeholder="m@example.com" required />
             <InputGroupAddon>
               <IconMail />
             </InputGroupAddon>
@@ -51,12 +36,7 @@ function RouteComponent() {
         <Field>
           <FieldLabel htmlFor="password">Password</FieldLabel>
           <InputGroup>
-            <InputGroupInput
-              id="password"
-              type="password"
-              placeholder="••••••••"
-              required
-            />
+            <InputGroupInput id="password" type="password" placeholder="••••••••" required />
             <InputGroupAddon align="inline-end">
               <IconLockPassword />
             </InputGroupAddon>

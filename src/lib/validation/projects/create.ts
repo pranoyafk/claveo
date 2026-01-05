@@ -10,5 +10,9 @@ export const createProjectSchema = z.object({
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Slug must be lowercase, numbers, and hyphens only"),
 
   description: z.string().max(500, "Description cannot exceed 500 characters").trim().optional(),
-  organizationId: z.string().min(1, "Organization ID is required").max(50, "Organization ID cannot exceed 50 characters").trim(),
+  organizationId: z
+    .string()
+    .min(1, "Organization ID is required")
+    .max(50, "Organization ID cannot exceed 50 characters")
+    .trim(),
 });

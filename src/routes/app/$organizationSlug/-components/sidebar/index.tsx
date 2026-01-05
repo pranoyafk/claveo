@@ -1,10 +1,4 @@
-import {
-  IconMoneybag,
-  IconPackage,
-  IconSearch,
-  IconSettings,
-  IconUsers,
-} from "@tabler/icons-react";
+import { IconMoneybag, IconPackage, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
 import { OrgSwitcher } from "./org-switcher";
 import { UserMenu } from "./user-menu";
 import {
@@ -36,10 +30,7 @@ export function OrgSidebar() {
     <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader>
         <OrgSwitcher />
-        <Button
-          variant="outline"
-          className={cn({ "justify-between": state === "expanded" })}
-        >
+        <Button variant="outline" className={cn({ "justify-between": state === "expanded" })}>
           {state === "expanded" ? (
             <>
               <div className="flex gap-1.5 items-center">

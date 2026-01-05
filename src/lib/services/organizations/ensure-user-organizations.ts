@@ -1,8 +1,8 @@
+import { createServerFn } from "@tanstack/react-start";
+import { getRequestHeaders } from "@tanstack/react-start/server";
 import { auth } from "@/lib/auth/config";
 import { authMiddleware } from "@/lib/middleware/auth.middleware";
 import { generateRandomSuffix, slugify } from "@/utils/slugify";
-import { createServerFn } from "@tanstack/react-start";
-import { getRequestHeaders } from "@tanstack/react-start/server";
 
 async function createUniqueSlug(name: string, headers: Headers): Promise<string> {
   const candidateSlug = slugify(name);

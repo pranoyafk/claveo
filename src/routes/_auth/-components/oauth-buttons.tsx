@@ -23,12 +23,7 @@ export function OauthButtons() {
   }
   return (
     <Field className="grid gap-4 sm:grid-cols-2">
-      <Button
-        disabled={disabled}
-        onClick={() => startGithubSignIn(handleGithubSignIn)}
-        variant="outline"
-        type="button"
-      >
+      <Button disabled={disabled} onClick={() => startGithubSignIn(handleGithubSignIn)} variant="outline" type="button">
         {isGithubSignInPending ? <Spinner /> : <IconBrandGithub />}
         Continue with Github
       </Button>

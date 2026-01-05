@@ -86,9 +86,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <CardTitle className="line-clamp-1" title={project.name}>
           {project.name}
         </CardTitle>
-        <CardDescription className="line-clamp-2 mt-1.5">
-          {project.description}
-        </CardDescription>
+        <CardDescription className="line-clamp-2 mt-1.5">{project.description}</CardDescription>
 
         {/* The CardAction slot places this automatically to the top-right */}
         <CardAction>
@@ -150,12 +148,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex w-full items-center justify-between text-xs text-muted-foreground">
           {/* Priority */}
           <div className="flex items-center gap-1.5" title="Priority">
-            <IconFlag3
-              className={cn(
-                "size-3.5 fill-current opacity-80",
-                getPriorityColor(project.priority),
-              )}
-            />
+            <IconFlag3 className={cn("size-3.5 fill-current opacity-80", getPriorityColor(project.priority))} />
             <span className="capitalize font-medium">{project.priority}</span>
           </div>
 
@@ -168,12 +161,7 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
 
           {/* Deadline */}
-          <div
-            className={cn(
-              "flex items-center gap-1.5",
-              isOverdue ? "text-red-500 font-medium" : "",
-            )}
-          >
+          <div className={cn("flex items-center gap-1.5", isOverdue ? "text-red-500 font-medium" : "")}>
             <IconCalendarEvent className="size-3.5 opacity-70" />
             <span>{formattedDate}</span>
           </div>
