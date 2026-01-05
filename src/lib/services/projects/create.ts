@@ -1,8 +1,8 @@
+import { db } from "@/lib/db";
+import { projects } from "@/lib/db/schema";
+import { authMiddleware } from "@/lib/middleware/auth.middleware";
+import { createProjectSchema } from "@/lib/validation/projects/create";
 import { createServerFn } from "@tanstack/react-start";
-import { db } from "../db";
-import { projects } from "../db/schema";
-import { authMiddleware } from "../middleware/auth.middleware";
-import { createProjectSchema } from "../validation/projects/create";
 
 export const createProjectFn = createServerFn()
   .middleware([authMiddleware])

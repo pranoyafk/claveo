@@ -1,6 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
 import { getSessionFn } from "../services/get-session";
-import { getOrganizationsFn } from "../services/get-organizations";
+import { ensureUserOrganizationsFn } from "../services/organizations/ensure-user-organizations";
 
 export const authQueries = {
   all: ["auth"],
@@ -14,7 +14,7 @@ export const authQueries = {
   organizations: () =>
     queryOptions({
       queryKey: [...authQueries.all, "organizations"],
-      queryFn: () => getOrganizationsFn(),
+      queryFn: () => ensureUserOrganizationsFn(),
       staleTime: 1000 * 60 * 5,
     }),
 };

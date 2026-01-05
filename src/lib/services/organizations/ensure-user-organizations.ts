@@ -1,12 +1,11 @@
+import { auth } from "@/lib/auth/config";
+import { authMiddleware } from "@/lib/middleware/auth.middleware";
 import { generateRandomSuffix, slugify } from "@/utils/slugify";
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeaders } from "@tanstack/react-start/server";
-import { auth } from "../auth/config";
-import { authMiddleware } from "../middleware/auth.middleware";
 
 async function createUniqueSlug(name: string, headers: Headers): Promise<string> {
   const candidateSlug = slugify(name);
-
   try {
     await auth.api.checkOrganizationSlug({
       body: {
@@ -20,7 +19,7 @@ async function createUniqueSlug(name: string, headers: Headers): Promise<string>
   }
 }
 
-export const getOrganizationsFn = createServerFn()
+export const ensureUserOrganizationsFn = createServerFn()
   .middleware([authMiddleware])
   .handler(async ({ context }) => {
     const headers = getRequestHeaders();
