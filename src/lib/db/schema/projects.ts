@@ -19,3 +19,6 @@ export const projects = pgTable(
   },
   (table) => [uniqueIndex("project_slug_org_idx").on(table.organizationId, table.slug)],
 );
+
+export type Project = typeof projects.$inferSelect;
+export type NewProject = typeof projects.$inferInsert;
