@@ -1,10 +1,16 @@
-import { IconBell, IconHelp } from "@tabler/icons-react";
+import { IconBell, IconFolderPlus, IconHelp } from "@tabler/icons-react";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { CreateProjectDialog } from "./create-project-dialog";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { projectsQueries } from "@/lib/queries/projects";
+import { useRouteContext } from "@tanstack/react-router";
 
 export function OrgHeader() {
+  const { activeOrg } = useRouteContext({ from: "/app/$organizationSlug/" });
+  const { data: projects } = useSuspenseQuery(projectsQueries.byOrganization(activeOrg.slug));
   return (
     <header className="flex h-16 shrink-0 items-center justify-between gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-4">
       <div className="flex items-center gap-2">
@@ -23,9 +29,13 @@ export function OrgHeader() {
           <IconBell stroke={1.5} className="h-5 w-5" />
           <span className="sr-only">Notifications</span>
         </Button>
-        <Button size="sm" variant="outline" className="ml-2 h-8">
-          Feedback
-        </Button>
+        {projects.length > 0 && (
+          <CreateProjectDialog>
+            <Button size="sm" variant="outline" className="ml-2 h-8">
+              <IconFolderPlus /> Add Project
+            </Button>
+          </CreateProjectDialog>
+        )}
       </div>
     </header>
   );

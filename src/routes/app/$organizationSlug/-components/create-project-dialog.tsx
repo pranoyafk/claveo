@@ -9,22 +9,43 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupText } from "@/components/ui/input-group";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
+import { projectMutations, projectsQueries } from "@/lib/queries/projects";
 import { createProjectSchema } from "@/lib/validation/projects/create";
 import { slugify } from "@/utils/slugify";
-import { IconPackage, IconSlash, IconUser } from "@tabler/icons-react";
+import { IconPackage, IconSlash } from "@tabler/icons-react";
 import { useForm } from "@tanstack/react-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouteContext } from "@tanstack/react-router";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
+import { toast } from "sonner";
 
 export function CreateProjectDialog({ children }: { children: ReactElement }) {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const { activeOrg } = useRouteContext({
     from: "/app/$organizationSlug",
   });
+  const queryClient = useQueryClient();
+
+  const { mutateAsync: createProject, isPending } = useMutation({
+    ...projectMutations.create,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: projectsQueries.byOrganization(activeOrg.slug).queryKey,
+      });
+
+      form.reset();
+      setIsDialogOpen(false);
+      toast.success("Project created successfully");
+    },
+    onError: (error) => {
+      toast.error(error instanceof Error ? (error.message ?? "Internal Server Error") : "Internal Server Error");
+    },
+  });
+
   const form = useForm({
     defaultValues: {
       name: "",
@@ -34,13 +55,14 @@ export function CreateProjectDialog({ children }: { children: ReactElement }) {
     },
     validators: { onSubmit: createProjectSchema },
     onSubmit: async ({ value }) => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log(value);
+      await createProject({
+        data: value,
+      });
     },
   });
 
   return (
-    <Dialog>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger render={children} />
       <DialogContent showCloseButton={false}>
         <DialogHeader>
@@ -64,7 +86,7 @@ export function CreateProjectDialog({ children }: { children: ReactElement }) {
                 const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;
                 return (
                   <form.Subscribe selector={(state) => state.isSubmitting}>
-                    {(isSubmitting) => (
+                    {() => (
                       <Field data-invalid={isInvalid}>
                         <FieldLabel id={field.name}>Name</FieldLabel>
                         <InputGroup>
@@ -78,7 +100,7 @@ export function CreateProjectDialog({ children }: { children: ReactElement }) {
                             onChange={(e) => field.handleChange(e.target.value)}
                             aria-invalid={isInvalid}
                             autoComplete="off"
-                            disabled={isSubmitting}
+                            disabled={isPending}
                             autoFocus
                           />
                           <InputGroupAddon>
@@ -100,7 +122,7 @@ export function CreateProjectDialog({ children }: { children: ReactElement }) {
 
                 return (
                   <form.Subscribe selector={(state) => state.isSubmitting}>
-                    {(isSubmitting) => (
+                    {() => (
                       <Field data-invalid={isInvalid}>
                         <FieldLabel htmlFor={field.name}>Slug</FieldLabel>
                         <InputGroup>
@@ -113,7 +135,7 @@ export function CreateProjectDialog({ children }: { children: ReactElement }) {
                             onChange={(e) => field.handleChange(e.target.value)}
                             aria-invalid={isInvalid}
                             autoComplete="off"
-                            disabled={isSubmitting}
+                            disabled={isPending}
                             autoFocus
                           />
                           <InputGroupAddon>
@@ -136,7 +158,7 @@ export function CreateProjectDialog({ children }: { children: ReactElement }) {
 
                 return (
                   <form.Subscribe selector={(state) => state.isSubmitting}>
-                    {(isSubmitting) => (
+                    {() => (
                       <Field data-invalid={isInvalid}>
                         <FieldLabel htmlFor={field.name}>
                           Description
@@ -151,7 +173,7 @@ export function CreateProjectDialog({ children }: { children: ReactElement }) {
                           onChange={(e) => field.handleChange(e.target.value)}
                           aria-invalid={isInvalid}
                           autoComplete="off"
-                          disabled={isSubmitting}
+                          disabled={isPending}
                         />
                         {isInvalid && <FieldError errors={field.state.meta.errors} />}
                       </Field>
@@ -171,9 +193,9 @@ export function CreateProjectDialog({ children }: { children: ReactElement }) {
             }
           />
           <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
-            {([canSubmit, isSubmitting]) => (
-              <Button type="submit" form="create-project-form" disabled={!canSubmit || isSubmitting}>
-                {isSubmitting && <Spinner />}
+            {([canSubmit]) => (
+              <Button type="submit" form="create-project-form" disabled={!canSubmit || isPending}>
+                {isPending && <Spinner />}
                 Create Project
               </Button>
             )}

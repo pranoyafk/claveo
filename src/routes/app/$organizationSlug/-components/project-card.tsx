@@ -1,4 +1,3 @@
-import React from "react";
 import {
   IconCalendarEvent,
   IconDots,
@@ -7,7 +6,6 @@ import {
   IconListCheck,
   IconPlayerPause,
   IconTrash,
-  IconTrendingUp,
 } from "@tabler/icons-react";
 import {
   Card,
@@ -28,20 +26,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { Project } from "@/lib/db/schema";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { projectMutations, projectsQueries } from "@/lib/queries/projects";
+import { useRouteContext } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { Spinner } from "@/components/ui/spinner";
+import { useState } from "react";
 
 // --- Types ---
 type ProjectStatus = "active" | "completed" | "on-hold" | "planning";
 type ProjectPriority = "high" | "medium" | "low";
-
-export interface Project {
-  status: ProjectStatus;
-  name: string;
-  description: string;
-  progress: number;
-  deadline: string;
-  priority: ProjectPriority;
-  taskStats: { total: number; completed: number };
-}
 
 // --- Styles Helper ---
 const getStatusStyles = (status: ProjectStatus) => {
@@ -68,16 +63,77 @@ const getPriorityColor = (priority: ProjectPriority) => {
   }
 };
 
+const ProjectCardAction = ({ projectSlug }: { projectSlug: string }) => {
+  const queryClient = useQueryClient();
+  const { activeOrg } = useRouteContext({
+    from: "/app/$organizationSlug/",
+  });
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const deleteProjectMutation = useMutation({
+    ...projectMutations.delete,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: projectsQueries.byOrganization(activeOrg.slug).queryKey,
+      });
+      setIsOpen(false);
+      toast.success("Project deleted successfully");
+    },
+  });
+  return (
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+      <DropdownMenuTrigger
+        render={
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-7 text-muted-foreground/50 hover:text-foreground -mt-1 -mr-2"
+          />
+        }
+      >
+        <IconDots className="size-4" />
+        <span className="sr-only">Open menu</span>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem>
+          <IconEdit className="mr-2 size-3.5" /> Edit
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <IconPlayerPause className="mr-2 size-3.5" /> Pause
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          closeOnClick={false}
+          onClick={() => {
+            deleteProjectMutation.mutateAsync({
+              data: {
+                organizationSlug: activeOrg.slug,
+                projectSlug,
+              },
+            });
+          }}
+          className="text-destructive focus:text-destructive"
+        >
+          {deleteProjectMutation.isPending ? (
+            <Spinner className="mr-2 size-3.5" />
+          ) : (
+            <IconTrash className="mr-2 size-3.5" />
+          )}{" "}
+          Delete
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
 export function ProjectCard({ project }: { project: Project }) {
   // Format Date
-  const deadlineDate = new Date(project.deadline);
+  const deadlineDate = new Date(project.createdAt);
   const formattedDate = deadlineDate.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   });
 
   // Calculate if overdue
-  const isOverdue = new Date() > deadlineDate && project.status !== "completed";
+  const isOverdue = true;
 
   return (
     <Card className="transition-all duration-300 hover:shadow-md hover:ring-foreground/20">
@@ -90,31 +146,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
         {/* The CardAction slot places this automatically to the top-right */}
         <CardAction>
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              render={
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="size-7 text-muted-foreground/50 hover:text-foreground -mt-1 -mr-2"
-                />
-              }
-            >
-              <IconDots className="size-4" />
-              <span className="sr-only">Open menu</span>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>
-                <IconEdit className="mr-2 size-3.5" /> Edit
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconPlayerPause className="mr-2 size-3.5" /> Pause
-              </DropdownMenuItem>
-              <DropdownMenuItem className="text-destructive focus:text-destructive">
-                <IconTrash className="mr-2 size-3.5" /> Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <ProjectCardAction projectSlug={project.slug} />
         </CardAction>
       </CardHeader>
 
@@ -125,22 +157,18 @@ export function ProjectCard({ project }: { project: Project }) {
             variant="outline"
             className={cn(
               "px-2 py-0.5 h-6 text-[11px] font-medium border uppercase tracking-wider",
-              getStatusStyles(project.status),
+              getStatusStyles("completed"),
             )}
           >
-            {project.status}
+            Completed
           </Badge>
 
           <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-            <span>{project.progress}%</span>
+            <span>100%</span>
           </div>
         </div>
 
-        <Progress
-          value={project.progress}
-          className="h-1.5 bg-muted"
-          // Note: Add indicatorClassName if your Progress component supports it for specific status colors
-        />
+        <Progress value={100} className="h-1.5 bg-muted" />
       </CardContent>
 
       {/* 3. FOOTER: Metadata (Gray Background Area) */}
@@ -148,16 +176,14 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex w-full items-center justify-between text-xs text-muted-foreground">
           {/* Priority */}
           <div className="flex items-center gap-1.5" title="Priority">
-            <IconFlag3 className={cn("size-3.5 fill-current opacity-80", getPriorityColor(project.priority))} />
-            <span className="capitalize font-medium">{project.priority}</span>
+            <IconFlag3 className={cn("size-3.5 fill-current opacity-80", getPriorityColor("high"))} />
+            <span className="capitalize font-medium">High</span>
           </div>
 
           {/* Tasks */}
           <div className="flex items-center gap-1.5" title="Tasks Completed">
             <IconListCheck className="size-3.5 opacity-70" />
-            <span>
-              {project.taskStats.completed}/{project.taskStats.total}
-            </span>
+            <span>10/10</span>
           </div>
 
           {/* Deadline */}
