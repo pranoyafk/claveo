@@ -4,7 +4,7 @@ import { projects } from "@/lib/db/schema";
 import { authMiddleware } from "@/lib/middleware/auth.middleware";
 import { createProjectSchema } from "@/lib/validation/projects/create";
 
-export const createProjectFn = createServerFn()
+export const createProjectFn = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
   .inputValidator(createProjectSchema)
   .handler(async ({ data }) => {

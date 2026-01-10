@@ -1,10 +1,14 @@
 import { createAccessControl } from "better-auth/plugins/access";
 
 const organizationStatement = {
-  project: ["create", "share", "update", "delete"],
+  project: ["create", "delete"],
 } as const;
 
 export const organizationAccessControl = createAccessControl(organizationStatement);
+
+export const ownerRole = organizationAccessControl.newRole({
+  project: ["create", "delete"],
+});
 
 const adminStatement = {} as const;
 

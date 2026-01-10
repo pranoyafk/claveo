@@ -2,6 +2,7 @@ import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { OrgHeader } from "./-components/header";
 import { OrgSidebar } from "./-components/sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { projectsQueries } from "@/lib/queries/projects";
 
 export const Route = createFileRoute("/app/$organizationSlug")({
   component: RouteComponent,
@@ -13,6 +14,9 @@ export const Route = createFileRoute("/app/$organizationSlug")({
     }
 
     return { activeOrg };
+  },
+  loader: async ({ context }) => {
+    await context.queryClient.ensureQueryData(projectsQueries.byOrganization(context.activeOrg.slug));
   },
 });
 
