@@ -78,7 +78,11 @@ const ProjectCardAction = ({ projectSlug }: { projectSlug: string }) => {
       setIsOpen(false);
       toast.success("Project deleted successfully");
     },
+    onError: (error) => {
+      toast.error(error.message);
+    },
   });
+
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger

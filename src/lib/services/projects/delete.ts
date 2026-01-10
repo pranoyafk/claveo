@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth/config";
+import { canDeleteProject } from "@/lib/auth/utils";
 import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
 import { authMiddleware } from "@/lib/middleware/auth.middleware";
@@ -25,6 +26,10 @@ export const deleteProjectFn = createServerFn({ method: "POST" })
     });
 
     if (!org) throw new Error("Invalid organization slug.");
+
+    const hasPerms = await canDeleteProject({ headers, organizationId: org.id });
+
+    if (!hasPerms) throw new Error("You do not have permission to delete this project.");
 
     const project = await db.query.projects.findFirst({
       where: {
