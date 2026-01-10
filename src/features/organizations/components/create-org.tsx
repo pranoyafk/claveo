@@ -1,7 +1,6 @@
 import { useForm } from "@tanstack/react-form";
 import { useNavigate, useRouteContext, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { createOrganizationSchema } from "@/lib/validation/organization/create";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -15,8 +14,9 @@ import {
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth/client";
-import { authQueries } from "@/lib/queries/auth";
 import { slugify } from "@/utils/slugify";
+import { createOrganizationSchema } from "../schemas/create";
+import { organizationQueries } from "../queries";
 
 export function CreateOrganizationDialog({
   open,
@@ -48,7 +48,7 @@ export function CreateOrganizationDialog({
         toast.error(error.message || "Internal Server Error");
         return;
       }
-      queryClient.setQueryData(authQueries.organizations().queryKey, (oldOrganizations) =>
+      queryClient.setQueryData(organizationQueries.list().queryKey, (oldOrganizations) =>
         oldOrganizations ? [...oldOrganizations, data] : [data],
       );
       await router.invalidate();

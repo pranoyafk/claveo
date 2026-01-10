@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { IconLockPassword, IconMail, IconUser } from "@tabler/icons-react";
-import { OauthButtons } from "./-components/oauth-buttons";
+import { OauthButtons } from "@/features/auth/components/oauth-buttons";
 import { Button } from "@/components/ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";

@@ -19,7 +19,7 @@ async function createUniqueSlug(name: string, headers: Headers): Promise<string>
   }
 }
 
-export const ensureUserOrganizationsFn = createServerFn()
+export const ensureUserOrganizationsFn = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
   .handler(async ({ context }) => {
     const headers = getRequestHeaders();

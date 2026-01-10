@@ -2,12 +2,19 @@ import { createServerFn } from "@tanstack/react-start";
 import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
 import { authMiddleware } from "@/lib/middleware/auth.middleware";
-import { createProjectSchema } from "@/lib/validation/projects/create";
+import { createProjectSchema } from "@/features/projects/schemas/create";
+import { canCreateProject } from "@/lib/auth/utils";
+import { getRequestHeaders } from "@tanstack/react-start/server";
 
 export const createProjectFn = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
   .inputValidator(createProjectSchema)
   .handler(async ({ data }) => {
+    const headers = getRequestHeaders();
+    const hasPerms = await canCreateProject({ headers: headers, organizationId: data.organizationId });
+    if (!hasPerms) {
+      throw new Error("You do not have permission to create a project");
+    }
     const isProjectSlugExist = await db.query.projects.findFirst({
       where: {
         slug: data.slug,

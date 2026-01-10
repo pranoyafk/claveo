@@ -15,7 +15,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"; // Ensure this points to your custom card file
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -28,7 +28,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Project } from "@/lib/db/schema";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { projectMutations, projectsQueries } from "@/lib/queries/projects";
+import { projectMutations, projectsQueries } from "@/features/projects/queries";
 import { useRouteContext } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";

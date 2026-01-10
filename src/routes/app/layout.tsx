@@ -1,22 +1,22 @@
+import { authQueries } from "@/features/auth/queries";
+import { organizationQueries } from "@/features/organizations/queries";
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
-import { authQueries } from "@/lib/queries/auth";
 
 export const Route = createFileRoute("/app")({
   component: RouteComponent,
   beforeLoad: async ({ context }) => {
-    const sessionData = await context.queryClient.ensureQueryData(authQueries.user());
-    if (!sessionData?.session) {
+    const authState = await context.queryClient.ensureQueryData(authQueries.user());
+    if (!authState?.session) {
       throw redirect({
         to: "/sign-in",
       });
     }
 
-    const orgs = await context.queryClient.ensureQueryData(authQueries.organizations());
+    const organizations = await context.queryClient.ensureQueryData(organizationQueries.list());
 
     return {
-      session: sessionData.session,
-      user: sessionData.user,
-      organizations: orgs,
+      authState,
+      organizations,
     };
   },
 });

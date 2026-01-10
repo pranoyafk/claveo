@@ -13,8 +13,8 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
-import { projectMutations, projectsQueries } from "@/lib/queries/projects";
-import { createProjectSchema } from "@/lib/validation/projects/create";
+import { projectMutations, projectsQueries } from "@/features/projects/queries";
+import { createProjectSchema } from "@/features/projects/schemas/create";
 import { slugify } from "@/utils/slugify";
 import { IconPackage, IconSlash } from "@tabler/icons-react";
 import { useForm } from "@tanstack/react-form";

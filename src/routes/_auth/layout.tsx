@@ -1,5 +1,5 @@
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
-import { authQueries } from "@/lib/queries/auth";
+import { authQueries } from "@/features/auth/queries";
 
 export const Route = createFileRoute("/_auth")({
   component: RouteComponent,

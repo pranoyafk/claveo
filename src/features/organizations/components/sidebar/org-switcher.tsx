@@ -1,7 +1,7 @@
 import { IconChevronDown, IconPackageExport, IconPlus } from "@tabler/icons-react";
 import { useNavigate, useRouteContext } from "@tanstack/react-router";
 import { useState } from "react";
-import { CreateOrganizationDialog } from "../create-org-dialog";
+import { CreateOrganizationDialog } from "../create-org";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,14 +13,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
+import { useOrganizations } from "@/features/organizations/hooks/use-organizations";
 
 export function OrgSwitcher() {
   const navigate = useNavigate();
   const { isMobile } = useSidebar();
   const [openOrganizationCreateDialog, setOrganizationCreateDialog] = useState<boolean>(false);
-  const { organizations } = useRouteContext({
-    from: "/app",
-  });
+  const { data: organizations } = useOrganizations();
   const { activeOrg } = useRouteContext({
     from: "/app/$organizationSlug",
   });

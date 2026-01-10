@@ -3,10 +3,10 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { CreateProjectDialog } from "./create-project-dialog";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { projectsQueries } from "@/lib/queries/projects";
+import { projectsQueries } from "@/features/projects/queries";
 import { useRouteContext } from "@tanstack/react-router";
+import { CreateProjectDialog } from "@/features/projects/components/create-project-dialog";
 
 export function OrgHeader() {
   const { activeOrg } = useRouteContext({ from: "/app/$organizationSlug/" });
