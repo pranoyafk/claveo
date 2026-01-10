@@ -1,10 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
+import { getRequestHeaders } from "@tanstack/react-start/server";
 import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
 import { authMiddleware } from "@/lib/middleware/auth.middleware";
 import { createProjectSchema } from "@/features/projects/schemas/create";
 import { canCreateProject } from "@/lib/auth/utils";
-import { getRequestHeaders } from "@tanstack/react-start/server";
 
 export const createProjectFn = createServerFn({ method: "POST" })
   .middleware([authMiddleware])

@@ -7,6 +7,11 @@ import {
   IconPlayerPause,
   IconTrash,
 } from "@tabler/icons-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouteContext } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { useState } from "react";
+import type { Project } from "@/lib/db/schema";
 import {
   Card,
   CardAction,
@@ -26,13 +31,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { Project } from "@/lib/db/schema";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { projectMutations, projectsQueries } from "@/features/projects/queries";
-import { useRouteContext } from "@tanstack/react-router";
-import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
-import { useState } from "react";
+import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
 
 // --- Types ---
 type ProjectStatus = "active" | "completed" | "on-hold" | "planning";
@@ -65,9 +66,7 @@ const getPriorityColor = (priority: ProjectPriority) => {
 
 const ProjectCardAction = ({ projectSlug }: { projectSlug: string }) => {
   const queryClient = useQueryClient();
-  const { activeOrg } = useRouteContext({
-    from: "/app/$organizationSlug/",
-  });
+  const activeOrg = useActiveOrganization();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const deleteProjectMutation = useMutation({
     ...projectMutations.delete,

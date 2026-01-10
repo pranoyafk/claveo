@@ -14,15 +14,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
 import { useOrganizations } from "@/features/organizations/hooks/use-organizations";
+import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
 
 export function OrgSwitcher() {
   const navigate = useNavigate();
   const { isMobile } = useSidebar();
-  const [openOrganizationCreateDialog, setOrganizationCreateDialog] = useState<boolean>(false);
+  const activeOrg = useActiveOrganization();
   const { data: organizations } = useOrganizations();
-  const { activeOrg } = useRouteContext({
-    from: "/app/$organizationSlug",
-  });
+  const [openOrganizationCreateDialog, setOrganizationCreateDialog] = useState<boolean>(false);
 
   return (
     <SidebarMenu>

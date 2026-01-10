@@ -1,6 +1,10 @@
 import { IconMoneybag, IconPackage, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
+import { Link, useLocation } from "@tanstack/react-router";
+import { useActiveOrganization } from "../../hooks/use-active-organization";
 import { OrgSwitcher } from "./org-switcher";
 import { UserMenu } from "./user-menu";
+import type { LinkOptions} from "@tanstack/react-router";
+import type { Icon} from "@tabler/icons-react";
 import {
   Sidebar,
   SidebarContent,
@@ -17,15 +21,30 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { label: "Projects", icon: IconPackage, href: "/" },
-  { label: "People", icon: IconUsers, href: "/" },
-  { label: "Billing", icon: IconMoneybag, href: "/" },
-  { label: "Settings", icon: IconSettings, href: "/" },
-];
+type NavLink = {
+  label: string;
+  icon: Icon;
+  opts: LinkOptions;
+  active: boolean;
+};
 
 export function OrgSidebar() {
   const { state } = useSidebar();
+  const activeOrg = useActiveOrganization();
+  const { pathname } = useLocation();
+
+  const navLinks: Array<NavLink> = [
+    {
+      label: "Projects",
+      icon: IconPackage,
+      opts: { to: "/app/$organizationSlug", params: { organizationSlug: activeOrg.slug } },
+      active: pathname === `/app/${activeOrg.slug}`,
+    },
+    { label: "People", icon: IconUsers, opts: { to: "/404" }, active: false },
+    { label: "Billing", icon: IconMoneybag, opts: { to: "/404" }, active: false },
+    { label: "Settings", icon: IconSettings, opts: { to: "/404" }, active: false },
+  ];
+
   return (
     <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader>
@@ -53,7 +72,7 @@ export function OrgSidebar() {
             <SidebarMenu>
               {navLinks.map((link) => (
                 <SidebarMenuItem key={link.label}>
-                  <SidebarMenuButton tooltip={link.label}>
+                  <SidebarMenuButton isActive={link.active} tooltip={link.label} render={<Link {...link.opts} />}>
                     <link.icon />
                     {link.label}
                   </SidebarMenuButton>

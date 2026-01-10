@@ -1,12 +1,12 @@
+import { createServerFn } from "@tanstack/react-start";
+import { getRequestHeaders } from "@tanstack/react-start/server";
+import { and, eq } from "drizzle-orm";
+import z from "zod";
 import { auth } from "@/lib/auth/config";
 import { canDeleteProject } from "@/lib/auth/utils";
 import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
 import { authMiddleware } from "@/lib/middleware/auth.middleware";
-import { createServerFn } from "@tanstack/react-start";
-import { getRequestHeaders } from "@tanstack/react-start/server";
-import { and, eq } from "drizzle-orm";
-import z from "zod";
 
 export const deleteProjectFn = createServerFn({ method: "POST" })
   .inputValidator(

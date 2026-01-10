@@ -1,9 +1,9 @@
-import { auth } from "@/lib/auth/config";
-import { db } from "@/lib/db";
-import { authMiddleware } from "@/lib/middleware/auth.middleware";
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeaders } from "@tanstack/react-start/server";
 import z from "zod";
+import { auth } from "@/lib/auth/config";
+import { db } from "@/lib/db";
+import { authMiddleware } from "@/lib/middleware/auth.middleware";
 
 export const getProjectsByOrganization = createServerFn()
   .inputValidator(

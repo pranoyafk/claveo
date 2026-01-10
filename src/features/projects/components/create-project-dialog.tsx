@@ -1,3 +1,8 @@
+import { IconPackage, IconSlash } from "@tabler/icons-react";
+import { useForm } from "@tanstack/react-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
+import type { ReactElement } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,21 +18,14 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
+import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
 import { projectMutations, projectsQueries } from "@/features/projects/queries";
 import { createProjectSchema } from "@/features/projects/schemas/create";
 import { slugify } from "@/utils/slugify";
-import { IconPackage, IconSlash } from "@tabler/icons-react";
-import { useForm } from "@tanstack/react-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouteContext } from "@tanstack/react-router";
-import { ReactElement, useState } from "react";
-import { toast } from "sonner";
 
 export function CreateProjectDialog({ children }: { children: ReactElement }) {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-  const { activeOrg } = useRouteContext({
-    from: "/app/$organizationSlug",
-  });
+  const activeOrg = useActiveOrganization();
   const queryClient = useQueryClient();
 
   const { mutateAsync: createProject, isPending } = useMutation({
@@ -42,7 +40,7 @@ export function CreateProjectDialog({ children }: { children: ReactElement }) {
       toast.success("Project created successfully");
     },
     onError: (error) => {
-      toast.error(error instanceof Error ? (error.message ?? "Internal Server Error") : "Internal Server Error");
+      toast.error(error instanceof Error ? error.message : "Internal Server Error");
     },
   });
 

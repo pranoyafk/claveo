@@ -1,9 +1,9 @@
 import { IconArrowUp, IconFolderCode } from "@tabler/icons-react";
 
 import { Link } from "@tanstack/react-router";
+import { CreateProjectDialog } from "./create-project-dialog";
 import { Button } from "@/components/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
-import { CreateProjectDialog } from "./create-project-dialog";
 
 export function ProjectsEmptyState() {
   return (

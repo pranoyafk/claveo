@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { ProjectCard } from "@/features/projects/components/project-card";
 import { projectsQueries } from "@/features/projects/queries";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { ProjectsEmptyState } from "@/features/projects/components/empty-state";
 
 export const Route = createFileRoute("/app/$organizationSlug/")({
