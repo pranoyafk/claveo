@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { projectsQueries } from "@/features/projects/queries";
 import { CreateProjectDialog } from "@/features/projects/components/create-project-dialog";
-import { useActiveOrganization } from "@/hooks/use-active-organization";
+import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
 
 export function OrgHeader() {
   const activeOrg = useActiveOrganization();
