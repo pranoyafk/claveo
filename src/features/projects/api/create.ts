@@ -17,6 +17,7 @@ export const createProjectFn = createServerFn({ method: "POST" })
     }
     const isProjectSlugExist = await db.query.projects.findFirst({
       where: {
+        organizationId: data.organizationId,
         slug: data.slug,
       },
     });
