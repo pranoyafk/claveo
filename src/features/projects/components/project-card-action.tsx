@@ -12,11 +12,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
 import { projectMutations, projectsQueries } from "../queries";
+import { useConfirm } from "@/components/confirm-dialog";
 
 type ProjectCardActionProps = {
   projectSlug: string;
 };
 export function ProjectCardAction(props: ProjectCardActionProps) {
+  const confirm = useConfirm();
   const queryClient = useQueryClient();
   const activeOrg = useActiveOrganization();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -58,13 +60,22 @@ export function ProjectCardAction(props: ProjectCardActionProps) {
         </DropdownMenuItem>
         <DropdownMenuItem
           closeOnClick={false}
-          onClick={() => {
-            deleteProjectMutation.mutateAsync({
-              data: {
-                organizationSlug: activeOrg.slug,
-                projectSlug: props.projectSlug,
-              },
+          onClick={async () => {
+            const confirmDelete = await confirm({
+              title: "Permanently delete project?",
+              description:
+                "This action cannot be undone. The project and all associated resources will be permanently removed from the organization.",
+              confirmText: "Yes, delete",
+              cancelText: "No, keep project",
+              confirmButtonVariant: "destructive",
             });
+            if (confirmDelete)
+              deleteProjectMutation.mutateAsync({
+                data: {
+                  organizationSlug: activeOrg.slug,
+                  projectSlug: props.projectSlug,
+                },
+              });
           }}
           className="text-destructive focus:text-destructive"
         >

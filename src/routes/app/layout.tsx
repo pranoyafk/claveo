@@ -1,6 +1,7 @@
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { authQueries } from "@/features/auth/queries";
 import { organizationQueries } from "@/features/organizations/queries";
+import { ConfirmDialogProvider } from "@/components/confirm-dialog";
 
 export const Route = createFileRoute("/app")({
   component: RouteComponent,
@@ -22,5 +23,9 @@ export const Route = createFileRoute("/app")({
 });
 
 function RouteComponent() {
-  return <Outlet />;
+  return (
+    <ConfirmDialogProvider>
+      <Outlet />
+    </ConfirmDialogProvider>
+  );
 }
