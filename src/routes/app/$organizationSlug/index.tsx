@@ -1,8 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { Page, PageAction, PageContent, PageDescription, PageHeader, PageTitle } from "@/components/page";
+import { Button } from "@/components/ui/button";
+import { CreateProjectDialog } from "@/features/projects/components/create-project-dialog";
+import { ProjectsEmptyState } from "@/features/projects/components/empty-state";
 import { ProjectCard } from "@/features/projects/components/project-card";
 import { projectsQueries } from "@/features/projects/queries";
-import { ProjectsEmptyState } from "@/features/projects/components/empty-state";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { IconFolderPlus } from "@tabler/icons-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/app/$organizationSlug/")({
   component: RouteComponent,
@@ -11,14 +16,29 @@ export const Route = createFileRoute("/app/$organizationSlug/")({
 function RouteComponent() {
   const { activeOrg } = Route.useRouteContext();
   const { data: projects } = useSuspenseQuery(projectsQueries.byOrganization(activeOrg.slug));
+  const isMobile = useIsMobile();
   return (
-    <div className="flex flex-col items-center min-h-full w-full">
-      <div className="grid container mx-auto px-4 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} />
-        ))}
-      </div>
-      {projects.length === 0 && <ProjectsEmptyState />}
-    </div>
+    <Page>
+      <PageHeader>
+        <PageTitle>Projects</PageTitle>
+        <PageDescription>Manage and track your organization&apos;s projects.</PageDescription>
+        <PageAction>
+          <CreateProjectDialog>
+            <Button size={isMobile ? "icon" : "default"}>
+              <IconFolderPlus />
+              {!isMobile && "Add Project"}
+            </Button>
+          </CreateProjectDialog>
+        </PageAction>
+      </PageHeader>
+      <PageContent>
+        <div className="grid container mx-auto px-4 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+          {projects.map((project, index) => (
+            <ProjectCard key={index} project={project} />
+          ))}
+        </div>
+        {projects.length === 0 && <ProjectsEmptyState />}
+      </PageContent>
+    </Page>
   );
 }
