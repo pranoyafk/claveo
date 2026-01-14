@@ -1,3 +1,6 @@
+import { IconFolderPlus } from "@tabler/icons-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
 import { Page, PageAction, PageContent, PageDescription, PageHeader, PageTitle } from "@/components/page";
 import { Button } from "@/components/ui/button";
 import { CreateProjectDialog } from "@/features/projects/components/create-project-dialog";
@@ -5,9 +8,6 @@ import { ProjectsEmptyState } from "@/features/projects/components/empty-state";
 import { ProjectCard } from "@/features/projects/components/project-card";
 import { projectsQueries } from "@/features/projects/queries";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { IconFolderPlus } from "@tabler/icons-react";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/app/$organizationSlug/")({
   component: RouteComponent,

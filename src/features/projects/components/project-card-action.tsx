@@ -1,17 +1,17 @@
-import { Button } from "@/components/ui/button";
+import { IconDots, IconEdit, IconPlayerPause, IconTrash } from "@tabler/icons-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import { toast } from "sonner";
+import { projectMutations, projectsQueries } from "../queries";
+import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
+import { Spinner } from "@/components/ui/spinner";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Spinner } from "@/components/ui/spinner";
-import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
-import { IconDots, IconEdit, IconPlayerPause, IconTrash } from "@tabler/icons-react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
-import { toast } from "sonner";
-import { projectMutations, projectsQueries } from "../queries";
+import { Button } from "@/components/ui/button";
 import { useConfirm } from "@/components/confirm-dialog";
 
 type ProjectCardActionProps = {

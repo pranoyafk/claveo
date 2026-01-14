@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,8 +9,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "./ui/alert-dialog";
-import type { buttonVariants } from "./ui/button";
 import type { VariantProps } from "class-variance-authority";
+import type { ReactNode } from "react";
+import type { buttonVariants } from "./ui/button";
 
 type ConfirmOptions = {
   title: string;
@@ -33,9 +34,8 @@ export function ConfirmDialogProvider(props: ConfirmDialogProviderProps) {
   const resolveRef = useRef<((value: boolean) => void) | null>(null);
   const [options, setOptions] = useState<ConfirmOptions>();
 
-  const confirm = (options?: ConfirmOptions) => {
-    if (options) setOptions(options);
-    console.log(options);
+  const confirm = (opts?: ConfirmOptions) => {
+    if (opts) setOptions(opts);
     setOpen(true);
 
     return new Promise<boolean>((resolve) => {

@@ -1,3 +1,9 @@
+import { IconPackage, IconSlash } from "@tabler/icons-react";
+import { useForm } from "@tanstack/react-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {  useState } from "react";
+import { toast } from "sonner";
+import type {ReactElement} from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -17,11 +23,6 @@ import { useActiveOrganization } from "@/features/organizations/hooks/use-active
 import { projectMutations, projectsQueries } from "@/features/projects/queries";
 import { createProjectSchema } from "@/features/projects/schemas/create";
 import { slugify } from "@/utils/slugify";
-import { IconPackage, IconSlash } from "@tabler/icons-react";
-import { useForm } from "@tanstack/react-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState, type ReactElement } from "react";
-import { toast } from "sonner";
 
 export function CreateProjectDialog({ children }: { children: ReactElement }) {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);

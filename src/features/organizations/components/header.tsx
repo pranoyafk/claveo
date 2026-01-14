@@ -1,8 +1,8 @@
+import { IconBell, IconHelp } from "@tabler/icons-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { IconBell, IconHelp } from "@tabler/icons-react";
 
 export function OrgHeader() {
   return (

@@ -1,4 +1,11 @@
-import { Button } from "@/components/ui/button";
+import { IconMoneybag, IconPackage, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
+import { Link, useLocation } from "@tanstack/react-router";
+import { useActiveOrganization } from "../../hooks/use-active-organization";
+import { OrgSwitcher } from "./org-switcher";
+import { UserMenu } from "./user-menu";
+import type { LinkOptions } from "@tanstack/react-router";
+import type { Icon } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
 import {
   Sidebar,
   SidebarContent,
@@ -12,14 +19,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { cn } from "@/lib/utils";
-import type { Icon } from "@tabler/icons-react";
-import { IconMoneybag, IconPackage, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
-import type { LinkOptions } from "@tanstack/react-router";
-import { Link, useLocation } from "@tanstack/react-router";
-import { useActiveOrganization } from "../../hooks/use-active-organization";
-import { OrgSwitcher } from "./org-switcher";
-import { UserMenu } from "./user-menu";
+import { Button } from "@/components/ui/button";
 
 type NavLink = {
   label: string;
