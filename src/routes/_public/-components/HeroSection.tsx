@@ -1,6 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { IconArrowRight } from "@tabler/icons-react";
 import { Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
@@ -12,7 +12,7 @@ export function HeroSection() {
           className="group mb-6 inline-flex items-center justify-center rounded-full border border-border/40 bg-background/80 p-1 pr-3 text-sm backdrop-blur-md transition-all hover:border-primary/40 hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/20"
         >
           <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-0.5 text-xs font-semibold text-primary transition-colors group-hover:bg-primary/20">
-            v3.0
+            v0.1
           </span>
           <span className="mx-2 text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground">
             See the changelog
