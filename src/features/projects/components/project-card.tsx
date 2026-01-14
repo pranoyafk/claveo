@@ -1,6 +1,4 @@
-import { IconCalendarEvent, IconFlag3, IconListCheck } from "@tabler/icons-react";
-import { ProjectCardAction } from "./project-card-action";
-import type { Project } from "@/lib/db/schema";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardAction,
@@ -10,8 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import type { Project } from "@/lib/db/schema";
+import { IconCalendarEvent, IconFlag3, IconListCheck } from "@tabler/icons-react";
+import { ProjectCardAction } from "./project-card-action";
 
 type ProjectCardProps = { project: Project };
 

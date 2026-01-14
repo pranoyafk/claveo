@@ -1,6 +1,3 @@
-import { IconFolderPlus } from "@tabler/icons-react";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
 import { Page, PageAction, PageContent, PageDescription, PageHeader, PageTitle } from "@/components/page";
 import { Button } from "@/components/ui/button";
 import { CreateProjectDialog } from "@/features/projects/components/create-project-dialog";
@@ -8,6 +5,9 @@ import { ProjectsEmptyState } from "@/features/projects/components/empty-state";
 import { ProjectCard } from "@/features/projects/components/project-card";
 import { projectsQueries } from "@/features/projects/queries";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { IconFolderPlus } from "@tabler/icons-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/app/$organizationSlug/")({
   component: RouteComponent,
@@ -32,7 +32,7 @@ function RouteComponent() {
         </PageAction>
       </PageHeader>
       <PageContent>
-        <div className="grid container mx-auto px-4 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-4">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}
