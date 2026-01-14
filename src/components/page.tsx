@@ -1,9 +1,9 @@
-import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
+import type { ComponentProps } from "react";
 
 export function Page({ className, ...props }: ComponentProps<"section">) {
   return (
-    <section className={cn("space-y-10 max-w-360 mx-auto", className)} {...props}>
+    <section className={cn("space-y-10", className)} {...props}>
       {props.children}
     </section>
   );
