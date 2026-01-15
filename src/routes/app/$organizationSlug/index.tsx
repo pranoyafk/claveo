@@ -24,7 +24,7 @@ function RouteComponent() {
         <PageDescription>Manage and track your organization&apos;s projects.</PageDescription>
         <PageAction>
           <CreateProjectDialog>
-            <Button size={isMobile ? "icon" : "default"}>
+            <Button size={isMobile ? "icon-lg" : "lg"}>
               <IconFolderPlus />
               {!isMobile && "Add Project"}
             </Button>
