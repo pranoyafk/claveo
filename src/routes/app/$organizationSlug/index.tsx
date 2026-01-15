@@ -18,7 +18,6 @@ function RouteComponent() {
   const { data: projects } = useSuspenseQuery(projectsQueries.byOrganization(activeOrg.slug));
   const isMobile = useIsMobile();
 
-  
   return (
     <Page>
       <PageHeader>

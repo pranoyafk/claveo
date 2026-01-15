@@ -1,7 +1,3 @@
-import { IconCalendarEvent, IconFlag3, IconListCheck } from "@tabler/icons-react";
-import { Link } from "@tanstack/react-router";
-import { ProjectCardAction } from "./project-card-action";
-import type { Project } from "@/lib/db/schema";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -14,6 +10,10 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
+import type { Project } from "@/lib/db/schema";
+import { IconCalendarEvent, IconFlag3, IconListCheck } from "@tabler/icons-react";
+import { Link } from "@tanstack/react-router";
+import { ProjectCardAction } from "./project-card-action";
 
 type ProjectCardProps = { project: Project };
 
@@ -25,7 +25,7 @@ export function ProjectCard(props: ProjectCardProps) {
         to="/app/$organizationSlug/$projectSlug"
         params={{
           organizationSlug: activeOrg.slug,
-          projectSlug: "hehe",
+          projectSlug: props.project.slug,
         }}
         className="absolute z-10 inset-0"
       />

@@ -1,4 +1,4 @@
-import { createRouter } from "@tanstack/react-router";
+import { createRouter, type AnyRouteMatch } from "@tanstack/react-router";
 
 // Import the generated route tree
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -25,3 +25,14 @@ export const getRouter = () => {
 
   return router;
 };
+
+type BreadcrumbValue = string | string[] | ((match: AnyRouteMatch) => string | string[]);
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: ReturnType<typeof getRouter>;
+  }
+  interface StaticDataRouteOption {
+    breadcrumb?: BreadcrumbValue;
+  }
+}
