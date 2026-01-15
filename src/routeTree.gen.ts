@@ -21,6 +21,7 @@ import { Route as AuthSignInRouteImport } from './routes/_auth/sign-in'
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AppOrganizationSlugLayoutRouteImport } from './routes/app/$organizationSlug/layout'
 import { Route as AppOrganizationSlugIndexRouteImport } from './routes/app/$organizationSlug/index'
+import { Route as AppOrganizationSlugProjectSlugRouteImport } from './routes/app/$organizationSlug/$projectSlug'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const R404Route = R404RouteImport.update({
@@ -83,6 +84,12 @@ const AppOrganizationSlugIndexRoute =
     path: '/',
     getParentRoute: () => AppOrganizationSlugLayoutRoute,
   } as any)
+const AppOrganizationSlugProjectSlugRoute =
+  AppOrganizationSlugProjectSlugRouteImport.update({
+    id: '/$projectSlug',
+    path: '/$projectSlug',
+    getParentRoute: () => AppOrganizationSlugLayoutRoute,
+  } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -100,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
   '/app/': typeof AppIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/app/$organizationSlug/$projectSlug': typeof AppOrganizationSlugProjectSlugRoute
   '/app/$organizationSlug/': typeof AppOrganizationSlugIndexRoute
 }
 export interface FileRoutesByTo {
@@ -111,6 +119,7 @@ export interface FileRoutesByTo {
   '/': typeof PublicIndexRoute
   '/app': typeof AppIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/app/$organizationSlug/$projectSlug': typeof AppOrganizationSlugProjectSlugRoute
   '/app/$organizationSlug': typeof AppOrganizationSlugIndexRoute
 }
 export interface FileRoutesById {
@@ -127,6 +136,7 @@ export interface FileRoutesById {
   '/_public/': typeof PublicIndexRoute
   '/app/': typeof AppIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/app/$organizationSlug/$projectSlug': typeof AppOrganizationSlugProjectSlugRoute
   '/app/$organizationSlug/': typeof AppOrganizationSlugIndexRoute
 }
 export interface FileRouteTypes {
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app/'
     | '/api/auth/$'
+    | '/app/$organizationSlug/$projectSlug'
     | '/app/$organizationSlug/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/api/auth/$'
+    | '/app/$organizationSlug/$projectSlug'
     | '/app/$organizationSlug'
   id:
     | '__root__'
@@ -168,6 +180,7 @@ export interface FileRouteTypes {
     | '/_public/'
     | '/app/'
     | '/api/auth/$'
+    | '/app/$organizationSlug/$projectSlug'
     | '/app/$organizationSlug/'
   fileRoutesById: FileRoutesById
 }
@@ -265,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOrganizationSlugIndexRouteImport
       parentRoute: typeof AppOrganizationSlugLayoutRoute
     }
+    '/app/$organizationSlug/$projectSlug': {
+      id: '/app/$organizationSlug/$projectSlug'
+      path: '/$projectSlug'
+      fullPath: '/app/$organizationSlug/$projectSlug'
+      preLoaderRoute: typeof AppOrganizationSlugProjectSlugRouteImport
+      parentRoute: typeof AppOrganizationSlugLayoutRoute
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -306,11 +326,13 @@ const PublicLayoutRouteWithChildren = PublicLayoutRoute._addFileChildren(
 )
 
 interface AppOrganizationSlugLayoutRouteChildren {
+  AppOrganizationSlugProjectSlugRoute: typeof AppOrganizationSlugProjectSlugRoute
   AppOrganizationSlugIndexRoute: typeof AppOrganizationSlugIndexRoute
 }
 
 const AppOrganizationSlugLayoutRouteChildren: AppOrganizationSlugLayoutRouteChildren =
   {
+    AppOrganizationSlugProjectSlugRoute: AppOrganizationSlugProjectSlugRoute,
     AppOrganizationSlugIndexRoute: AppOrganizationSlugIndexRoute,
   }
 
