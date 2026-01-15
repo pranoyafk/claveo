@@ -1,5 +1,5 @@
 import { IconMoneybag, IconPackage, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
-import { Link, useLocation } from "@tanstack/react-router";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 import { useActiveOrganization } from "../../hooks/use-active-organization";
 import { OrgSwitcher } from "./org-switcher";
 import { UserMenu } from "./user-menu";
@@ -32,7 +32,7 @@ export function OrgSidebar() {
   const { state } = useSidebar();
   const activeOrg = useActiveOrganization();
   const { pathname } = useLocation();
-
+  const navigate = useNavigate();
   const navLinks: Array<NavLink> = [
     {
       label: "Projects",
@@ -72,7 +72,7 @@ export function OrgSidebar() {
             <SidebarMenu>
               {navLinks.map((link) => (
                 <SidebarMenuItem key={link.label}>
-                  <SidebarMenuButton isActive={link.active} tooltip={link.label} render={<Link {...link.opts} />}>
+                  <SidebarMenuButton isActive={link.active} tooltip={link.label} onClick={() => navigate(link.opts)}>
                     <link.icon />
                     {link.label}
                   </SidebarMenuButton>

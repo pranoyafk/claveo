@@ -1,8 +1,8 @@
+import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { OrgHeader } from "@/features/organizations/components/header";
 import { OrgSidebar } from "@/features/organizations/components/sidebar";
 import { projectsQueries } from "@/features/projects/queries";
-import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/app/$organizationSlug")({
   component: RouteComponent,
