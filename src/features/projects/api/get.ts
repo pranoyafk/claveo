@@ -60,11 +60,6 @@ export const getProjectBySlugFn = createServerFn({ method: "GET" })
         slug: data.projectSlug,
       },
     });
-    console.log({
-      projectName: project?.name,
-      projectSlug: data.projectSlug,
-      orgName: org.name,
-    });
 
     if (!project) throw new Error("Invalid Project Slug");
     return project;
