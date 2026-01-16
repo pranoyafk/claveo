@@ -1,11 +1,4 @@
-import { IconMoneybag, IconPackage, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
-import { useLocation, useNavigate } from "@tanstack/react-router";
-import { useActiveOrganization } from "../../hooks/use-active-organization";
-import { OrgSwitcher } from "./org-switcher";
-import { UserMenu } from "./user-menu";
-import type { LinkOptions } from "@tanstack/react-router";
-import type { Icon } from "@tabler/icons-react";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -19,7 +12,14 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import type { Icon } from "@tabler/icons-react";
+import { IconMoneybag, IconPackage, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
+import type { LinkOptions } from "@tanstack/react-router";
+import { useLocation, useNavigate } from "@tanstack/react-router";
+import { useActiveOrganization } from "../../hooks/use-active-organization";
+import { OrgSwitcher } from "./org-switcher";
+import { UserMenu } from "./user-menu";
 
 type NavLink = {
   label: string;
@@ -40,9 +40,19 @@ export function OrgSidebar() {
       opts: { to: "/app/$organizationSlug", params: { organizationSlug: activeOrg.slug } },
       active: pathname === `/app/${activeOrg.slug}`,
     },
-    { label: "People", icon: IconUsers, opts: { to: "/404" }, active: false },
+    {
+      label: "Members",
+      icon: IconUsers,
+      opts: { to: "/app/$organizationSlug/members", params: { organizationSlug: activeOrg.slug } },
+      active: false,
+    },
     { label: "Billing", icon: IconMoneybag, opts: { to: "/404" }, active: false },
-    { label: "Settings", icon: IconSettings, opts: { to: "/404" }, active: false },
+    {
+      label: "Settings",
+      icon: IconSettings,
+      opts: { to: "/app/$organizationSlug/settings", params: { organizationSlug: activeOrg.slug } },
+      active: false,
+    },
   ];
 
   return (

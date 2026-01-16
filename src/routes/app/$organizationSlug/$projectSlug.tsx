@@ -13,14 +13,8 @@ export const Route = createFileRoute("/app/$organizationSlug/$projectSlug")({
 
     return {
       project,
+      crumb: project.name,
     };
-  },
-
-  staticData: {
-    breadcrumb: (match) => {
-      const projectName = match.context?.project?.name;
-      return projectName;
-    },
   },
 });
 

@@ -21,6 +21,8 @@ import { Route as AuthSignInRouteImport } from './routes/_auth/sign-in'
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AppOrganizationSlugLayoutRouteImport } from './routes/app/$organizationSlug/layout'
 import { Route as AppOrganizationSlugIndexRouteImport } from './routes/app/$organizationSlug/index'
+import { Route as AppOrganizationSlugSettingsRouteImport } from './routes/app/$organizationSlug/settings'
+import { Route as AppOrganizationSlugMembersRouteImport } from './routes/app/$organizationSlug/members'
 import { Route as AppOrganizationSlugProjectSlugRouteImport } from './routes/app/$organizationSlug/$projectSlug'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
@@ -84,6 +86,18 @@ const AppOrganizationSlugIndexRoute =
     path: '/',
     getParentRoute: () => AppOrganizationSlugLayoutRoute,
   } as any)
+const AppOrganizationSlugSettingsRoute =
+  AppOrganizationSlugSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AppOrganizationSlugLayoutRoute,
+  } as any)
+const AppOrganizationSlugMembersRoute =
+  AppOrganizationSlugMembersRouteImport.update({
+    id: '/members',
+    path: '/members',
+    getParentRoute: () => AppOrganizationSlugLayoutRoute,
+  } as any)
 const AppOrganizationSlugProjectSlugRoute =
   AppOrganizationSlugProjectSlugRouteImport.update({
     id: '/$projectSlug',
@@ -108,6 +122,8 @@ export interface FileRoutesByFullPath {
   '/app/': typeof AppIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/$organizationSlug/$projectSlug': typeof AppOrganizationSlugProjectSlugRoute
+  '/app/$organizationSlug/members': typeof AppOrganizationSlugMembersRoute
+  '/app/$organizationSlug/settings': typeof AppOrganizationSlugSettingsRoute
   '/app/$organizationSlug/': typeof AppOrganizationSlugIndexRoute
 }
 export interface FileRoutesByTo {
@@ -120,6 +136,8 @@ export interface FileRoutesByTo {
   '/app': typeof AppIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/$organizationSlug/$projectSlug': typeof AppOrganizationSlugProjectSlugRoute
+  '/app/$organizationSlug/members': typeof AppOrganizationSlugMembersRoute
+  '/app/$organizationSlug/settings': typeof AppOrganizationSlugSettingsRoute
   '/app/$organizationSlug': typeof AppOrganizationSlugIndexRoute
 }
 export interface FileRoutesById {
@@ -137,6 +155,8 @@ export interface FileRoutesById {
   '/app/': typeof AppIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/$organizationSlug/$projectSlug': typeof AppOrganizationSlugProjectSlugRoute
+  '/app/$organizationSlug/members': typeof AppOrganizationSlugMembersRoute
+  '/app/$organizationSlug/settings': typeof AppOrganizationSlugSettingsRoute
   '/app/$organizationSlug/': typeof AppOrganizationSlugIndexRoute
 }
 export interface FileRouteTypes {
@@ -153,6 +173,8 @@ export interface FileRouteTypes {
     | '/app/'
     | '/api/auth/$'
     | '/app/$organizationSlug/$projectSlug'
+    | '/app/$organizationSlug/members'
+    | '/app/$organizationSlug/settings'
     | '/app/$organizationSlug/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -165,6 +187,8 @@ export interface FileRouteTypes {
     | '/app'
     | '/api/auth/$'
     | '/app/$organizationSlug/$projectSlug'
+    | '/app/$organizationSlug/members'
+    | '/app/$organizationSlug/settings'
     | '/app/$organizationSlug'
   id:
     | '__root__'
@@ -181,6 +205,8 @@ export interface FileRouteTypes {
     | '/app/'
     | '/api/auth/$'
     | '/app/$organizationSlug/$projectSlug'
+    | '/app/$organizationSlug/members'
+    | '/app/$organizationSlug/settings'
     | '/app/$organizationSlug/'
   fileRoutesById: FileRoutesById
 }
@@ -278,6 +304,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOrganizationSlugIndexRouteImport
       parentRoute: typeof AppOrganizationSlugLayoutRoute
     }
+    '/app/$organizationSlug/settings': {
+      id: '/app/$organizationSlug/settings'
+      path: '/settings'
+      fullPath: '/app/$organizationSlug/settings'
+      preLoaderRoute: typeof AppOrganizationSlugSettingsRouteImport
+      parentRoute: typeof AppOrganizationSlugLayoutRoute
+    }
+    '/app/$organizationSlug/members': {
+      id: '/app/$organizationSlug/members'
+      path: '/members'
+      fullPath: '/app/$organizationSlug/members'
+      preLoaderRoute: typeof AppOrganizationSlugMembersRouteImport
+      parentRoute: typeof AppOrganizationSlugLayoutRoute
+    }
     '/app/$organizationSlug/$projectSlug': {
       id: '/app/$organizationSlug/$projectSlug'
       path: '/$projectSlug'
@@ -327,12 +367,16 @@ const PublicLayoutRouteWithChildren = PublicLayoutRoute._addFileChildren(
 
 interface AppOrganizationSlugLayoutRouteChildren {
   AppOrganizationSlugProjectSlugRoute: typeof AppOrganizationSlugProjectSlugRoute
+  AppOrganizationSlugMembersRoute: typeof AppOrganizationSlugMembersRoute
+  AppOrganizationSlugSettingsRoute: typeof AppOrganizationSlugSettingsRoute
   AppOrganizationSlugIndexRoute: typeof AppOrganizationSlugIndexRoute
 }
 
 const AppOrganizationSlugLayoutRouteChildren: AppOrganizationSlugLayoutRouteChildren =
   {
     AppOrganizationSlugProjectSlugRoute: AppOrganizationSlugProjectSlugRoute,
+    AppOrganizationSlugMembersRoute: AppOrganizationSlugMembersRoute,
+    AppOrganizationSlugSettingsRoute: AppOrganizationSlugSettingsRoute,
     AppOrganizationSlugIndexRoute: AppOrganizationSlugIndexRoute,
   }
 

@@ -1,15 +1,16 @@
+import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { TanStackDevtools } from "@tanstack/react-devtools";
 
-import type { QueryClient } from "@tanstack/react-query";
-import appCss from "@/styles.css?url";
-import { getThemeServerFn } from "@/lib/theme";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { getThemeServerFn } from "@/lib/theme";
+import appCss from "@/styles.css?url";
+import type { QueryClient } from "@tanstack/react-query";
 
 interface Context {
   queryClient: QueryClient;
+  crumb?: string;
 }
 
 export const Route = createRootRouteWithContext<Context>()({

@@ -5,12 +5,6 @@ import { projectsQueries } from "@/features/projects/queries";
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/app/$organizationSlug")({
-  staticData: {
-    breadcrumb: (match) => {
-      const activeOrg = match.context.activeOrg;
-      return activeOrg.name;
-    },
-  },
   component: RouteComponent,
   beforeLoad: ({ context, params }) => {
     const activeOrg = context.organizations.find((o) => o.slug === params.organizationSlug);
@@ -19,7 +13,7 @@ export const Route = createFileRoute("/app/$organizationSlug")({
       throw redirect({ to: "/app" });
     }
 
-    return { activeOrg };
+    return { activeOrg, crumb: activeOrg.name };
   },
   loader: async ({ context }) => {
     await context.queryClient.ensureQueryData(projectsQueries.byOrganization(context.activeOrg.slug));
