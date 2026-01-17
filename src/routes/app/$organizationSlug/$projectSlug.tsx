@@ -32,9 +32,11 @@ function RouteComponent() {
         <div className="flex flex-col gap-2">
           <div className="space-y-1">
             <PageTitle className="text-xl tracking-tight">{project.name}</PageTitle>
-            <PageDescription className="text-muted-foreground/80 max-w-xl sm:block hidden">
-              {project.description}
-            </PageDescription>
+            {project.description && (
+              <PageDescription className="text-muted-foreground/80 max-w-xl sm:block hidden">
+                {project.description}
+              </PageDescription>
+            )}
           </div>
 
           <div className="flex flex-wrap gap-2.5 items-center">
