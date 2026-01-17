@@ -1,37 +1,29 @@
 import { Page, PageAction, PageContent, PageDescription, PageHeader, PageTitle } from "@/components/page";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
+import { ProjectActionButton } from "@/features/projects/components/action-button";
+import { useProject } from "@/features/projects/hooks/use-project";
 import { projectsQueries } from "@/features/projects/queries";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { IconBuilding, IconFlag, IconProgress, IconSparkles } from "@tabler/icons-react";
+import { IconBuilding, IconFlag, IconProgress } from "@tabler/icons-react";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/app/$organizationSlug/$projectSlug")({
   component: RouteComponent,
-  beforeLoad: async ({ context, params }) => {
-    const project = await context.queryClient.ensureQueryData(
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData(
       projectsQueries.bySlug({
-        organizationSlug: context.activeOrg.slug,
+        organizationSlug: params.organizationSlug,
         projectSlug: params.projectSlug,
       }),
     );
-
-    return {
-      project,
-      crumb: project.name,
-    };
   },
-  loader: ({ context }) => ({
-    project: context.project,
-    activeOrg: context.activeOrg,
-  }),
 });
 
 function RouteComponent() {
-  const { project, activeOrg } = Route.useLoaderData();
-  const isMobile = useIsMobile();
+  const activeOrg = useActiveOrganization();
+  const project = useProject();
   const progressValue = 73;
 
   return (
@@ -81,10 +73,11 @@ function RouteComponent() {
         </div>
 
         <PageAction>
-          <Button className="gap-2 shadow-sm" size={isMobile ? "icon-lg" : "lg"}>
+          {/*<Button className="gap-2 shadow-sm" size={isMobile ? "icon-lg" : "lg"}>
             <IconSparkles className="size-4" />
             {!isMobile && "Update"}
-          </Button>
+          </Button>*/}
+          <ProjectActionButton />
         </PageAction>
       </PageHeader>
       <PageContent></PageContent>

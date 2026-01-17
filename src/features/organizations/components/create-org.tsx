@@ -1,8 +1,3 @@
-import { useForm } from "@tanstack/react-form";
-import { useNavigate, useRouteContext, useRouter } from "@tanstack/react-router";
-import { toast } from "sonner";
-import { createOrganizationSchema } from "../schemas/create";
-import { organizationQueries } from "../queries";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -17,6 +12,12 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth/client";
 import { slugify } from "@/utils/slugify";
+import { useForm } from "@tanstack/react-form";
+import { useQueryClient } from "@tanstack/react-query";
+import { useNavigate, useRouter } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { organizationQueries } from "../queries";
+import { createOrganizationSchema } from "../schemas/create";
 
 export function CreateOrganizationDialog({
   open,
@@ -25,11 +26,9 @@ export function CreateOrganizationDialog({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  const navigate = useNavigate();
   const router = useRouter();
-  const { queryClient } = useRouteContext({
-    from: "/app",
-  });
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const form = useForm({
     defaultValues: {

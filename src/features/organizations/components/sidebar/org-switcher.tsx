@@ -1,7 +1,3 @@
-import { IconChevronDown, IconPackageExport, IconPlus } from "@tabler/icons-react";
-import { useNavigate, useRouteContext } from "@tanstack/react-router";
-import { useState } from "react";
-import { CreateOrganizationDialog } from "../create-org";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,14 +9,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
-import { useOrganizations } from "@/features/organizations/hooks/use-organizations";
 import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
+import { IconChevronDown, IconPackageExport, IconPlus } from "@tabler/icons-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { organizationQueries } from "../../queries";
+import { CreateOrganizationDialog } from "../create-org";
 
 export function OrgSwitcher() {
   const navigate = useNavigate();
   const { isMobile } = useSidebar();
   const activeOrg = useActiveOrganization();
-  const { data: organizations } = useOrganizations();
+  const { data: organizations } = useSuspenseQuery(organizationQueries.list());
   const [openOrganizationCreateDialog, setOrganizationCreateDialog] = useState<boolean>(false);
 
   return (

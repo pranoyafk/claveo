@@ -1,24 +1,29 @@
-import { IconDots, IconEdit, IconPlayerPause, IconTrash } from "@tabler/icons-react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
-import { toast } from "sonner";
-import { projectMutations, projectsQueries } from "../queries";
-import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
-import { Spinner } from "@/components/ui/spinner";
+import { useConfirm } from "@/components/confirm-dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { useConfirm } from "@/components/confirm-dialog";
+import { Spinner } from "@/components/ui/spinner";
+import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
+import { IconDots, IconEdit, IconPlayerPause, IconTrash } from "@tabler/icons-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate, useParams } from "@tanstack/react-router";
+import { useState, type ReactElement } from "react";
+import { toast } from "sonner";
+import { projectMutations, projectsQueries } from "../queries";
 
 type ProjectCardActionProps = {
   projectSlug: string;
+  children: ReactElement;
 };
 export function ProjectCardAction(props: ProjectCardActionProps) {
   const confirm = useConfirm();
+  const navigate = useNavigate();
+  const params = useParams({
+    strict: false,
+  });
   const queryClient = useQueryClient();
   const activeOrg = useActiveOrganization();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -29,6 +34,14 @@ export function ProjectCardAction(props: ProjectCardActionProps) {
       queryClient.invalidateQueries({
         queryKey: projectsQueries.byOrganization(activeOrg.slug).queryKey,
       });
+      if (params.projectSlug === props.projectSlug) {
+        navigate({
+          to: "/app/$organizationSlug",
+          params: {
+            organizationSlug: activeOrg.slug,
+          },
+        });
+      }
       setIsOpen(false);
       toast.success("Project deleted successfully");
     },
@@ -39,15 +52,7 @@ export function ProjectCardAction(props: ProjectCardActionProps) {
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger
-        render={
-          <Button
-            variant="ghost"
-            size="icon"
-            className="size-7 text-muted-foreground/50 hover:text-foreground -mt-1 -mr-2"
-          />
-        }
-      >
+      <DropdownMenuTrigger render={props.children}>
         <IconDots className="size-4" />
         <span className="sr-only">Open menu</span>
       </DropdownMenuTrigger>

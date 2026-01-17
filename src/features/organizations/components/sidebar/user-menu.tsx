@@ -1,7 +1,3 @@
-import { IconChevronDown, IconLogout, IconUserCircle } from "@tabler/icons-react";
-import { useRouteContext, useRouter } from "@tanstack/react-router";
-import { useTransition } from "react";
-import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -12,13 +8,19 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
 import { Spinner } from "@/components/ui/spinner";
-import { authClient } from "@/lib/auth/client";
+import { useAuth } from "@/features/auth/hooks/use-auth";
 import { authQueries } from "@/features/auth/queries";
+import { authClient } from "@/lib/auth/client";
+import { IconChevronDown, IconLogout, IconUserCircle } from "@tabler/icons-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
+import { useTransition } from "react";
+import { toast } from "sonner";
 
 export function UserMenu() {
   const router = useRouter();
-  const context = useRouteContext({ from: "/app" });
-
+  const queryClient = useQueryClient();
+  const { authState } = useAuth();
   const { isMobile } = useSidebar();
   const [isSigningOutPending, startSigningOut] = useTransition();
 
@@ -31,7 +33,7 @@ export function UserMenu() {
         return;
       }
 
-      context.queryClient.removeQueries({ queryKey: authQueries.all });
+      queryClient.removeQueries({ queryKey: authQueries.all });
       router.invalidate();
     });
   };
@@ -49,15 +51,15 @@ export function UserMenu() {
             }
           >
             <Avatar className="h-8 w-8 rounded-lg">
-              {context.authState.user.image ? (
-                <AvatarImage src={context.authState.user.image} alt={context.authState.user.name} />
+              {authState.user.image ? (
+                <AvatarImage src={authState.user.image} alt={authState.user.name} />
               ) : (
-                <AvatarFallback className="rounded-lg">{context.authState.user.name.slice(0, 1)}</AvatarFallback>
+                <AvatarFallback className="rounded-lg">{authState.user.name.slice(0, 1)}</AvatarFallback>
               )}
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-medium">{context.authState.user.name}</span>
-              <span className="truncate text-xs">{context.authState.user.email}</span>
+              <span className="truncate font-medium">{authState.user.name}</span>
+              <span className="truncate text-xs">{authState.user.email}</span>
             </div>
             <IconChevronDown className="ml-auto size-4" />
           </DropdownMenuTrigger>

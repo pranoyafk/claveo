@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -11,7 +12,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
 import type { Project } from "@/lib/db/schema";
-import { IconCalendarEvent, IconFlag3, IconListCheck } from "@tabler/icons-react";
+import { IconCalendarEvent, IconDotsVertical, IconFlag3, IconListCheck } from "@tabler/icons-react";
 import { Link } from "@tanstack/react-router";
 import { ProjectCardAction } from "./project-card-action";
 
@@ -37,7 +38,15 @@ export function ProjectCard(props: ProjectCardProps) {
           {props.project.description || "Add a short project description"}
         </CardDescription>
         <CardAction className="relative z-20">
-          <ProjectCardAction projectSlug={props.project.slug} />
+          <ProjectCardAction projectSlug={props.project.slug}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-7 text-muted-foreground/50 hover:text-foreground -mt-1 -mr-2"
+            >
+              <IconDotsVertical />
+            </Button>
+          </ProjectCardAction>
         </CardAction>
       </CardHeader>
 

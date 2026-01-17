@@ -10,7 +10,6 @@ import type { QueryClient } from "@tanstack/react-query";
 
 interface Context {
   queryClient: QueryClient;
-  crumb?: string;
 }
 
 export const Route = createRootRouteWithContext<Context>()({

@@ -2,21 +2,12 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { OrgHeader } from "@/features/organizations/components/header";
 import { OrgSidebar } from "@/features/organizations/components/sidebar";
 import { projectsQueries } from "@/features/projects/queries";
-import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
+import { Outlet, createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/app/$organizationSlug")({
   component: RouteComponent,
-  beforeLoad: ({ context, params }) => {
-    const activeOrg = context.organizations.find((o) => o.slug === params.organizationSlug);
-
-    if (!activeOrg) {
-      throw redirect({ to: "/app" });
-    }
-
-    return { activeOrg, crumb: activeOrg.name };
-  },
-  loader: async ({ context }) => {
-    await context.queryClient.ensureQueryData(projectsQueries.byOrganization(context.activeOrg.slug));
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData(projectsQueries.byOrganization(params.organizationSlug));
   },
 });
 

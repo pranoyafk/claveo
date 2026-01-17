@@ -30,9 +30,10 @@ type NavLink = {
 
 export function OrgSidebar() {
   const { state } = useSidebar();
-  const activeOrg = useActiveOrganization();
-  const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const activeOrg = useActiveOrganization();
+
   const navLinks: Array<NavLink> = [
     {
       label: "Projects",

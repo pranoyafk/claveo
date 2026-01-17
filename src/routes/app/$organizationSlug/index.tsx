@@ -1,5 +1,6 @@
 import { Page, PageAction, PageContent, PageDescription, PageHeader, PageTitle } from "@/components/page";
 import { Button } from "@/components/ui/button";
+import { useActiveOrganization } from "@/features/organizations/hooks/use-active-organization";
 import { CreateProjectDialog } from "@/features/projects/components/create-project-dialog";
 import { ProjectsEmptyState } from "@/features/projects/components/empty-state";
 import { ProjectCard } from "@/features/projects/components/project-card";
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/app/$organizationSlug/")({
 });
 
 function RouteComponent() {
-  const { activeOrg } = Route.useRouteContext();
+  const activeOrg = useActiveOrganization();
   const { data: projects } = useSuspenseQuery(projectsQueries.byOrganization(activeOrg.slug));
   const isMobile = useIsMobile();
 

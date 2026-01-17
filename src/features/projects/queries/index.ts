@@ -14,7 +14,7 @@ export const projectsQueries = {
 
   bySlug: (input: { projectSlug: string; organizationSlug: string }) =>
     queryOptions({
-      queryKey: [...projectsQueries.all, "detail", input.projectSlug],
+      queryKey: [...projectsQueries.all, input.organizationSlug, input.projectSlug],
       queryFn: () =>
         getProjectBySlugFn({
           data: input,
