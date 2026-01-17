@@ -1,4 +1,11 @@
+import { Page, PageAction, PageContent, PageDescription, PageHeader, PageTitle } from "@/components/page";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { projectsQueries } from "@/features/projects/queries";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { IconBuilding, IconFlag, IconProgress, IconSparkles } from "@tabler/icons-react";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/app/$organizationSlug/$projectSlug")({
@@ -16,8 +23,71 @@ export const Route = createFileRoute("/app/$organizationSlug/$projectSlug")({
       crumb: project.name,
     };
   },
+  loader: ({ context }) => ({
+    project: context.project,
+    activeOrg: context.activeOrg,
+  }),
 });
 
 function RouteComponent() {
-  return <div>Hello "/app/$organizationSlug/$projectSlug"!</div>;
+  const { project, activeOrg } = Route.useLoaderData();
+  const isMobile = useIsMobile();
+  const progressValue = 73;
+
+  return (
+    <Page>
+      <PageHeader>
+        <div className="flex flex-col gap-2">
+          <div className="space-y-1">
+            <PageTitle className="text-xl tracking-tight">{project.name}</PageTitle>
+            <PageDescription className="text-muted-foreground/80 max-w-xl sm:block hidden">
+              {project.description}
+            </PageDescription>
+          </div>
+
+          <div className="flex flex-wrap gap-2.5 items-center">
+            <Tooltip>
+              <TooltipTrigger>
+                <Badge variant="outline" className="rounded-md gap-1.5 px-2.5 py-1 h-auto font-normal">
+                  <IconBuilding className="size-3.5 text-muted-foreground" />
+                  <span className="text-foreground/90">{activeOrg.name}</span>
+                </Badge>
+              </TooltipTrigger>
+              <TooltipContent>Organization</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger>
+                <Badge variant="destructive" className="rounded-md gap-1.5 px-2.5 py-1 h-auto font-medium shadow-sm">
+                  <IconFlag className="size-3.5" />
+                  High Priority
+                </Badge>
+              </TooltipTrigger>
+              <TooltipContent>Project priority</TooltipContent>
+            </Tooltip>
+
+            <Separator orientation="vertical" />
+
+            <Tooltip>
+              <TooltipTrigger className="cursor-default">
+                <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                  <IconProgress className="size-4" />
+                  <span className="font-medium tabular-nums">{progressValue}%</span>
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>Project completion</TooltipContent>
+            </Tooltip>
+          </div>
+        </div>
+
+        <PageAction>
+          <Button className="gap-2 shadow-sm" size={isMobile ? "icon-lg" : "lg"}>
+            <IconSparkles className="size-4" />
+            {!isMobile && "Update"}
+          </Button>
+        </PageAction>
+      </PageHeader>
+      <PageContent></PageContent>
+    </Page>
+  );
 }
